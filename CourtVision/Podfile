@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'CourtVision' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for CourtVision
+	pod 'Firebase/Core'
+
+  target 'CourtVisionTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'CourtVisionUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

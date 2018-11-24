@@ -1,0 +1,6 @@
+framework module Pods_CourtVision {
+  umbrella header "Pods-CourtVision-umbrella.h"
+
+  export *
+  module * { export * }
+}
