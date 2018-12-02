@@ -101,7 +101,7 @@ class SignUpViewController: UIViewController {
           self.signupErrorAlert("Signup Error", error!.localizedDescription)
           return
         }
-        UserDefaults.standard.set(user.email, forKey: UserDefaultConstants.shared.udUserEmail)
+        UserDefaults.standard.set(user.uid, forKey: UserDefaultConstants.shared.udUserID)
         
         //Perform segue to main screen
       }

@@ -12,4 +12,5 @@ class UserDefaultConstants: NSObject {
   static let shared = UserDefaultConstants()
   
   let udUserEmail = "userEmail"
+  let udUserID = "userID"
 }
