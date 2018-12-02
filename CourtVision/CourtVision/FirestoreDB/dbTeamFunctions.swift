@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 
+
+//Creates a new team object and inserts into Firestore db
 public func newTeam(_ teamName: String) {
   var db: Firestore!
   Firestore.firestore().settings = FirestoreSettings()
