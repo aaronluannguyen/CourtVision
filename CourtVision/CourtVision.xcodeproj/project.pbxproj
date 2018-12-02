@@ -10,9 +10,10 @@
 		19E35AE1F67E8059CF7AE21A /* Pods_CourtVisionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC5907DFCA2927C8974B592 /* Pods_CourtVisionUITests.framework */; };
 		4354E4BB8E7BB8E4BB5458A2 /* Pods_CourtVisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4148F28B2E34E083B858DD /* Pods_CourtVisionTests.framework */; };
 		888F45085B9C2676CAB3CD2E /* Pods_CourtVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A381B0061EA46F57A2072 /* Pods_CourtVision.framework */; };
-		F406E4B821B34EEE000DBC6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F406E4B721B34EEE000DBC6A /* GoogleService-Info.plist */; };
+		EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */; };
+		EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D1721B3614F00442719 /* SignUpViewController.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
-		F4B1FB8021A974C600D45295 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* ViewController.swift */; };
+		F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* LoginViewController.swift */; };
 		F4B1FB8321A974C600D45295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8121A974C600D45295 /* Main.storyboard */; };
 		F4B1FB8521A974C700D45295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8421A974C700D45295 /* Assets.xcassets */; };
 		F4B1FB8821A974C700D45295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */; };
@@ -46,10 +47,11 @@
 		D3BB960D9EC9D008E51962A9 /* Pods-CourtVisionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionUITests/Pods-CourtVisionUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DDC5907DFCA2927C8974B592 /* Pods_CourtVisionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CourtVisionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5275109EFB6C028F70B914 /* Pods-CourtVisionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionTests/Pods-CourtVisionTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F406E4B721B34EEE000DBC6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE1B7D1721B3614F00442719 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB7D21A974C600D45295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F4B1FB7F21A974C600D45295 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F4B1FB7F21A974C600D45295 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F4B1FB8221A974C600D45295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4B1FB8421A974C700D45295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4B1FB8721A974C700D45295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -139,9 +141,10 @@
 		F4B1FB7C21A974C600D45295 /* CourtVision */ = {
 			isa = PBXGroup;
 			children = (
-				F406E4B721B34EEE000DBC6A /* GoogleService-Info.plist */,
+				EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */,
 				F4B1FB7D21A974C600D45295 /* AppDelegate.swift */,
-				F4B1FB7F21A974C600D45295 /* ViewController.swift */,
+				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
+				EE1B7D1721B3614F00442719 /* SignUpViewController.swift */,
 				F4B1FB8121A974C600D45295 /* Main.storyboard */,
 				F4B1FB8421A974C700D45295 /* Assets.xcassets */,
 				F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */,
@@ -277,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4B1FB8821A974C700D45295 /* LaunchScreen.storyboard in Resources */,
-				F406E4B821B34EEE000DBC6A /* GoogleService-Info.plist in Resources */,
+				EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */,
 				F4B1FB8521A974C700D45295 /* Assets.xcassets in Resources */,
 				F4B1FB8321A974C600D45295 /* Main.storyboard in Resources */,
 			);
@@ -397,7 +400,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4B1FB8021A974C600D45295 /* ViewController.swift in Sources */,
+				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
+				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
