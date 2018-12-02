@@ -7,13 +7,31 @@
 //
 
 import UIKit
+import Firebase
+
 
 class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var imgBG: UIImageView!
-    @IBOutlet weak var imgLogo: UIImageView!
-    @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var btnSignUp: UIButton!
+  
+  //ViewController references
+  @IBOutlet weak var imgBG: UIImageView!
+  @IBOutlet weak var imgLogo: UIImageView!
+  @IBOutlet weak var btnLogin: UIButton!
+  @IBOutlet weak var btnSignUp: UIButton!
+  
+  @IBOutlet weak var tfEmail: UITextField!
+  @IBAction func tfEmailOnChange(_ sender: Any) {
+    updateBtnLoginEnabled()
+  }
+  
+  @IBOutlet weak var tfPassword: UITextField!
+  @IBAction func tfPasswordOnChange(_ sender: Any) {
+    updateBtnLoginEnabled()
+  }
+  
+  
+  //Segues
+  let segueFromLoginToSignup = "FromLoginToSignup"
+
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,11 +43,50 @@ class LoginViewController: UIViewController {
     btnLogin.layer.cornerRadius = 3
     btnLogin.layer.borderWidth = 1
     btnLogin.layer.borderColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1.0).cgColor
+    btnLogin.isEnabled = false
+    
     btnSignUp.setTitleColor(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1.0), for: .normal)
+    
+    tfPassword.isSecureTextEntry = true
   }
     
-    @IBAction func onSignUpClick(_ sender: Any) {
-        self.performSegue(withIdentifier: "FromLoginToSignup", sender: sender)
+  @IBAction func onSignUpClick(_ sender: Any) {
+    self.performSegue(withIdentifier: self.segueFromLoginToSignup, sender: sender)
+  }
+  
+  @IBAction func onLoginClick(_ sender: Any) {
+    firebaseLogin(tfEmail.text!, tfPassword.text!)
+  }
+  
+  //Helper Functions
+  func updateBtnLoginEnabled() {
+    if (
+      self.tfEmail.text!.count > 0
+      && self.tfPassword.text!.count > 0
+      ) {
+        self.btnLogin.isEnabled = true
+    } else {
+      self.btnLogin.isEnabled = false
     }
+  }
+  
+  func firebaseLogin(_ email: String, _ password: String) {
+    Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+      guard let user = authResult?.user else {
+        self.loginErrorAlert("Login Error", error!.localizedDescription)
+        return
+      }
+      UserDefaults.standard.set(user.email, forKey: UserDefaultConstants.shared.udUserEmail)
+      
+      //Perform segue to main screen
+    }
+  }
+  
+  func loginErrorAlert(_ title: String, _ errMessage: String) {
+    let alert = UIAlertController(title: title, message: errMessage, preferredStyle: UIAlertController.Style.alert)
     
+    alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
+    
+    self.present(alert, animated: true, completion: nil)
+  }
 }
