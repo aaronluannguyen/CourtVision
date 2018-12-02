@@ -40,10 +40,16 @@ class SignUpViewController: UIViewController {
   //Segues
   let segueFromSignupToLogin = "FromSignupToLogin"
   
+  //Firebase Init
+  var db: Firestore!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
+    
+    Firestore.firestore().settings = FirestoreSettings()
+    db = Firestore.firestore()
+    
     imgBG.image = #imageLiteral(resourceName: "background")
     imgLogo.image = #imageLiteral(resourceName: "logo")
     
@@ -103,12 +109,21 @@ class SignUpViewController: UIViewController {
         }
         UserDefaults.standard.set(user.uid, forKey: UserDefaultConstants.shared.udUserID)
         
+        //Insert initialized player into DB under Players
+        let newPlayer = PlayerDM(user.email!)
+        
+        self.db.collection(FirebaseConstants.shared.playersCollection).document(user.uid).setData(newPlayer.playerObj) {err in
+          if let err = err {
+            self.signupErrorAlert("Firebase Error", "Player insertion into database error. " + err.localizedDescription)
+          }
+        }
+        
         //Perform segue to main screen
       }
     }
   }
   
-  func signupErrorAlert(_ title: String, _ errMessage: String) {
+  public func signupErrorAlert(_ title: String, _ errMessage: String) {
     let alert = UIAlertController(title: title, message: errMessage, preferredStyle: UIAlertController.Style.alert)
     
     alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
