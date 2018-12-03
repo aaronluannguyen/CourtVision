@@ -230,6 +230,18 @@
                     <view key="view" contentMode="scaleToFill" id="0uT-G3-6YS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="a1" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-BK-Y17">
+                                <rect key="frame" x="33" y="46" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="uNt-VZ-AMe"/>
                     </view>
@@ -288,10 +300,10 @@
             </objects>
             <point key="canvasLocation" x="985" y="930"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Browse Tab Bar Controller-->
         <scene sceneID="aHd-4V-7B0">
             <objects>
-                <tabBarController id="GWw-zL-Rgb" sceneMemberID="viewController">
+                <tabBarController id="GWw-zL-Rgb" customClass="BrowseTabBarController" customModule="CourtVision" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wkP-79-2xh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -316,6 +328,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="a1" width="80" height="80"/>
         <image name="active - grey" width="24" height="24"/>
         <image name="browse_grey" width="24" height="24"/>
         <image name="profile-grey" width="24" height="24"/>

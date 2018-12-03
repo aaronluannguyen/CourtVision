@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:BrowseTabBarController.swift">
+      location = "group:/Users/wynstonhsu/Documents/AU_2018/INFO449_iOSDev/CourtVision/CourtVision/CourtVision/BrowseTabBarController.swift">
    </FileRef>
    <FileRef
       location = "group:CourtVision.xcodeproj">

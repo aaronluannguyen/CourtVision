@@ -12,6 +12,7 @@
 		888F45085B9C2676CAB3CD2E /* Pods_CourtVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A381B0061EA46F57A2072 /* Pods_CourtVision.framework */; };
 		EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */; };
 		EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D1721B3614F00442719 /* SignUpViewController.swift */; };
+		EE1B7D1C21B4DAF600442719 /* BrowseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D1B21B4DAF600442719 /* BrowseTabBarController.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
 		F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* LoginViewController.swift */; };
 		F4B1FB8321A974C600D45295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8121A974C600D45295 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		EC5275109EFB6C028F70B914 /* Pods-CourtVisionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionTests/Pods-CourtVisionTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE1B7D1721B3614F00442719 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		EE1B7D1B21B4DAF600442719 /* BrowseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrowseTabBarController.swift; path = /Users/wynstonhsu/Documents/AU_2018/INFO449_iOSDev/CourtVision/CourtVision/CourtVision/BrowseTabBarController.swift; sourceTree = "<absolute>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB7D21A974C600D45295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4B1FB7F21A974C600D45295 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		F4B1FB7C21A974C600D45295 /* CourtVision */ = {
 			isa = PBXGroup;
 			children = (
+				EE1B7D1B21B4DAF600442719 /* BrowseTabBarController.swift */,
 				EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */,
 				F4B1FB7D21A974C600D45295 /* AppDelegate.swift */,
 				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
@@ -401,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
+				EE1B7D1C21B4DAF600442719 /* BrowseTabBarController.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
 			);
