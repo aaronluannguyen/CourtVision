@@ -33,6 +33,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="tfEmailOnChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="3Lx-eu-esf"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="TCz-nR-Qoz">
                                 <rect key="frame" x="72.5" y="443" width="230" height="30"/>
@@ -43,6 +46,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="tfPasswordOnChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="sRg-Mp-oFU"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Forgot Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAn-yL-VYa">
                                 <rect key="frame" x="219" y="481" width="88" height="21"/>
@@ -100,6 +106,8 @@
                         <outlet property="btnSignUp" destination="2Xx-fe-6Ip" id="dBq-wg-8EY"/>
                         <outlet property="imgBG" destination="7xu-Q7-klr" id="LgH-Xi-s5N"/>
                         <outlet property="imgLogo" destination="Wbn-W1-wux" id="cj4-HJ-iFU"/>
+                        <outlet property="tfEmail" destination="6Ca-pI-HrP" id="G9a-8J-vhx"/>
+                        <outlet property="tfPassword" destination="TCz-nR-Qoz" id="8vh-jh-M0u"/>
                         <segue destination="h0R-YF-PFV" kind="show" identifier="FromLoginToSignup" id="nIZ-kp-TfA"/>
                         <segue destination="GWw-zL-Rgb" kind="show" identifier="FromLoginToBrowse" id="hMp-9p-CQW"/>
                     </connections>
@@ -128,6 +136,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textfieldEmailOnChange:" destination="h0R-YF-PFV" eventType="editingChanged" id="KWY-c5-tyl"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="YNB-Rj-5I5">
                                 <rect key="frame" x="72.5" y="376" width="230" height="30"/>
@@ -138,6 +149,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textfieldPasswordOnChange:" destination="h0R-YF-PFV" eventType="editingChanged" id="XQu-ag-fJ9"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hov-a3-zVG">
                                 <rect key="frame" x="72.5" y="428" width="230" height="30"/>
@@ -148,6 +162,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textfieldPasswordConfirmationOnChange:" destination="h0R-YF-PFV" eventType="editingChanged" id="bvm-ER-xqV"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znK-39-Yhp">
                                 <rect key="frame" x="72.5" y="499" width="230" height="39"/>
@@ -159,6 +176,9 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSignupClick:" destination="h0R-YF-PFV" eventType="touchUpInside" id="dIH-oF-Vfu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7T-YB-kPM">
                                 <rect key="frame" x="168" y="550" width="39" height="30"/>
@@ -198,6 +218,9 @@
                         <outlet property="btnSignUp" destination="znK-39-Yhp" id="0lc-9n-qy3"/>
                         <outlet property="imgBG" destination="lpq-h3-p3W" id="vjV-uZ-bcG"/>
                         <outlet property="imgLogo" destination="BPm-PA-i8V" id="AMs-g6-WIR"/>
+                        <outlet property="textfieldEmail" destination="KNk-zz-KS0" id="6Mw-tu-sgA"/>
+                        <outlet property="textfieldPassword" destination="YNB-Rj-5I5" id="4R9-be-6XB"/>
+                        <outlet property="textfieldPasswordConfirmation" destination="hov-a3-zVG" id="tm0-Ni-KlK"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="FromSignupToLogin" id="4px-Ry-x9K"/>
                     </connections>
                 </viewController>

@@ -15,6 +15,11 @@
 		EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */; };
 		EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2821B4E59800442719 /* ProfileViewController.swift */; };
 		EE1B7D2D21B4F71C00442719 /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */; };
+		F406E4BC21B3C959000DBC6A /* UserDefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4BB21B3C959000DBC6A /* UserDefaultConstants.swift */; };
+		F406E4BE21B3E375000DBC6A /* dbDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4BD21B3E375000DBC6A /* dbDataModels.swift */; };
+		F406E4C021B3E5B8000DBC6A /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4BF21B3E5B8000DBC6A /* FirebaseConstants.swift */; };
+		F406E4C221B3F17A000DBC6A /* dbTeamFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4C121B3F17A000DBC6A /* dbTeamFunctions.swift */; };
+		F406E4C721B50DE9000DBC6A /* dbPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4C621B50DE9000DBC6A /* dbPlayer.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
 		F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* LoginViewController.swift */; };
 		F4B1FB8321A974C600D45295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8121A974C600D45295 /* Main.storyboard */; };
@@ -55,6 +60,11 @@
 		EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTabBarController.swift; sourceTree = "<group>"; };
 		EE1B7D2821B4E59800442719 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
+		F406E4BB21B3C959000DBC6A /* UserDefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstants.swift; sourceTree = "<group>"; };
+		F406E4BD21B3E375000DBC6A /* dbDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbDataModels.swift; sourceTree = "<group>"; };
+		F406E4BF21B3E5B8000DBC6A /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		F406E4C121B3F17A000DBC6A /* dbTeamFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbTeamFunctions.swift; sourceTree = "<group>"; };
+		F406E4C621B50DE9000DBC6A /* dbPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbPlayer.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB7D21A974C600D45295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4B1FB7F21A974C600D45295 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +141,18 @@
 			sourceTree = "<group>";
 		};
 		EE1B7D2B21B4E5BC00442719 /* ViewControllers */ = {
+		F406E4C421B3F3AD000DBC6A /* FirestoreDB */ = {
+			isa = PBXGroup;
+			children = (
+				F406E4BF21B3E5B8000DBC6A /* FirebaseConstants.swift */,
+				F406E4BD21B3E375000DBC6A /* dbDataModels.swift */,
+				F406E4C621B50DE9000DBC6A /* dbPlayer.swift */,
+				F406E4C121B3F17A000DBC6A /* dbTeamFunctions.swift */,
+			);
+			path = FirestoreDB;
+			sourceTree = "<group>";
+		};
+		F406E4C521B4A0F1000DBC6A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
@@ -168,12 +190,14 @@
 				EE1B7D2A21B4E59D00442719 /* TabBarViews */,
 				EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */,
 				F4B1FB7D21A974C600D45295 /* AppDelegate.swift */,
-				EE1B7D2B21B4E5BC00442719 /* ViewControllers */,
+				F406E4C521B4A0F1000DBC6A /* ViewControllers */,
+				F406E4C421B3F3AD000DBC6A /* FirestoreDB */,
 				F4B1FB8121A974C600D45295 /* Main.storyboard */,
 				F4B1FB8421A974C700D45295 /* Assets.xcassets */,
 				F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */,
 				F4B1FB8921A974C700D45295 /* Info.plist */,
 				EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */,
+				F406E4BB21B3C959000DBC6A /* UserDefaultConstants.swift */,
 			);
 			path = CourtVision;
 			sourceTree = "<group>";
@@ -403,14 +427,32 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,10 +467,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F406E4C221B3F17A000DBC6A /* dbTeamFunctions.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
 				EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */,
 				EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
+				F406E4C021B3E5B8000DBC6A /* FirebaseConstants.swift in Sources */,
+				F406E4BC21B3C959000DBC6A /* UserDefaultConstants.swift in Sources */,
+				F406E4BE21B3E375000DBC6A /* dbDataModels.swift in Sources */,
+				F406E4C721B50DE9000DBC6A /* dbPlayer.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
 				EE1B7D2D21B4F71C00442719 /* GameTableViewCell.swift in Sources */,
 			);
