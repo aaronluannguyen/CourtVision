@@ -7,6 +7,8 @@ target 'CourtVision' do
 
   # Pods for CourtVision
 	pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   target 'CourtVisionTests' do
     inherit! :search_paths

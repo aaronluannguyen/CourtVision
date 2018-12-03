@@ -33,6 +33,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="tfEmailOnChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="Yvt-hP-a5G"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="TCz-nR-Qoz">
                                 <rect key="frame" x="72.5" y="443" width="230" height="30"/>
@@ -43,6 +46,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="tfPasswordOnChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="VIJ-CY-XmI"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Forgot Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAn-yL-VYa">
                                 <rect key="frame" x="219" y="481" width="88" height="21"/>
@@ -100,6 +106,8 @@
                         <outlet property="btnSignUp" destination="2Xx-fe-6Ip" id="dBq-wg-8EY"/>
                         <outlet property="imgBG" destination="7xu-Q7-klr" id="LgH-Xi-s5N"/>
                         <outlet property="imgLogo" destination="Wbn-W1-wux" id="cj4-HJ-iFU"/>
+                        <outlet property="tfEmail" destination="6Ca-pI-HrP" id="Q5w-wQ-lgA"/>
+                        <outlet property="tfPassword" destination="TCz-nR-Qoz" id="1t7-id-OCa"/>
                         <segue destination="h0R-YF-PFV" kind="show" identifier="FromLoginToSignup" id="nIZ-kp-TfA"/>
                         <segue destination="GWw-zL-Rgb" kind="show" identifier="FromLoginToBrowse" id="hMp-9p-CQW"/>
                     </connections>
