@@ -50,6 +50,9 @@ class LoginViewController: UIViewController {
     btnSignUp.setTitleColor(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1.0), for: .normal)
     
     tfPassword.isSecureTextEntry = true
+    
+    let team = TeamDM("player1id", "Hsu")
+    team.newTeam()
   }
     
   @IBAction func onSignUpClick(_ sender: Any) {

@@ -110,13 +110,8 @@ class SignUpViewController: UIViewController {
         UserDefaults.standard.set(user.uid, forKey: UserDefaultConstants.shared.udUserID)
         
         //Insert initialized player into DB under Players
-        let newPlayer = PlayerDM(user.email!, self.getPlayerAddCode())
-        
-        self.db.collection(FirebaseConstants.shared.playersCollection).document(user.uid).setData(newPlayer.playerObj) {err in
-          if let err = err {
-            self.signupErrorAlert("Firebase Error", "Player insertion into database error. " + err.localizedDescription)
-          }
-        }
+        let player = PlayerDM(user.uid, user.email!, "SF", self.getPlayerAddCode())
+        player.newPlayer()
         
         //Perform segue to main screen
       }

@@ -16,6 +16,7 @@
 		F406E4BE21B3E375000DBC6A /* dbDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4BD21B3E375000DBC6A /* dbDataModels.swift */; };
 		F406E4C021B3E5B8000DBC6A /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4BF21B3E5B8000DBC6A /* FirebaseConstants.swift */; };
 		F406E4C221B3F17A000DBC6A /* dbTeamFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4C121B3F17A000DBC6A /* dbTeamFunctions.swift */; };
+		F406E4C721B50DE9000DBC6A /* dbPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406E4C621B50DE9000DBC6A /* dbPlayer.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
 		F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* LoginViewController.swift */; };
 		F4B1FB8321A974C600D45295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8121A974C600D45295 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		F406E4BD21B3E375000DBC6A /* dbDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbDataModels.swift; sourceTree = "<group>"; };
 		F406E4BF21B3E5B8000DBC6A /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F406E4C121B3F17A000DBC6A /* dbTeamFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbTeamFunctions.swift; sourceTree = "<group>"; };
+		F406E4C621B50DE9000DBC6A /* dbPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbPlayer.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB7D21A974C600D45295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4B1FB7F21A974C600D45295 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				F406E4BF21B3E5B8000DBC6A /* FirebaseConstants.swift */,
 				F406E4BD21B3E375000DBC6A /* dbDataModels.swift */,
+				F406E4C621B50DE9000DBC6A /* dbPlayer.swift */,
 				F406E4C121B3F17A000DBC6A /* dbTeamFunctions.swift */,
 			);
 			path = FirestoreDB;
@@ -452,6 +455,7 @@
 				F406E4C021B3E5B8000DBC6A /* FirebaseConstants.swift in Sources */,
 				F406E4BC21B3C959000DBC6A /* UserDefaultConstants.swift in Sources */,
 				F406E4BE21B3E375000DBC6A /* dbDataModels.swift in Sources */,
+				F406E4C721B50DE9000DBC6A /* dbPlayer.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
