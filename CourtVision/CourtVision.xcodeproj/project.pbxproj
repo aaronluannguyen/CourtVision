@@ -22,6 +22,11 @@
 		F4B1FB8821A974C700D45295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */; };
 		F4B1FB9321A974C700D45295 /* CourtVisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB9221A974C700D45295 /* CourtVisionTests.swift */; };
 		F4B1FB9E21A974C700D45295 /* CourtVisionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB9D21A974C700D45295 /* CourtVisionUITests.swift */; };
+		F4F843F121B53EF100F2A50E /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F021B53EF100F2A50E /* UserDefaultsConstants.swift */; };
+		F4F843F421B53F6900F2A50E /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F321B53F6900F2A50E /* FirebaseConstants.swift */; };
+		F4F843F621B53FC100F2A50E /* dbPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F521B53FC100F2A50E /* dbPlayer.swift */; };
+		F4F843F821B541EF00F2A50E /* dbTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F721B541EF00F2A50E /* dbTeam.swift */; };
+		F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F921B5422C00F2A50E /* dbGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +73,11 @@
 		F4B1FB9921A974C700D45295 /* CourtVisionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CourtVisionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB9D21A974C700D45295 /* CourtVisionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtVisionUITests.swift; sourceTree = "<group>"; };
 		F4B1FB9F21A974C700D45295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F843F021B53EF100F2A50E /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
+		F4F843F321B53F6900F2A50E /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		F4F843F521B53FC100F2A50E /* dbPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbPlayer.swift; sourceTree = "<group>"; };
+		F4F843F721B541EF00F2A50E /* dbTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbTeam.swift; sourceTree = "<group>"; };
+		F4F843F921B5422C00F2A50E /* dbGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbGame.swift; sourceTree = "<group>"; };
 		FB9A381B0061EA46F57A2072 /* Pods_CourtVision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CourtVision.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -165,15 +175,17 @@
 		F4B1FB7C21A974C600D45295 /* CourtVision */ = {
 			isa = PBXGroup;
 			children = (
+				EE1B7D2B21B4E5BC00442719 /* ViewControllers */,
 				EE1B7D2A21B4E59D00442719 /* TabBarViews */,
+				F4F843F221B53F1200F2A50E /* FirestoreDB */,
 				EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */,
 				F4B1FB7D21A974C600D45295 /* AppDelegate.swift */,
-				EE1B7D2B21B4E5BC00442719 /* ViewControllers */,
 				F4B1FB8121A974C600D45295 /* Main.storyboard */,
 				F4B1FB8421A974C700D45295 /* Assets.xcassets */,
 				F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */,
 				F4B1FB8921A974C700D45295 /* Info.plist */,
 				EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */,
+				F4F843F021B53EF100F2A50E /* UserDefaultsConstants.swift */,
 			);
 			path = CourtVision;
 			sourceTree = "<group>";
@@ -194,6 +206,17 @@
 				F4B1FB9F21A974C700D45295 /* Info.plist */,
 			);
 			path = CourtVisionUITests;
+			sourceTree = "<group>";
+		};
+		F4F843F221B53F1200F2A50E /* FirestoreDB */ = {
+			isa = PBXGroup;
+			children = (
+				F4F843F321B53F6900F2A50E /* FirebaseConstants.swift */,
+				F4F843F521B53FC100F2A50E /* dbPlayer.swift */,
+				F4F843F721B541EF00F2A50E /* dbTeam.swift */,
+				F4F843F921B5422C00F2A50E /* dbGame.swift */,
+			);
+			path = FirestoreDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,14 +426,32 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,11 +466,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F843F421B53F6900F2A50E /* FirebaseConstants.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
+				F4F843F121B53EF100F2A50E /* UserDefaultsConstants.swift in Sources */,
 				EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */,
+				F4F843F821B541EF00F2A50E /* dbTeam.swift in Sources */,
 				EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
+				F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
+				F4F843F621B53FC100F2A50E /* dbPlayer.swift in Sources */,
 				EE1B7D2D21B4F71C00442719 /* GameTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
