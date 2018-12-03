@@ -10,11 +10,12 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var imgBG: UIImageView!
-    @IBOutlet weak var imgLogo: UIImageView!
-    @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var btnSignUp: UIButton!
+  
+  //ViewController References
+  @IBOutlet weak var imgBG: UIImageView!
+  @IBOutlet weak var imgLogo: UIImageView!
+  @IBOutlet weak var btnLogin: UIButton!
+  @IBOutlet weak var btnSignUp: UIButton!
   
   @IBOutlet weak var tfEmail: UITextField!
   @IBAction func tfEmailOnChange(_ sender: Any) {
@@ -35,8 +36,6 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
-    firebaseCheckSession()
-    
     imgBG.image = #imageLiteral(resourceName: "background")
     imgLogo.image = #imageLiteral(resourceName: "logo")
     btnLogin.setTitle("Login", for: .normal)
@@ -51,17 +50,20 @@ class LoginViewController: UIViewController {
     tfPassword.isSecureTextEntry = true
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    firebaseCheckSession()
+  }
   
-  //Helper Functions
   @IBAction func onSignUpClick(_ sender: Any) {
       self.performSegue(withIdentifier: segueFromLoginToSignup, sender: sender)
   }
   
   @IBAction func onLoginClick(_ sender: Any) {
     firebaseLogin(tfEmail.text!, tfPassword.text!)
-//      self.performSegue(withIdentifier: segueFromLoginToBrowse, sender: sender)
   }
   
+  
+  //Helper Functions
   func updateBtnLoginEnabled() {
     if (
       self.tfEmail.text!.count > 0
