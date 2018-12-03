@@ -32,4 +32,8 @@ class LoginViewController: UIViewController {
         self.performSegue(withIdentifier: "FromLoginToSignup", sender: sender)
     }
     
+    @IBAction func onLoginClick(_ sender: Any) {
+        self.performSegue(withIdentifier: "FromLoginToBrowse", sender: sender)
+    }
+    
 }
