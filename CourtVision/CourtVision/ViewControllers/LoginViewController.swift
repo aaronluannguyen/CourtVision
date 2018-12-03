@@ -36,6 +36,8 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    firebaseCheckIfLoggedIn()
+    
     imgBG.image = #imageLiteral(resourceName: "background")
     imgLogo.image = #imageLiteral(resourceName: "logo")
     btnLogin.setTitle("Login", for: .normal)
@@ -79,6 +81,13 @@ class LoginViewController: UIViewController {
       UserDefaults.standard.set(user.uid, forKey: UserDefaultConstants.shared.udUserID)
       
       //Perform segue to main screen
+    }
+  }
+  
+  func firebaseCheckIfLoggedIn() {
+    if (Auth.auth().currentUser != nil) {
+      //Perform segue to landing screen
+      print("Logged in")
     }
   }
   

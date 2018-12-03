@@ -12,7 +12,7 @@ import Foundation
 public class PlayerDM {
   var playerObj: [String : Any]
   
-  init(_ email: String) {
+  init(_ email: String, _ addCode: String) {
     self.playerObj = [
       "profile": [
         "email": email,
@@ -22,6 +22,7 @@ public class PlayerDM {
         "weightPounds": 0
       ],
       "teamID": "",
+      "addCode": addCode
     ]
   }
 }
@@ -31,10 +32,12 @@ public class PlayerDM {
 public class TeamDM {
   var teamObj: [String : Any]
   
-  init(_ teamName: String) {
+  init(_ creatorID: String, _ teamName: String) {
     self.teamObj = [
+      "creatorID": creatorID,
       "teamID": "",
       "teamName": teamName,
+      "teamMembers": [],
       "activeGame": "",
       "gamesHistory": [],
       "record": [
@@ -52,9 +55,10 @@ public class TeamDM {
 public class GameDM {
   var gameObj: [String : Any]
   
-  init() {
+  init(_ gameType: String) {
     self.gameObj = [
-      "something": "something"
+      "something": "something",
+      "gameType": gameType
     ]
   }
 }

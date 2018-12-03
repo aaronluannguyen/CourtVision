@@ -16,7 +16,7 @@ public func newTeam(_ teamName: String) {
   Firestore.firestore().settings = FirestoreSettings()
   db = Firestore.firestore()
   
-  let team = TeamDM(teamName)
+  let team = TeamDM("playerid1", teamName)
   var ref: DocumentReference? = nil
   ref = db.collection(FirebaseConstants.shared.teamsCollection).addDocument(data: team.teamObj) {err in
     if let err = err {

@@ -110,7 +110,7 @@ class SignUpViewController: UIViewController {
         UserDefaults.standard.set(user.uid, forKey: UserDefaultConstants.shared.udUserID)
         
         //Insert initialized player into DB under Players
-        let newPlayer = PlayerDM(user.email!)
+        let newPlayer = PlayerDM(user.email!, self.getPlayerAddCode())
         
         self.db.collection(FirebaseConstants.shared.playersCollection).document(user.uid).setData(newPlayer.playerObj) {err in
           if let err = err {
@@ -123,11 +123,28 @@ class SignUpViewController: UIViewController {
     }
   }
   
-  public func signupErrorAlert(_ title: String, _ errMessage: String) {
+  func signupErrorAlert(_ title: String, _ errMessage: String) {
     let alert = UIAlertController(title: title, message: errMessage, preferredStyle: UIAlertController.Style.alert)
     
     alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
     
     self.present(alert, animated: true, completion: nil)
+  }
+  
+  func getPlayerAddCode() -> String {
+    let digits = 0...9
+    let shuffleDigits = digits.shuffled()
+    let fourDigits = shuffleDigits.prefix(4)
+    
+    let result = fourDigits.reduce(0) {
+      $0*10 + $1
+    }
+
+    var stringResult = String(result)
+    if (stringResult.count <= 3) {
+      stringResult = "0" + stringResult
+    }
+
+    return stringResult
   }
 }

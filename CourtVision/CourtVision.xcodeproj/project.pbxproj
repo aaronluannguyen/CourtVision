@@ -134,6 +134,15 @@
 			path = FirestoreDB;
 			sourceTree = "<group>";
 		};
+		F406E4C521B4A0F1000DBC6A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
+				EE1B7D1721B3614F00442719 /* SignUpViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		F4B1FB7121A974C600D45295 = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +170,8 @@
 			children = (
 				EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */,
 				F4B1FB7D21A974C600D45295 /* AppDelegate.swift */,
-				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
+				F406E4C521B4A0F1000DBC6A /* ViewControllers */,
 				F406E4C421B3F3AD000DBC6A /* FirestoreDB */,
-				EE1B7D1721B3614F00442719 /* SignUpViewController.swift */,
 				F4B1FB8121A974C600D45295 /* Main.storyboard */,
 				F4B1FB8421A974C700D45295 /* Assets.xcassets */,
 				F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */,
