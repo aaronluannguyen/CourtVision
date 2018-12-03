@@ -55,10 +55,23 @@ public class TeamDM {
 public class GameDM {
   var gameObj: [String : Any]
   
-  init(_ gameType: String) {
+  init(_ gameType: String, _ courtName: String, _ homeTeamID: String, _ gameTime: String) {
     self.gameObj = [
-      "something": "something",
-      "gameType": gameType
+      "courtInfo": [
+        "image": "imageURLfromGoogleMaps",
+        "courtName": courtName,
+        "location": "Address selection from iOS default. (See reminders for example)"
+      ],
+      "score": [
+        "guestWin": false,
+        "homeWin": false,
+      ],
+      "teams": [
+        "guest": "",
+        "home": homeTeamID
+      ],
+      "gameType": gameType,
+      "time": gameTime
     ]
   }
 }
