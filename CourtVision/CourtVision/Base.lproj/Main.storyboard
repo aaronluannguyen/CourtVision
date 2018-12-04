@@ -515,6 +515,13 @@
                     <connections>
                         <outlet property="btnEdit" destination="mcM-gg-y6F" id="aRp-nG-jpT"/>
                         <outlet property="gamesTableView" destination="2Oz-Ro-ncU" id="pAg-Xw-SwX"/>
+                        <outlet property="labelHeight" destination="wPj-4a-6uQ" id="yDL-I0-fr0"/>
+                        <outlet property="labelName" destination="W1J-TL-ZGe" id="vX4-hB-bii"/>
+                        <outlet property="labelPosition" destination="Gxf-PV-FxM" id="vN9-aN-Dew"/>
+                        <outlet property="labelTotalGamesNum" destination="rci-pw-Khs" id="DY5-hV-urY"/>
+                        <outlet property="labelTotalLossesNum" destination="izc-gZ-8UA" id="4uC-3J-PCl"/>
+                        <outlet property="labelTotalWinsNum" destination="26m-6r-5JL" id="303-g4-hNK"/>
+                        <outlet property="labelWeight" destination="MrB-3b-WwJ" id="ZbP-Cw-ZhP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivj-UU-dmg" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -52,6 +52,31 @@ public class PlayerDM {
       }
     }
   }
+}
+
+//Returns player's profile
+public func getPlayerProfile(_ playerID: String, completion: @escaping (PlayerDM?) -> Void) {
+  var db: Firestore!
+  Firestore.firestore().settings = FirestoreSettings()
+  db = Firestore.firestore()
+
+  var resultPlayer: PlayerDM? = nil
+  
+  let docRef = db.collection(FirebaseConstants.shared.playersCollection).document(playerID)
+  
+  docRef.getDocument { (document, error) in
+    if let player = document.flatMap({
+      $0.data().flatMap({ (data) in
+        return PlayerDM(data, playerID)
+      })
+    }) {
+      resultPlayer = player
+    } else {
+      print("Document does not exist")
+    }
+    completion(resultPlayer)
+  }
+}
 
   //example of querying for player and then accessing nested dictionaries.
   //
@@ -74,4 +99,3 @@ public class PlayerDM {
   //    print("Document does not exist")
   //  }
   //}
-}

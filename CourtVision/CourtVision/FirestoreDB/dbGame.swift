@@ -13,6 +13,7 @@ import Firebase
 public class GameDM {
   var gameObj: [String : Any]
   
+  //Constructor for new game creation
   init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameTime: String, _ gameAddress: String) {
     self.gameObj = [
       "courtInfo": [
@@ -32,4 +33,55 @@ public class GameDM {
       "time": gameTime
     ]
   }
+  
+  //Constructor for reading in game from Firestore
+  init(_ data: [String : Any], _ userID: String) {
+    self.gameObj = data
+  }
+  
+  //
+//  func getGamesHistory() {
+//    var db: Firestore!
+//    Firestore.firestore().settings = FirestoreSettings()
+//    db = Firestore.firestore()
+//
+//    let docRef = db.collection("games").document(FirebaseConstants.shared.gamesCompleted)
+//
+//    docRef.getDocument { (document, error) in
+//      if let city = document.flatMap({
+//        $0.data().flatMap({ (data) in
+//          return PlayerDM(data, "pRwp8j8TpofbTCfZqywEfwHPiuD3")
+//        })
+//      }) {
+//        print("City: \(city)")
+//        let profile = city.playerObj["profile"] as! [String:Any]
+//        print(profile["email"])
+//      } else {
+//        print("Document does not exist")
+//      }
+//    }
+//  }
 }
+
+
+//example of querying for player and then accessing nested dictionaries.
+//
+//var db: Firestore!
+//Firestore.firestore().settings = FirestoreSettings()
+//db = Firestore.firestore()
+//
+//let docRef = db.collection("players").document("pRwp8j8TpofbTCfZqywEfwHPiuD3")
+//
+//docRef.getDocument { (document, error) in
+//  if let city = document.flatMap({
+//    $0.data().flatMap({ (data) in
+//      return PlayerDM(data, "pRwp8j8TpofbTCfZqywEfwHPiuD3")
+//    })
+//  }) {
+//    print("City: \(city)")
+//    let profile = city.playerObj["profile"] as! [String:Any]
+//    print(profile["email"])
+//  } else {
+//    print("Document does not exist")
+//  }
+//}
