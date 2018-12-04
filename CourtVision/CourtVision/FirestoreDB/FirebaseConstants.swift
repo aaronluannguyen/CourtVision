@@ -12,5 +12,11 @@ class FirebaseConstants: NSObject {
   static let shared = FirebaseConstants()
   
   let playersCollection = "players"
+  
   let teamsCollection = "teams"
+  
+  let gamesCollection = "games"
+  let gamesListing = "listings"
+  let gamesActive = "active"
+  let gamesCompleted = "completed"
 }
