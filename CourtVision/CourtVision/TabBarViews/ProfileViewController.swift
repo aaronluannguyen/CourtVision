@@ -86,7 +86,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
   //Helper Functions
   func renderProfileView() {
-    getPlayerProfile(UserDefaults.standard.string(forKey: UserDefaultsConstants.shared.udUserID)!) { (player) in
+    getPlayerProfile(UserDefaults.standard.string(forKey: udUserID)!) { (player) in
       if player != nil {
         let profile = player?.playerObj["profile"]! as! [String : Any]
         self.labelName.text = ("\(profile["firstName"]!) \(profile["lastName"]!)")
