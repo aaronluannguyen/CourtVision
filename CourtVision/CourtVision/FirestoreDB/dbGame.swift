@@ -25,8 +25,7 @@ public class GameDM {
         "guestWin": false,
         "homeWin": false,
       ],
-      "guestTeam": "", //Will be updated when guest team joins game
-      "homeTeam": homeTeamID,
+      "teams": [homeTeamID, ""], //Home team = index 0; Guest team = index 1
       "gameID": "", //Will be updated when in newGame function when inserting to Firestore db
       "gameType": gameType,
       "date": gameDate,
@@ -36,7 +35,7 @@ public class GameDM {
   }
   
   //Constructor for reading in game from Firestore
-  init(_ data: [String : Any], _ userID: String) {
+  init(_ data: ([String : Any])) {
     self.gameObj = data
   }
   
@@ -65,45 +64,24 @@ public class GameDM {
 
 //Public functions relating to Game
 
-public func getGamesHistoryFromTeam(_ teamID: String) {
+public func getGamesHistoryFromTeam(_ teamID: String, completion: @escaping([GameDM]) -> ()) {
   let db = getFirestoreDB()
   let gamesRef = db.collection(gamesCollection)
   
-  let games = gamesRef.whereField("homeTeam", isEqualTo: teamID).getDocuments(completion:
-    {(query, err) in
-      if let err = err {
-        print("\(err)")
-      } else {
-        for doc in query!.documents {
-          print("\(doc.documentID)")
-        }
-      }
-    }
-  )
+  var allGames: [GameDM] = []
   
-  print("LOLOLOLOL")
-  print(games)
+  let games = gamesRef
+    .whereField("teams", arrayContains: teamID)
+    .whereField("status", isEqualTo: gamesCompleted)
+  
+  games.getDocuments() {(query, err) in
+    if let err = err {
+      print("Error: \(err)")
+    } else {
+      for document in query!.documents {
+        allGames.append(GameDM(document.data()))
+      }
+      completion(allGames)
+    }
+  }
 }
-
-
-//example of querying for player and then accessing nested dictionaries.
-//
-//var db: Firestore!
-//Firestore.firestore().settings = FirestoreSettings()
-//db = Firestore.firestore()
-//
-//let docRef = db.collection("players").document("pRwp8j8TpofbTCfZqywEfwHPiuD3")
-//
-//docRef.getDocument { (document, error) in
-//  if let city = document.flatMap({
-//    $0.data().flatMap({ (data) in
-//      return PlayerDM(data, "pRwp8j8TpofbTCfZqywEfwHPiuD3")
-//    })
-//  }) {
-//    print("City: \(city)")
-//    let profile = city.playerObj["profile"] as! [String:Any]
-//    print(profile["email"])
-//  } else {
-//    print("Document does not exist")
-//  }
-//}
