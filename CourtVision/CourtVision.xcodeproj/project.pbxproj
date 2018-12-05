@@ -15,6 +15,10 @@
 		EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */; };
 		EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2821B4E59800442719 /* ProfileViewController.swift */; };
 		EE1B7D2D21B4F71C00442719 /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */; };
+		EE5460C721B7A0A400553AEE /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460C621B7A0A400553AEE /* TeamViewController.swift */; };
+		EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */; };
+		EE5460CB21B7C7D700553AEE /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */; };
+		EE5460CD21B7C86D00553AEE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CC21B7C86D00553AEE /* RankingViewController.swift */; };
 		F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
 		F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* LoginViewController.swift */; };
@@ -60,6 +64,10 @@
 		EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTabBarController.swift; sourceTree = "<group>"; };
 		EE1B7D2821B4E59800442719 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
+		EE5460C621B7A0A400553AEE /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
+		EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
+		EE5460CC21B7C86D00553AEE /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB7D21A974C600D45295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				EE1B7D2821B4E59800442719 /* ProfileViewController.swift */,
+				EE5460C621B7A0A400553AEE /* TeamViewController.swift */,
+				EE5460CC21B7C86D00553AEE /* RankingViewController.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -148,6 +158,16 @@
 				EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EE5460CE21B7C87700553AEE /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */,
+				EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */,
+				EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		F4B1FB7121A974C600D45295 = {
@@ -175,6 +195,7 @@
 		F4B1FB7C21A974C600D45295 /* CourtVision */ = {
 			isa = PBXGroup;
 			children = (
+				EE5460CE21B7C87700553AEE /* TableViewCells */,
 				EE1B7D2B21B4E5BC00442719 /* ViewControllers */,
 				EE1B7D2A21B4E59D00442719 /* TabBarViews */,
 				F4F843F221B53F1200F2A50E /* FirestoreDB */,
@@ -184,7 +205,6 @@
 				F4B1FB8421A974C700D45295 /* Assets.xcassets */,
 				F4B1FB8621A974C700D45295 /* LaunchScreen.storyboard */,
 				F4B1FB8921A974C700D45295 /* Info.plist */,
-				EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */,
 				F4F843F021B53EF100F2A50E /* UserDefaultsConstants.swift */,
 			);
 			path = CourtVision;
@@ -467,10 +487,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
+				EE5460C721B7A0A400553AEE /* TeamViewController.swift in Sources */,
 				F4F843F121B53EF100F2A50E /* UserDefaultsConstants.swift in Sources */,
 				EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */,
+				EE5460CB21B7C7D700553AEE /* TeamTableViewCell.swift in Sources */,
+				EE5460CD21B7C86D00553AEE /* RankingViewController.swift in Sources */,
 				F4F843F821B541EF00F2A50E /* dbTeam.swift in Sources */,
 				EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */,
+				EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */,
 				F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */,
@@ -653,7 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DN5JPQ5Z2H;
+				DEVELOPMENT_TEAM = 2R6U9X846F;
 				INFOPLIST_FILE = CourtVision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -672,7 +696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DN5JPQ5Z2H;
+				DEVELOPMENT_TEAM = 2R6U9X846F;
 				INFOPLIST_FILE = CourtVision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
