@@ -35,7 +35,6 @@ public class PlayerDM {
   //Constructor for reading in player from Firestore
   init(_ data: [String : Any], _ userID: String) {
     self.playerObj = data
-    
     self.userID = userID
   }
   
@@ -60,7 +59,7 @@ public class PlayerDM {
 //Returns player's profile
 public func getPlayerProfile(_ playerID: String, completion: @escaping (PlayerDM?) -> Void) {
   let db = getFirestoreDB()
-
+  
   var resultPlayer: PlayerDM? = nil
   
   let docRef = db.collection(playersCollection).document(playerID)
