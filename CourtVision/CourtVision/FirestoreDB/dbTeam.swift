@@ -36,18 +36,16 @@ public class TeamDM {
   
   //Creates a new team object and inserts into Firestore db
   func newTeam() {
-    var db: Firestore!
-    Firestore.firestore().settings = FirestoreSettings()
-    db = Firestore.firestore()
-    
+    let db = getFirestoreDB()
+
     var ref: DocumentReference? = nil
-    ref = db.collection(FirebaseConstants.shared.teamsCollection).addDocument(data: self.teamObj) {err in
+    ref = db.collection(teamsCollection).addDocument(data: self.teamObj) {err in
       if let err = err {
         print(err.localizedDescription)
         //signupErrorAlert("Firebase Error", "Team insertion into database error. " + err.localizedDescription)
       }
     }
-    db.collection(FirebaseConstants.shared.teamsCollection).document(ref!.documentID).updateData([
+    db.collection(teamsCollection).document(ref!.documentID).updateData([
       "teamID": ref!.documentID
     ]) {err in
       if let err = err {
@@ -57,3 +55,6 @@ public class TeamDM {
     }
   }
 }
+
+
+//Public functions relating to Team

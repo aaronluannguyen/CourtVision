@@ -15,6 +15,7 @@
 		EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */; };
 		EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2821B4E59800442719 /* ProfileViewController.swift */; };
 		EE1B7D2D21B4F71C00442719 /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */; };
+		F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
 		F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7F21A974C600D45295 /* LoginViewController.swift */; };
 		F4B1FB8321A974C600D45295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4B1FB8121A974C600D45295 /* Main.storyboard */; };
@@ -23,7 +24,6 @@
 		F4B1FB9321A974C700D45295 /* CourtVisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB9221A974C700D45295 /* CourtVisionTests.swift */; };
 		F4B1FB9E21A974C700D45295 /* CourtVisionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB9D21A974C700D45295 /* CourtVisionUITests.swift */; };
 		F4F843F121B53EF100F2A50E /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F021B53EF100F2A50E /* UserDefaultsConstants.swift */; };
-		F4F843F421B53F6900F2A50E /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F321B53F6900F2A50E /* FirebaseConstants.swift */; };
 		F4F843F621B53FC100F2A50E /* dbPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F521B53FC100F2A50E /* dbPlayer.swift */; };
 		F4F843F821B541EF00F2A50E /* dbTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F721B541EF00F2A50E /* dbTeam.swift */; };
 		F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F843F921B5422C00F2A50E /* dbGame.swift */; };
@@ -60,6 +60,7 @@
 		EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTabBarController.swift; sourceTree = "<group>"; };
 		EE1B7D2821B4E59800442719 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EE1B7D2C21B4F71C00442719 /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
+		F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B1FB7D21A974C600D45295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4B1FB7F21A974C600D45295 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		F4B1FB9D21A974C700D45295 /* CourtVisionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtVisionUITests.swift; sourceTree = "<group>"; };
 		F4B1FB9F21A974C700D45295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4F843F021B53EF100F2A50E /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
-		F4F843F321B53F6900F2A50E /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F4F843F521B53FC100F2A50E /* dbPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbPlayer.swift; sourceTree = "<group>"; };
 		F4F843F721B541EF00F2A50E /* dbTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbTeam.swift; sourceTree = "<group>"; };
 		F4F843F921B5422C00F2A50E /* dbGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbGame.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		F4F843F221B53F1200F2A50E /* FirestoreDB */ = {
 			isa = PBXGroup;
 			children = (
-				F4F843F321B53F6900F2A50E /* FirebaseConstants.swift */,
+				F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */,
 				F4F843F521B53FC100F2A50E /* dbPlayer.swift */,
 				F4F843F721B541EF00F2A50E /* dbTeam.swift */,
 				F4F843F921B5422C00F2A50E /* dbGame.swift */,
@@ -466,7 +466,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4F843F421B53F6900F2A50E /* FirebaseConstants.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
 				F4F843F121B53EF100F2A50E /* UserDefaultsConstants.swift in Sources */,
 				EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */,
@@ -474,6 +473,7 @@
 				EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */,
+				F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
 				F4F843F621B53FC100F2A50E /* dbPlayer.swift in Sources */,
 				EE1B7D2D21B4F71C00442719 /* GameTableViewCell.swift in Sources */,

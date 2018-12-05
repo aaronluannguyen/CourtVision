@@ -38,6 +38,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Do any additional setup after loading the view.
     renderProfile()
+    
+//    let test = GameDM("teamID1", "IMA Court 1", "5v5", "dateString", "timeString", "gameAddress")
+//    test.newGame()
+    
+    getGamesHistoryFromTeam("teamID1")
   }
 
   
