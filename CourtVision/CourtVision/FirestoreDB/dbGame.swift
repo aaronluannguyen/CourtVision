@@ -30,7 +30,8 @@ public class GameDM {
         "home": homeTeamID
       ],
       "gameType": gameType,
-      "time": gameTime
+      "time": gameTime,
+      "status": "listing"
     ]
   }
   
@@ -39,28 +40,10 @@ public class GameDM {
     self.gameObj = data
   }
   
-  //
-//  func getGamesHistory() {
-//    var db: Firestore!
-//    Firestore.firestore().settings = FirestoreSettings()
-//    db = Firestore.firestore()
-//
-//    let docRef = db.collection("games").document(FirebaseConstants.shared.gamesCompleted)
-//
-//    docRef.getDocument { (document, error) in
-//      if let city = document.flatMap({
-//        $0.data().flatMap({ (data) in
-//          return PlayerDM(data, "pRwp8j8TpofbTCfZqywEfwHPiuD3")
-//        })
-//      }) {
-//        print("City: \(city)")
-//        let profile = city.playerObj["profile"] as! [String:Any]
-//        print(profile["email"])
-//      } else {
-//        print("Document does not exist")
-//      }
-//    }
-//  }
+  //Initializes a new game in Firestore
+  func newGame() {
+    
+  }
 }
 
 
