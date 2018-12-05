@@ -45,7 +45,7 @@ public class PlayerDM {
     Firestore.firestore().settings = FirestoreSettings()
     db = Firestore.firestore()
     
-    db.collection(FirebaseConstants.shared.playersCollection).document(self.userID).setData(self.playerObj) {err in
+    db.collection(playersCollection).document(self.userID).setData(self.playerObj) {err in
       if let err = err {
         print(err.localizedDescription)
         //self.signupErrorAlert("Firebase Error", "Player insertion into database error. " + err.localizedDescription)
@@ -54,15 +54,16 @@ public class PlayerDM {
   }
 }
 
+
+//Public functions relating to Player
+
 //Returns player's profile
 public func getPlayerProfile(_ playerID: String, completion: @escaping (PlayerDM?) -> Void) {
-  var db: Firestore!
-  Firestore.firestore().settings = FirestoreSettings()
-  db = Firestore.firestore()
+  let db = getFirestoreDB()
 
   var resultPlayer: PlayerDM? = nil
   
-  let docRef = db.collection(FirebaseConstants.shared.playersCollection).document(playerID)
+  let docRef = db.collection(playersCollection).document(playerID)
   
   docRef.getDocument { (document, error) in
     if let player = document.flatMap({
@@ -77,25 +78,3 @@ public func getPlayerProfile(_ playerID: String, completion: @escaping (PlayerDM
     completion(resultPlayer)
   }
 }
-
-  //example of querying for player and then accessing nested dictionaries.
-  //
-  //var db: Firestore!
-  //Firestore.firestore().settings = FirestoreSettings()
-  //db = Firestore.firestore()
-  //
-  //let docRef = db.collection("players").document("pRwp8j8TpofbTCfZqywEfwHPiuD3")
-  //
-  //docRef.getDocument { (document, error) in
-  //  if let city = document.flatMap({
-  //    $0.data().flatMap({ (data) in
-  //      return PlayerDM(data, "pRwp8j8TpofbTCfZqywEfwHPiuD3")
-  //    })
-  //  }) {
-  //    print("City: \(city)")
-  //    let profile = city.playerObj["profile"] as! [String:Any]
-  //    print(profile["email"])
-  //  } else {
-  //    print("Document does not exist")
-  //  }
-  //}

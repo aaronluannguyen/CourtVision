@@ -14,7 +14,7 @@ public class GameDM {
   var gameObj: [String : Any]
   
   //Constructor for new game creation
-  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameTime: String, _ gameAddress: String) {
+  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDate: String, _ gameTime: String, _ gameAddress: String) {
     self.gameObj = [
       "courtInfo": [
         "image": "imageURLfromGoogleMaps",
@@ -25,13 +25,13 @@ public class GameDM {
         "guestWin": false,
         "homeWin": false,
       ],
-      "teams": [
-        "guest": "",
-        "home": homeTeamID
-      ],
+      "guestTeam": "", //Will be updated when guest team joins game
+      "homeTeam": homeTeamID,
+      "gameID": "", //Will be updated when in newGame function when inserting to Firestore db
       "gameType": gameType,
+      "date": gameDate,
       "time": gameTime,
-      "status": "listing"
+      "status": gamesListing
     ]
   }
   
@@ -42,8 +42,47 @@ public class GameDM {
   
   //Initializes a new game in Firestore
   func newGame() {
+    let db = getFirestoreDB()
     
+    var ref: DocumentReference? = nil
+    ref = db.collection(gamesCollection).addDocument(data: self.gameObj) {err in
+      if let err = err {
+        print(err.localizedDescription)
+        //signupErrorAlert("Firebase Error", "Team insertion into database error. " + err.localizedDescription)
+      }
+    }
+    db.collection(gamesCollection).document(ref!.documentID).updateData([
+      "gameID": ref!.documentID
+    ]) {err in
+      if let err = err {
+        print(err.localizedDescription)
+        //signupErrorAlert("Firebase Error", "Team insertion into database error 2. " + err.localizedDescription)
+      }
+    }
   }
+}
+
+
+//Public functions relating to Game
+
+public func getGamesHistoryFromTeam(_ teamID: String) {
+  let db = getFirestoreDB()
+  let gamesRef = db.collection(gamesCollection)
+  
+  let games = gamesRef.whereField("homeTeam", isEqualTo: teamID).getDocuments(completion:
+    {(query, err) in
+      if let err = err {
+        print("\(err)")
+      } else {
+        for doc in query!.documents {
+          print("\(doc.documentID)")
+        }
+      }
+    }
+  )
+  
+  print("LOLOLOLOL")
+  print(games)
 }
 
 
