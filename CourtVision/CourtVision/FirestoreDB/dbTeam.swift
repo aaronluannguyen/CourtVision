@@ -20,7 +20,7 @@ public class TeamDM {
       "creatorID": creatorID,
       "teamID": "",
       "teamName": teamName,
-      "teamMembers": [],
+      "teamMembers": [creatorID],
       "activeGame": "",
       "gamesHistory": [],
       "record": [
@@ -37,7 +37,7 @@ public class TeamDM {
   //Creates a new team object and inserts into Firestore db
   func newTeam() {
     let db = getFirestoreDB()
-
+    
     var ref: DocumentReference? = nil
     ref = db.collection(teamsCollection).addDocument(data: self.teamObj) {err in
       if let err = err {

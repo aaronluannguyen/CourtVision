@@ -28,51 +28,99 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     super.viewDidLoad()
     gamesTableView.delegate = self
     gamesTableView.dataSource = self
-//    gamesTableView.translatesAutoresizingMaskIntoConstraints = false
-//    gamesTableView.leftAnchor.constraint(equalTo: view.leftAnchor)
-//    gamesTableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+    gamesTableView.tableFooterView = UIView()
+    //    gamesTableView.translatesAutoresizingMaskIntoConstraints = false
+    //    gamesTableView.leftAnchor.constraint(equalTo: view.leftAnchor)
+    //    gamesTableView.rightAnchor.constraint(equalTo: view.rightAnchor)
     
     btnEdit.layer.cornerRadius = 2
     btnEdit.layer.borderWidth = 1
     btnEdit.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
     
     // Do any additional setup after loading the view.
-    renderProfile()
+    renderProfileView()
     
-//    let test = GameDM("teamID1", "IMA Court 1", "5v5", "dateString", "timeString", "gameAddress")
-//    test.newGame()
-    
-//    getGamesHistoryFromTeam("teamID1")
+    //    let test = GameDM("teamID2", "IMA Court 1", "5v5", "dateString", "timeString", "gameAddress")
+    //    test.newGame()
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    loadGamesHistory(userTeamID)
+  }
+  
+  //Variables
+  var userTeamID: String = ""
+  var gamesArray: [GameDM] = []
 
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 8
+      return gamesArray.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "gameCellID", for: indexPath) as! GameTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "gameCellID", for: indexPath) as! GameTableViewCell
+    
+    let game = gamesArray[indexPath.row]
+    let gameObj = game.gameObj
+    let courtInfo = gameObj["courtInfo"]! as! [String : Any]
+    
+    let scoreResult = getGameTeamResult(game, userTeamID)
+    cell.btnResult.setTitle("\(scoreResult)", for: .normal)
+    if (scoreResult == "Win") {
       cell.btnResult.backgroundColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0)
-      cell.btnResult.layer.cornerRadius = 14
-      cell.btnResult.layer.borderWidth = 1
       cell.btnResult.layer.borderColor = UIColor(red: 1, green: 164, blue: 0, alpha: 1.0).cgColor
-      cell.imgGame.image = #imageLiteral(resourceName: "default")
-      cell.txtLocation.text = "Ravenna Park"
-      cell.txtTime.text = "Today, 10:00 am"
-      return cell
+    } else {
+      cell.btnResult.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
+      cell.btnResult.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0).cgColor
+    }
+    cell.btnResult.layer.cornerRadius = 14
+    cell.btnResult.layer.borderWidth = 1
+    cell.imgGame.image = #imageLiteral(resourceName: "default")
+    cell.txtLocation.text = "\(courtInfo["courtName"]!)"
+    cell.txtTime.text = "\(gameObj["time"]!)"
+    
+    return cell
   }
 
 
   //Helper Functions
-  func renderProfile() {
-    getPlayerProfile(UserDefaults.standard.string(forKey: UserDefaultsConstants.shared.udUserID)!) { (player) in
+  func renderProfileView() {
+    getPlayerProfile(UserDefaults.standard.string(forKey: udUserID)!) { (player) in
       if player != nil {
         let profile = player?.playerObj["profile"]! as! [String : Any]
         self.labelName.text = ("\(profile["firstName"]!) \(profile["lastName"]!)")
         self.labelHeight.text = ("\(profile["height"]!)")
         self.labelWeight.text = ("\(profile["weightPounds"]!)")
         self.labelPosition.text = ("\(profile["position"]!)")
+        
+        self.userTeamID = player?.playerObj["teamID"]! as! String
+        self.loadGamesHistory(self.userTeamID)
       }
+    }
+  }
+  
+  func loadGamesHistory(_ teamID: String) {
+    getGamesHistoryFromTeam(teamID) { (allGames) in
+      self.gamesArray = allGames
+      self.gamesTableView.reloadData()
+    }
+  }
+  
+  func getGameTeamResult(_ game: GameDM, _ teamID: String) -> String {
+    let gameObj = game.gameObj
+    let teams = gameObj["teams"]! as! [String]
+    let score = gameObj["score"]! as! [String : Any]
+    if (teams[0] == teamID) {
+      if (score["homeWin"]! as! Bool == true) {
+        return "Win"
+      }
+      return "Loss"
+    } else {
+      if (score["guestWin"]! as! Bool == true) {
+        return "Win"
+      }
+      return "Loss"
     }
   }
 }

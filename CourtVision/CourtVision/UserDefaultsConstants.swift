@@ -2,15 +2,12 @@
 //  UserDefaultsConstants.swift
 //  CourtVision
 //
-//  Created by Aaron Nguyen on 12/3/18.
+//  Created by Aaron Nguyen on 12/5/18.
 //  Copyright © 2018 Aaron Nguyen. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class UserDefaultsConstants: NSObject {
-  static let shared = UserDefaultsConstants()
-  
-  let udUserEmail = "userEmail"
-  let udUserID = "userID"
-}
+
+public let udUserEmail = "userEmail"
+public let udUserID = "userID"
