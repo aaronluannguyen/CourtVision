@@ -58,3 +58,11 @@ public class TeamDM {
 
 
 //Public functions relating to Team
+public func storeTeamIDUserDefaults() {
+  getPlayerProfile(ud.string(forKey: udUserID)!) {(player) in
+    if (player != nil) {
+      let teamID = player?.playerObj["addCode"]!
+      ud.set(teamID, forKey: udTeamID)
+    }
+  }
+}

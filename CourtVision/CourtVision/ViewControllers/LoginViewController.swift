@@ -88,8 +88,8 @@ class LoginViewController: UIViewController {
         self.loginErrorAlert("Login Error", error!.localizedDescription)
         return
       }
-      UserDefaults.standard.set(user.uid, forKey: udUserID)
-      
+      ud.set(user.uid, forKey: udUserID)
+      storeTeamIDUserDefaults()
       //Perform segue to browse screen
       self.performSegue(withIdentifier: self.segueFromLoginToBrowse, sender: self)
     }

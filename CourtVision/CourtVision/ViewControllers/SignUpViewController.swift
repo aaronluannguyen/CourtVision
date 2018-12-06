@@ -12,10 +12,6 @@ import Firebase
 
 class SignUpViewController: UIViewController {
   
-  //ud -> Short for UserDefault
-  let udUserEmail = "userEmail"
-  
-  
   //ViewController References
   @IBOutlet weak var imgBG: UIImageView!
   @IBOutlet weak var imgLogo: UIImageView!

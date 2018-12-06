@@ -88,7 +88,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
   //Helper Functions
   func renderProfileView() {
-    getPlayerProfile(UserDefaults.standard.string(forKey: udUserID)!) { (player) in
+    getPlayerProfile(ud.string(forKey: udUserID)!) { (player) in
       if player != nil {
         let profile = player?.playerObj["profile"]! as! [String : Any]
         self.labelTotalGamesNum.text = ("\(profile["totalGames"]!)")
