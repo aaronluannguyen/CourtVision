@@ -47,7 +47,6 @@ public class GameDM {
     ref = db.collection(gamesCollection).addDocument(data: self.gameObj) {err in
       if let err = err {
         print(err.localizedDescription)
-        //signupErrorAlert("Firebase Error", "Team insertion into database error. " + err.localizedDescription)
       }
     }
     db.collection(gamesCollection).document(ref!.documentID).updateData([
@@ -55,7 +54,6 @@ public class GameDM {
     ]) {err in
       if let err = err {
         print(err.localizedDescription)
-        //signupErrorAlert("Firebase Error", "Team insertion into database error 2. " + err.localizedDescription)
       }
     }
   }

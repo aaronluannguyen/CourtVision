@@ -16,6 +16,7 @@ public class PlayerDM {
   //Constructor for new player creation
   init(_ userID: String, _ email: String, _ addCode: String) {
     self.playerObj = [
+      "playerID": userID,
       "profile": [
         "email": email,
         "firstName": "",
@@ -45,7 +46,6 @@ public class PlayerDM {
     db.collection(playersCollection).document(ud.string(forKey: udUserID)!).setData(self.playerObj) {err in
       if let err = err {
         print(err.localizedDescription)
-        //self.signupErrorAlert("Firebase Error", "Player insertion into database error. " + err.localizedDescription)
       }
     }
   }

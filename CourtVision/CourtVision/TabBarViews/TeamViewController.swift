@@ -55,23 +55,18 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
-          //replace self.tableArray with firebase data array; currently doesn't actually remove row only shows button
-//            self.tableArray.remove(at: indexPath.row)
-          print("click!")
-          deleteConfirmation()
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-          print("clicked!")
+          deleteConfirmation(indexPath.row, indexPath)
       }
   }
   
   
   //Helper Functions
 
-  func deleteConfirmation() {
-      let alert = UIAlertController(title: "Are You Sure?", message: "You are about to delete a player from your team, is that correct?", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-      alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-      self.present(alert, animated: true)
+  func deleteConfirmation(_ index: Int, _ indexPath: IndexPath) {
+    let alert = UIAlertController(title: "Are You Sure?", message: "You are about to delete this player from your team, is that correct?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: self.removePlayer(index, indexPath)))
+    alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+    self.present(alert, animated: true)
   }
   
   //Renders team view
@@ -97,6 +92,20 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     getTeamMembers() {(playersArray) in
       self.teamMembers = playersArray
       self.playersTableView.reloadData()
+    }
+  }
+  
+  //Remove player from team
+  func removePlayer(_ index: Int, _ indexPath: IndexPath) -> (_ alertAction: UIAlertAction) -> () {
+    return {(action) in
+      let playerToDelete = self.teamMembers[index]
+      let playerToDeleteID = playerToDelete.playerObj["playerID"]! as! String
+      deleteTeamMember(self, playerToDeleteID) {(playersArray) in
+        if (playersArray.count < self.teamMembers.count) {
+          self.teamMembers = playersArray
+          self.playersTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+      }
     }
   }
   
