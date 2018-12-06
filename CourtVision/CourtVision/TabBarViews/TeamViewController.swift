@@ -83,7 +83,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   func renderTeamView() {
     getTeam() {(team) in
       if team != nil {
-        self.labelTeamName.text = team?.teamObj["teamName"]! as! String
+        self.labelTeamName.text = team?.teamObj["teamName"]! as? String
         let teamMembers = team?.teamObj[teamMembersField]! as! [String]
         self.labelNumOfPlayers.text = "\(teamMembers.count)"
         if (teamMembers.count <= 1) {
