@@ -87,7 +87,7 @@ class SignUpViewController: UIViewController {
           self.signupErrorAlert("Signup Error", error!.localizedDescription)
           return
         }
-        UserDefaults.standard.set(user.uid, forKey: udUserID)
+        ud.set(user.uid, forKey: udUserID)
         
         //Insert initialized player into DB under Players
         let player = PlayerDM(user.uid, user.email!, self.getPlayerAddCode())
