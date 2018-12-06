@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func onLoginClick(_ sender: Any) {
-    firebaseLogin(tfEmail.text!, tfPassword.text!)
+    firebaseLogin(tfEmail.text!.lowercased(), tfPassword.text!)
   }
   
   

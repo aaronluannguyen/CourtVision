@@ -61,7 +61,7 @@ class SignUpViewController: UIViewController {
   
   @IBAction func onSignupClick(_ sender: Any) {
     firebaseSignup(
-      tfEmail.text!,
+      tfEmail.text!.lowercased(),
       tfPassword.text!,
       tfPasswordConf.text!
     )
