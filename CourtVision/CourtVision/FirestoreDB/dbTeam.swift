@@ -75,6 +75,25 @@ public func storeTeamIDUserDefaults() {
   }
 }
 
+//Returns all teams for in order of rank based on W/L record
+public func getTeamRankings(completion: @escaping([TeamDM]) -> ()) {
+  let db = getFirestoreDB()
+  let teamRef = db.collection(teamsCollection)
+  
+  var allTeams: [TeamDM] = []
+  
+  teamRef.getDocuments() {(query, err) in
+    if let err = err {
+      print("Error: \(err)")
+    } else {
+      for document in query!.documents {
+        allTeams.append(TeamDM(document.data()))
+      }
+      completion(allTeams)
+    }
+  }
+}
+
 //Returns player's team
 public func getTeam(completion: @escaping(TeamDM?) -> ()) {
   let teamID = ud.string(forKey: udTeamID)!
