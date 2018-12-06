@@ -91,6 +91,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     getPlayerProfile(UserDefaults.standard.string(forKey: udUserID)!) { (player) in
       if player != nil {
         let profile = player?.playerObj["profile"]! as! [String : Any]
+        self.labelTotalGamesNum.text = ("\(profile["totalGames"]!)")
+        self.labelTotalWinsNum.text = ("\(profile["totalWins"]!)")
+        self.labelTotalLossesNum.text = ("\(profile["totalLosses"]!)")
+        
         self.labelName.text = ("\(profile["firstName"]!) \(profile["lastName"]!)")
         self.labelHeight.text = ("\(profile["height"]!)")
         self.labelWeight.text = ("\(profile["weightPounds"]!)")

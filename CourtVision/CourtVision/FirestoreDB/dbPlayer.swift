@@ -23,7 +23,10 @@ public class PlayerDM {
         "lastName": "",
         "height": "",
         "weightPounds": 0,
-        "position": position
+        "position": position,
+        "totalGames": 0,
+        "totalWins": 0,
+        "totalLosses": 0,
       ],
       "teamID": "",
       "addCode": addCode
