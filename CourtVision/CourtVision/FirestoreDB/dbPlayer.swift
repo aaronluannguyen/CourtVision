@@ -62,7 +62,7 @@ public func getPlayerProfile(_ playerID: String, completion: @escaping (PlayerDM
   
   let docRef = db.collection(playersCollection).document(playerID)
   
-  docRef.getDocument { (document, error) in
+  docRef.getDocument {(document, error) in
     if let player = document.flatMap({
       $0.data().flatMap({ (data) in
         return PlayerDM(data)

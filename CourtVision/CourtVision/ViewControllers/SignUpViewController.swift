@@ -93,6 +93,8 @@ class SignUpViewController: UIViewController {
         let player = PlayerDM(user.uid, user.email!, self.getPlayerAddCode())
         player.newPlayer()
         
+        ud.set("", forKey: udTeamID)
+        
         //Perform segue to main screen
         self.performSegue(withIdentifier: self.segueFromSignupToBrowse, sender: self)
       }

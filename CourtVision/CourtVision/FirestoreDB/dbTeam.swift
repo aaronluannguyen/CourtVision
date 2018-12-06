@@ -20,7 +20,6 @@ public class TeamDM {
       "teamID": "",
       "teamName": teamName,
       "teamMembers": [creatorID],
-      "activeGame": "",
       "gamesHistory": [],
       "record": [
         "totalGames": 0,
@@ -61,31 +60,8 @@ public class TeamDM {
   //Updates Creator's teamID
   private func updateCreatorTeamID() {
     let db = getFirestoreDB()
-    db.collection(playersCollection).document(ud.string(forKey: udUserID)!).updateData(["teamID": ud.string(forKey: udTeamID)!])
-  }
-  
-  //
-  func getTeamMembers(completion: @escaping([PlayerDM]) -> ()) {
-    let teamID = self.teamObj["teamID"]! as! String
-    
-    let db = getFirestoreDB()
-    let playersRef = db.collection(playersCollection)
-    
-    var teamPlayers: [PlayerDM] = []
-    
-    let players = playersRef
-      .whereField("teamID", isEqualTo: teamID)
-    
-    players.getDocuments() {(query, err) in
-      if let err = err {
-        print("Error: \(err)")
-      } else {
-        for document in query!.documents {
-          teamPlayers.append(PlayerDM(document.data()))
-        }
-        completion(teamPlayers)
-      }
-    }
+    let teamID = ud.string(forKey: udUserID)!
+    db.collection(playersCollection).document(teamID).updateData(["teamID": ud.string(forKey: udTeamID)!])
   }
 }
 
@@ -98,6 +74,54 @@ public func storeTeamIDUserDefaults() {
     if (player != nil) {
       let teamID = player?.playerObj["teamID"]!
       ud.set(teamID, forKey: udTeamID)
+    }
+  }
+}
+
+//Returns player's team
+public func getTeam(completion: @escaping(TeamDM?) -> ()) {
+  let teamID = ud.string(forKey: udTeamID)!
+
+  var resultTeam: TeamDM? = nil
+  
+  let db = getFirestoreDB()
+  let teamRef = db.collection(teamsCollection).document(teamID)
+  
+  teamRef.getDocument {(document, error) in
+    if let team = document.flatMap({
+      $0.data().flatMap({ (data) in
+        return TeamDM(data)
+      })
+    }) {
+      resultTeam = team
+    } else {
+      print("Team does not exist")
+    }
+    completion(resultTeam)
+  }
+}
+
+//Returns an array of all members on a team
+func getTeamMembers(completion: @escaping([PlayerDM]) -> ()) {
+  let teamID = ud.string(forKey: udTeamID)!
+  
+  let db = getFirestoreDB()
+  let playersRef = db.collection(playersCollection)
+  
+  var teamPlayers: [PlayerDM] = []
+  
+  let players = playersRef
+    .whereField("teamID", isEqualTo: teamID)
+  
+  players.getDocuments() {(query, err) in
+    if let err = err {
+      print("Error: \(err)")
+    } else {
+      for document in query!.documents {
+        teamPlayers.append(PlayerDM(document.data()))
+        print(document.data())
+      }
+      completion(teamPlayers)
     }
   }
 }

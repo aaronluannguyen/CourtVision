@@ -877,8 +877,10 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnAdd" destination="ggd-ml-2pX" id="w9R-VQ-vm2"/>
+                        <outlet property="labelNumOfPlayers" destination="7x6-gH-Mug" id="oBX-33-ARO"/>
+                        <outlet property="labelPlayers" destination="WP2-oH-b25" id="Fpt-av-oH9"/>
+                        <outlet property="labelTeamName" destination="xFd-Si-G5b" id="v8t-ii-yWs"/>
                         <outlet property="playersTableView" destination="8Z5-KK-NvZ" id="SSl-4C-GFk"/>
-                        <outlet property="txtNumb" destination="7x6-gH-Mug" id="ign-08-q67"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ve-43-3Aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
