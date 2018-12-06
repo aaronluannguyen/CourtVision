@@ -90,7 +90,7 @@ class SignUpViewController: UIViewController {
         UserDefaults.standard.set(user.uid, forKey: udUserID)
         
         //Insert initialized player into DB under Players
-        let player = PlayerDM(user.uid, user.email!, "SF", self.getPlayerAddCode())
+        let player = PlayerDM(user.uid, user.email!, self.getPlayerAddCode())
         player.newPlayer()
         
         //Perform segue to main screen

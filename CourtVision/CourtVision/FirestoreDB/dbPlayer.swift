@@ -15,7 +15,7 @@ public class PlayerDM {
   var userID: String
   
   //Constructor for new player creation
-  init(_ userID: String, _ email: String, _ position: String, _ addCode: String) {
+  init(_ userID: String, _ email: String, _ addCode: String) {
     self.playerObj = [
       "profile": [
         "email": email,
@@ -23,7 +23,7 @@ public class PlayerDM {
         "lastName": "",
         "height": "",
         "weightPounds": 0,
-        "position": position,
+        "position": "N/A",
         "totalGames": 0,
         "totalWins": 0,
         "totalLosses": 0,

@@ -63,7 +63,7 @@ public func storeTeamIDUserDefaults() {
     if (player != nil) {
       let teamID = player?.playerObj["teamID"]!
       ud.set(teamID, forKey: udTeamID)
-      print(ud.string(forKey: udTeamID) as! String)
+      print(ud.string(forKey: udTeamID)! as String)
     }
   }
 }
