@@ -122,6 +122,26 @@ func getTeamMembers(completion: @escaping([PlayerDM]) -> ()) {
   }
 }
 
+//Returns an array of all team members' ids
+func getTeamMembersIDs(completion: @escaping([String]) -> ()) {
+  let teamID = ud.string(forKey: udTeamID)!
+  
+  let db = getFirestoreDB()
+  let teamRef = db.collection(teamsCollection).document(teamID)
+  
+  teamRef.getDocument {(document, error) in
+    if let player = document.flatMap({
+      $0.data().flatMap({ (data) in
+        return PlayerDM(data)
+      })
+    }) {
+      completion(player.playerObj["teamMembers"]! as! [String])
+    } else {
+      print("Document does not exist")
+    }
+  }
+}
+
 //Add a player to team
 func addTeamMember(_ vc: UIViewController, _ addCode: String, completion: @escaping([PlayerDM]) -> ()) {
   let currUserID = ud.string(forKey: udUserID)!

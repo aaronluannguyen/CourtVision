@@ -25,9 +25,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     btnAddPlayer.layer.cornerRadius = 2
     btnAddPlayer.layer.borderWidth = 1
     btnAddPlayer.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
-    
-//    let team = TeamDM(ud.string(forKey: udUserID)!, "Team 1")
-//    team.newTeam()
   }
   
   override func viewWillAppear(_ animated: Bool) {

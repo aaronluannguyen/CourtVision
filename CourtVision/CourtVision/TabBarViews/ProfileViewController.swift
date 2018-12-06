@@ -107,7 +107,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   func loadGamesHistory(_ teamID: String) {
-    getGamesHistoryFromTeam(teamID) { (allGames) in
+    getGamesHistory(playersInvolvedField, ud.string(forKey: udUserID)!) { (allGames) in
       self.gamesArray = allGames
       self.gamesTableView.reloadData()
     }

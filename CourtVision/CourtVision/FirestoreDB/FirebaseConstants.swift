@@ -20,6 +20,8 @@ public let gamesCollection = "games"
 public let gamesListing = "listings"
 public let gamesActive = "active"
 public let gamesCompleted = "completed"
+public let teamsField = "teams"
+public let playersInvolvedField = "playersInvolved"
 
 
 //Functions
