@@ -60,12 +60,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "gameCellID", for: indexPath) as! GameTableViewCell
+    cell.selectionStyle = .none
     
     let game = gamesArray[indexPath.row]
     let gameObj = game.gameObj
     let courtInfo = gameObj["courtInfo"]! as! [String : Any]
     
     let scoreResult = getGameTeamResult(game, userTeamID)
+    cell.btnResult.isEnabled = false
     cell.btnResult.setTitle("\(scoreResult)", for: .normal)
     if (scoreResult == "Win") {
       cell.btnResult.backgroundColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0)

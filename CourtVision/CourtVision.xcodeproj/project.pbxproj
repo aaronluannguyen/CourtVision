@@ -19,6 +19,7 @@
 		EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */; };
 		EE5460CB21B7C7D700553AEE /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */; };
 		EE5460CD21B7C86D00553AEE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CC21B7C86D00553AEE /* RankingViewController.swift */; };
+		EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CF21B8B42200553AEE /* ActiveViewController.swift */; };
 		F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */; };
 		F47701DA21B7DD8600D2A4C1 /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D921B7DD8600D2A4C1 /* UserDefaultsConstants.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
@@ -68,6 +69,7 @@
 		EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		EE5460CC21B7C86D00553AEE /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		EE5460CF21B8B42200553AEE /* ActiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveViewController.swift; sourceTree = "<group>"; };
 		F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F47701D921B7DD8600D2A4C1 /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 				EE1B7D2821B4E59800442719 /* ProfileViewController.swift */,
 				EE5460C621B7A0A400553AEE /* TeamViewController.swift */,
 				EE5460CC21B7C86D00553AEE /* RankingViewController.swift */,
+				EE5460CF21B8B42200553AEE /* ActiveViewController.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
 				EE5460C721B7A0A400553AEE /* TeamViewController.swift in Sources */,
 				EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */,

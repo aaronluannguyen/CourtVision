@@ -41,8 +41,17 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == .delete {
             //replace self.tableArray with firebase data array; currently doesn't actually remove row only shows button
 //            self.tableArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            print("click!")
+            deleteConfirmation()
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            print("clicked!")
         }
     }
 
+    func deleteConfirmation() {
+        let alert = UIAlertController(title: "Are You Sure?", message: "You are about to delete a player from your team, is that correct?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
