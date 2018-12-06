@@ -14,7 +14,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   @IBOutlet weak var labelTeamName: UILabel!
   @IBOutlet weak var labelNumOfPlayers: UILabel!
   @IBOutlet weak var labelPlayers: UILabel!
-  @IBOutlet weak var btnAdd: UIButton!
+  @IBOutlet weak var btnAddPlayer: UIButton!
   @IBOutlet weak var playersTableView: UITableView!
   
   var teamMembers: [PlayerDM] = []
@@ -22,9 +22,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    btnAdd.layer.cornerRadius = 2
-    btnAdd.layer.borderWidth = 1
-    btnAdd.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
+    btnAddPlayer.layer.cornerRadius = 2
+    btnAddPlayer.layer.borderWidth = 1
+    btnAddPlayer.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
     
 //    let team = TeamDM(ud.string(forKey: udUserID)!, "Team 1")
 //    team.newTeam()
@@ -59,12 +59,22 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
       }
   }
   
+  @IBAction func btnAddPlayerClick(_ sender: Any) {
+    let alert = UIAlertController(title: "Add a Player to \(self.labelTeamName.text!)", message: "Please enter your desired player's unique add code.", preferredStyle: .alert)
+    alert.addTextField {(textField) in
+      textField.text = ""
+      textField.keyboardType = .numberPad
+    }
+    alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+    alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {action in self.addPlayer(alert.textFields![0].text!)}))
+    self.present(alert, animated: true)
+  }
   
   //Helper Functions
 
   func deleteConfirmation(_ index: Int, _ indexPath: IndexPath) {
     let alert = UIAlertController(title: "Are You Sure?", message: "You are about to delete this player from your team, is that correct?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: self.removePlayer(index, indexPath)))
+    alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {action in self.removePlayer(index, indexPath)}))
     alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
     self.present(alert, animated: true)
   }
@@ -74,7 +84,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     getTeam() {(team) in
       if team != nil {
         self.labelTeamName.text = team?.teamObj["teamName"]! as! String
-        let teamMembers = team?.teamObj["teamMembers"]! as! [String]
+        let teamMembers = team?.teamObj[teamMembersField]! as! [String]
         self.labelNumOfPlayers.text = "\(teamMembers.count)"
         if (teamMembers.count <= 1) {
           self.labelPlayers.text = "Player"
@@ -95,16 +105,25 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
   }
   
+  //Add player to team
+  func addPlayer(_ addCode: String) {
+    print("LOLOLOL \(addCode)")
+    addTeamMember(self, addCode) {(playersArray) in
+      if (playersArray.count > self.teamMembers.count) {
+        self.teamMembers = playersArray
+        self.playersTableView.reloadData()
+      }
+    }
+  }
+  
   //Remove player from team
-  func removePlayer(_ index: Int, _ indexPath: IndexPath) -> (_ alertAction: UIAlertAction) -> () {
-    return {(action) in
-      let playerToDelete = self.teamMembers[index]
-      let playerToDeleteID = playerToDelete.playerObj["playerID"]! as! String
-      deleteTeamMember(self, playerToDeleteID) {(playersArray) in
-        if (playersArray.count < self.teamMembers.count) {
-          self.teamMembers = playersArray
-          self.playersTableView.deleteRows(at: [indexPath], with: .fade)
-        }
+  func removePlayer(_ index: Int, _ indexPath: IndexPath) {
+    let playerToDelete = self.teamMembers[index]
+    let playerToDeleteID = playerToDelete.playerObj["playerID"]! as! String
+    deleteTeamMember(self, playerToDeleteID) {(playersArray) in
+      if (playersArray.count < self.teamMembers.count) {
+        self.teamMembers = playersArray
+        self.playersTableView.deleteRows(at: [indexPath], with: .fade)
       }
     }
   }

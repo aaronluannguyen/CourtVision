@@ -842,9 +842,12 @@
                                     <constraint firstAttribute="width" constant="231" id="1K1-DR-T0n"/>
                                     <constraint firstAttribute="height" constant="30" id="EaI-Hc-AJL"/>
                                 </constraints>
-                                <state key="normal" title="Edit Team">
+                                <state key="normal" title="Add Player">
                                     <color key="titleColor" red="1" green="0.64313725489999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnAddPlayerClick:" destination="tbo-56-HTD" eventType="touchUpInside" id="NPC-ky-w3F"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFd-Si-G5b">
                                 <rect key="frame" x="124" y="80" width="93" height="20.5"/>
@@ -876,7 +879,7 @@
                     <navigationItem key="navigationItem" title="Team" id="7oM-SB-HRM"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="btnAdd" destination="ggd-ml-2pX" id="w9R-VQ-vm2"/>
+                        <outlet property="btnAddPlayer" destination="ggd-ml-2pX" id="FgH-as-SIw"/>
                         <outlet property="labelNumOfPlayers" destination="7x6-gH-Mug" id="oBX-33-ARO"/>
                         <outlet property="labelPlayers" destination="WP2-oH-b25" id="Fpt-av-oH9"/>
                         <outlet property="labelTeamName" destination="xFd-Si-G5b" id="v8t-ii-yWs"/>

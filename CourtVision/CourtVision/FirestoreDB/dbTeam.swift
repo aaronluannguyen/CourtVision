@@ -20,7 +20,6 @@ public class TeamDM {
       "teamID": "",
       "teamName": teamName,
       "teamMembers": [managerID],
-      "gamesHistory": [],
       "record": [
         "totalGames": 0,
         "wins": 0,
@@ -45,7 +44,7 @@ public class TeamDM {
       }
     }
     db.collection(teamsCollection).document(ref!.documentID).updateData([
-      "teamID": ref!.documentID
+      teamIDField: ref!.documentID
     ]) {err in
       if let err = err {
         print(err.localizedDescription)
@@ -59,7 +58,7 @@ public class TeamDM {
   private func updateCreatorTeamID() {
     let db = getFirestoreDB()
     let teamID = ud.string(forKey: udUserID)!
-    db.collection(playersCollection).document(teamID).updateData(["teamID": ud.string(forKey: udTeamID)!])
+    db.collection(playersCollection).document(teamID).updateData([teamIDField: ud.string(forKey: udTeamID)!])
   }
 }
 
@@ -70,7 +69,7 @@ public class TeamDM {
 public func storeTeamIDUserDefaults() {
   getPlayerProfile(ud.string(forKey: udUserID)!) {(player) in
     if (player != nil) {
-      let teamID = player?.playerObj["teamID"]!
+      let teamID = player?.playerObj[teamIDField]!
       ud.set(teamID, forKey: udTeamID)
     }
   }
@@ -109,7 +108,7 @@ func getTeamMembers(completion: @escaping([PlayerDM]) -> ()) {
   var teamPlayers: [PlayerDM] = []
   
   let players = playersRef
-    .whereField("teamID", isEqualTo: teamID)
+    .whereField(teamIDField, isEqualTo: teamID)
   
   players.getDocuments() {(query, err) in
     if let err = err {
@@ -119,6 +118,54 @@ func getTeamMembers(completion: @escaping([PlayerDM]) -> ()) {
         teamPlayers.append(PlayerDM(document.data()))
       }
       completion(teamPlayers)
+    }
+  }
+}
+
+//Add a player to team
+func addTeamMember(_ vc: UIViewController, _ addCode: String, completion: @escaping([PlayerDM]) -> ()) {
+  let currUserID = ud.string(forKey: udUserID)!
+  getTeam() {(team) in
+    //Check if user is manager of team
+    let managerID = team?.teamObj["managerID"]! as! String
+    if (managerID == currUserID) {
+      let db = getFirestoreDB()
+      
+      let playersRef = db.collection(playersCollection)
+      let query = playersRef
+        .whereField(addCodeField, isEqualTo: addCode)
+      
+      var player: PlayerDM?
+      query.getDocuments() {(query, err) in
+        if let err = err {
+          print("Error: \(err)")
+        }
+        if (!query!.documents.isEmpty) {
+          player = PlayerDM(query!.documents[0].data())
+          if (player?.playerObj[teamIDField]! as? String == "") {
+            let playerToAddID = player?.playerObj["playerID"]! as! String
+            
+            let playerToAddRef = db.collection(playersCollection).document(playerToAddID)
+            playerToAddRef.updateData([
+              teamIDField: team?.teamObj[teamIDField]! as! String
+              ])
+            
+            let teamRef = db.collection(teamsCollection).document(ud.string(forKey: udTeamID)!)
+            teamRef.updateData([
+              teamMembersField: FieldValue.arrayUnion([playerToAddID])
+            ])
+            getTeamMembers() {(playersArray) in
+              completion(playersArray)
+            }
+          } else {
+            teamErrorAlert(vc, "Error Adding Player", "This player is already a part of a team.")
+          }
+        } else {
+          teamErrorAlert(vc, "Error Adding Player", "Invalid Add Code: Player does not exist.")
+        }
+      }
+    } else {
+      teamErrorAlert(vc, "Error Adding Player", "You are not authorized to add a team member.")
     }
   }
 }
@@ -136,27 +183,27 @@ func deleteTeamMember(_ vc: UIViewController, _ playerToDeleteID: String, comple
         
         //Replace user's teamID with empty string
         let playerRef = db.collection(playersCollection).document(playerToDeleteID)
-        playerRef.updateData(["teamID": ""])
+        playerRef.updateData([teamIDField: ""])
         
         //Delete user's id from team's teamMembers array
         let teamRef = db.collection(teamsCollection).document(ud.string(forKey: udTeamID)!)
         teamRef.updateData([
-          "teamMembers": FieldValue.arrayRemove([playerToDeleteID])
+          teamMembersField: FieldValue.arrayRemove([playerToDeleteID])
         ])
       } else {
         teamErrorAlert(vc, "Error Removing Player", "You must assign a new manager before removing yourself from the team.")
       }
     } else {
-      teamErrorAlert(vc, "Error Removing Player", "You are not authorized to remove team member.")
+      teamErrorAlert(vc, "Error Removing Player", "You are not authorized to remove a team member.")
     }
     getTeamMembers() {(playersArray) in
       completion(playersArray)
     }
   }
-  
-  func teamErrorAlert(_ vc: UIViewController, _ title: String, _ errMsg: String) {
-    let alert = UIAlertController(title: title, message: errMsg, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-    vc.present(alert, animated: true)
-  }
+}
+
+public func teamErrorAlert(_ vc: UIViewController, _ title: String, _ errMsg: String) {
+  let alert = UIAlertController(title: title, message: errMsg, preferredStyle: .alert)
+  alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+  vc.present(alert, animated: true)
 }

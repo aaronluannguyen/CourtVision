@@ -100,7 +100,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.labelWeight.text = ("\(profile["weightPounds"]!)")
         self.labelPosition.text = ("\(profile["position"]!)")
         
-        self.userTeamID = player?.playerObj["teamID"]! as! String
+        self.userTeamID = player?.playerObj[teamIDField]! as! String
         self.loadGamesHistory(self.userTeamID)
       }
     }
