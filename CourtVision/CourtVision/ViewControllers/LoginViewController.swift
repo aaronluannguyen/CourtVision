@@ -78,6 +78,7 @@ class LoginViewController: UIViewController {
   func firebaseCheckSession() {
     if (Auth.auth().currentUser != nil) {
       //Perform segue to browse screen
+      storeTeamIDUserDefaults()
       self.performSegue(withIdentifier: self.segueFromLoginToBrowse, sender: self)
     }
   }
