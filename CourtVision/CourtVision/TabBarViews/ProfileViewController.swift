@@ -88,22 +88,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
   //Helper Functions
   func renderProfileView() {
-    getPlayerProfile(UserDefaults.standard.string(forKey: udUserID)!) { (player) in
+    getPlayerProfile(ud.string(forKey: udUserID)!) { (player) in
       if player != nil {
         let profile = player?.playerObj["profile"]! as! [String : Any]
+        self.labelTotalGamesNum.text = ("\(profile["totalGames"]!)")
+        self.labelTotalWinsNum.text = ("\(profile["totalWins"]!)")
+        self.labelTotalLossesNum.text = ("\(profile["totalLosses"]!)")
+        
         self.labelName.text = ("\(profile["firstName"]!) \(profile["lastName"]!)")
         self.labelHeight.text = ("\(profile["height"]!)")
         self.labelWeight.text = ("\(profile["weightPounds"]!)")
         self.labelPosition.text = ("\(profile["position"]!)")
         
-        self.userTeamID = player?.playerObj["teamID"]! as! String
+        self.userTeamID = player?.playerObj[teamIDField]! as! String
         self.loadGamesHistory(self.userTeamID)
       }
     }
   }
   
   func loadGamesHistory(_ teamID: String) {
-    getGamesHistoryFromTeam(teamID) { (allGames) in
+    getGamesHistory(playersInvolvedField, ud.string(forKey: udUserID)!) { (allGames) in
       self.gamesArray = allGames
       self.gamesTableView.reloadData()
     }

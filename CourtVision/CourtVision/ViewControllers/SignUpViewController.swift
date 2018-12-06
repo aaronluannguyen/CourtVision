@@ -12,10 +12,6 @@ import Firebase
 
 class SignUpViewController: UIViewController {
   
-  //ud -> Short for UserDefault
-  let udUserEmail = "userEmail"
-  
-  
   //ViewController References
   @IBOutlet weak var imgBG: UIImageView!
   @IBOutlet weak var imgLogo: UIImageView!
@@ -65,7 +61,7 @@ class SignUpViewController: UIViewController {
   
   @IBAction func onSignupClick(_ sender: Any) {
     firebaseSignup(
-      tfEmail.text!,
+      tfEmail.text!.lowercased(),
       tfPassword.text!,
       tfPasswordConf.text!
     )
@@ -91,11 +87,13 @@ class SignUpViewController: UIViewController {
           self.signupErrorAlert("Signup Error", error!.localizedDescription)
           return
         }
-        UserDefaults.standard.set(user.uid, forKey: udUserID)
+        ud.set(user.uid, forKey: udUserID)
         
         //Insert initialized player into DB under Players
-        let player = PlayerDM(user.uid, user.email!, "SF", self.getPlayerAddCode())
+        let player = PlayerDM(user.uid, user.email!, self.getPlayerAddCode())
         player.newPlayer()
+        
+        ud.set("", forKey: udTeamID)
         
         //Perform segue to main screen
         self.performSegue(withIdentifier: self.segueFromSignupToBrowse, sender: self)

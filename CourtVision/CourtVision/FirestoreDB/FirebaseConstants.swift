@@ -10,13 +10,18 @@ import Foundation
 import Firebase
 
 public let playersCollection = "players"
+public let addCodeField = "addCode"
 
 public let teamsCollection = "teams"
+public let teamIDField = "teamID"
+public let teamMembersField = "teamMembers"
 
 public let gamesCollection = "games"
 public let gamesListing = "listings"
 public let gamesActive = "active"
 public let gamesCompleted = "completed"
+public let teamsField = "teams"
+public let playersInvolvedField = "playersInvolved"
 
 
 //Functions

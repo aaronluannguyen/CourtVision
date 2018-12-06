@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func onLoginClick(_ sender: Any) {
-    firebaseLogin(tfEmail.text!, tfPassword.text!)
+    firebaseLogin(tfEmail.text!.lowercased(), tfPassword.text!)
   }
   
   
@@ -78,6 +78,7 @@ class LoginViewController: UIViewController {
   func firebaseCheckSession() {
     if (Auth.auth().currentUser != nil) {
       //Perform segue to browse screen
+      storeTeamIDUserDefaults()
       self.performSegue(withIdentifier: self.segueFromLoginToBrowse, sender: self)
     }
   }
@@ -88,8 +89,8 @@ class LoginViewController: UIViewController {
         self.loginErrorAlert("Login Error", error!.localizedDescription)
         return
       }
-      UserDefaults.standard.set(user.uid, forKey: udUserID)
-      
+      ud.set(user.uid, forKey: udUserID)
+      storeTeamIDUserDefaults()
       //Perform segue to browse screen
       self.performSegue(withIdentifier: self.segueFromLoginToBrowse, sender: self)
     }

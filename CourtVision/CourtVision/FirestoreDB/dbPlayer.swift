@@ -12,42 +12,40 @@ import Firebase
 
 public class PlayerDM {
   var playerObj: [String : Any]
-  var userID: String
   
   //Constructor for new player creation
-  init(_ userID: String, _ email: String, _ position: String, _ addCode: String) {
+  init(_ userID: String, _ email: String, _ addCode: String) {
     self.playerObj = [
+      "playerID": userID,
       "profile": [
         "email": email,
         "firstName": "",
         "lastName": "",
         "height": "",
         "weightPounds": 0,
-        "position": position
+        "position": "N/A",
+        "totalGames": 0,
+        "totalWins": 0,
+        "totalLosses": 0,
       ],
       "teamID": "",
       "addCode": addCode
     ]
-    
-    self.userID = userID
   }
   
   //Constructor for reading in player from Firestore
-  init(_ data: [String : Any], _ userID: String) {
+  init(_ data: ([String : Any])) {
     self.playerObj = data
-    self.userID = userID
   }
+
   
   //Initializes new player into Firestore db
   func newPlayer() {
-    var db: Firestore!
-    Firestore.firestore().settings = FirestoreSettings()
-    db = Firestore.firestore()
+    let db = getFirestoreDB()
     
-    db.collection(playersCollection).document(self.userID).setData(self.playerObj) {err in
+    db.collection(playersCollection).document(ud.string(forKey: udUserID)!).setData(self.playerObj) {err in
       if let err = err {
         print(err.localizedDescription)
-        //self.signupErrorAlert("Firebase Error", "Player insertion into database error. " + err.localizedDescription)
       }
     }
   }
@@ -64,10 +62,10 @@ public func getPlayerProfile(_ playerID: String, completion: @escaping (PlayerDM
   
   let docRef = db.collection(playersCollection).document(playerID)
   
-  docRef.getDocument { (document, error) in
+  docRef.getDocument {(document, error) in
     if let player = document.flatMap({
       $0.data().flatMap({ (data) in
-        return PlayerDM(data, playerID)
+        return PlayerDM(data)
       })
     }) {
       resultPlayer = player

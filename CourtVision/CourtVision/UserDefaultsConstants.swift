@@ -8,6 +8,7 @@
 
 import Foundation
 
-
+public let ud = UserDefaults.standard
 public let udUserEmail = "userEmail"
 public let udUserID = "userID"
+public let udTeamID = "teamID"
