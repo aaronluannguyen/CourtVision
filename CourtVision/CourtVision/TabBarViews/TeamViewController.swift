@@ -11,10 +11,10 @@ import UIKit
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   //ViewController References
-    @IBOutlet weak var labelTotalGamesNum: UILabel!
-    @IBOutlet weak var labelTotalWinsNum: UILabel!
-    @IBOutlet weak var labelTotalLossesNum: UILabel!
-    @IBOutlet weak var labelTeamName: UILabel!
+  @IBOutlet weak var labelTotalGamesNum: UILabel!
+  @IBOutlet weak var labelTotalWinsNum: UILabel!
+  @IBOutlet weak var labelTotalLossesNum: UILabel!
+  @IBOutlet weak var labelTeamName: UILabel!
   @IBOutlet weak var labelNumOfPlayers: UILabel!
   @IBOutlet weak var labelPlayers: UILabel!
   @IBOutlet weak var btnAddPlayer: UIButton!
@@ -107,7 +107,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   //Add player to team
   func addPlayer(_ addCode: String) {
-    print("LOLOLOL \(addCode)")
     addTeamMember(self, addCode) {(playersArray) in
       if (playersArray.count > self.teamMembers.count) {
         self.teamMembers = playersArray
