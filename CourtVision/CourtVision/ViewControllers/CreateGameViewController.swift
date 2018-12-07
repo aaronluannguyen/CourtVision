@@ -16,7 +16,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var pickerView: UIView!
     
-    var typePickerData: [String] = ["1 vs. 1", "2 vs. 2", "3 vs. 3" , "4 vs. 4", "5 vs. 5"]
+    var typePickerData: [String] = ["3v3", "5v5"]
     var timePickerData: [[String]] = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
                                       ["10", "20", "30", "40", "50", "00"],
                                       ["AM", "PM", "", ""]]
@@ -41,7 +41,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         case "Type":
             self.GameType.text = self.typePickerData[rowSelected]
         case "Time":
-            self.GameTime.text =
+            self.GameTime.text = ""
             print("EDITING TIME")
         default:
             print("error")
@@ -70,18 +70,18 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     // The data to return fopr the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print("component: ")
-        print(component)
-        print("row: ")
-        print(row)
+      print("component: ")
+      print(component)
+      print("row: ")
+      print(row)
+      
+      self.rowSelected = row
+      if (self.currentlyEditing == "Type") {
+          return self.typePickerData[row]
+      } else {
         
-        self.rowSelected = row
-        if(self.currentlyEditing == "Type"){
-            return self.typePickerData[row]
-        }else{
-            
-            return self.timePickerData[component][row]
-        }
+          return self.timePickerData[component][row]
+      }
     }
     
     @IBAction func EditName(_ sender: Any) {
@@ -106,15 +106,4 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.componentsInPicker = 3;
         self.picker.reloadAllComponents();
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
