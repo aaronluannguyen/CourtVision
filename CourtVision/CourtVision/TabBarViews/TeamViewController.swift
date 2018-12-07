@@ -39,7 +39,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "playerCellID", for: indexPath) as! PlayerTableViewCell
-  
+    
     let player = teamMembers[indexPath.row]
     let playerProfile = player.playerObj[profileField]! as! [String: Any]
     
