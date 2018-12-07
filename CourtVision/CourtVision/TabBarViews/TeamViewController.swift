@@ -11,7 +11,10 @@ import UIKit
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   //ViewController References
-  @IBOutlet weak var labelTeamName: UILabel!
+    @IBOutlet weak var labelTotalGamesNum: UILabel!
+    @IBOutlet weak var labelTotalWinsNum: UILabel!
+    @IBOutlet weak var labelTotalLossesNum: UILabel!
+    @IBOutlet weak var labelTeamName: UILabel!
   @IBOutlet weak var labelNumOfPlayers: UILabel!
   @IBOutlet weak var labelPlayers: UILabel!
   @IBOutlet weak var btnAddPlayer: UIButton!

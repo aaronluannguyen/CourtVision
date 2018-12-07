@@ -24,9 +24,11 @@ class ActiveViewController: UIViewController {
   @IBOutlet weak var btnCreateGame: UIButton!
     
   // test variable for show/hide buttons
-  var hidden = true
+  var hidden = false
   // test variable for home/guest
   var isHome = true
+    // test variable for active game
+    var isActive = true
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,11 +52,18 @@ class ActiveViewController: UIViewController {
     }
   
     txtStatus.isHidden = !hidden
+    btnCreateGame.isHidden = !hidden
     if (!isHome) {
         txtStatus.text = "Your Game is Live"
         btnCreateGame.isEnabled = false
     } else {
-        txtStatus.text = "No Games Currently Active"
+        if (isActive) {
+            txtStatus.text = "Your Game is Currently Listed"
+            btnCreateGame.setTitle("Delete Game", for: .normal)
+        } else {
+            txtStatus.text = "No Games Currently Active"
+            btnCreateGame.setTitle("Create Game", for: .normal)
+        }
         btnCreateGame.layer.cornerRadius = 3
         btnCreateGame.layer.borderWidth = 1
         btnCreateGame.layer.backgroundColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1).cgColor
@@ -82,6 +91,12 @@ class ActiveViewController: UIViewController {
     }
     
     @IBAction func onCreateGameClick(_ sender: Any) {
+        if (!isActive) {
+            print("segue")
         self.performSegue(withIdentifier: "FromActiveToCreateGame", sender: sender)
+        } else {
+            // delete listing from game queue
+            print("no segue")
+        }
     }
 }
