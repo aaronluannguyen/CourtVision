@@ -70,8 +70,8 @@ public class GameDM {
 
 //Returns games history
 //Supported Game History Lists for:
-//  - By team
-//  - By player
+//  - By team   ("teamID")
+//  - By player ("playerID")
 public func getGamesHistory(_ queryFieldName: String, _ queryFieldValue: String, completion: @escaping([GameDM]) -> ()) {
   let db = getFirestoreDB()
   let gamesRef = db.collection(gamesCollection)
@@ -91,5 +91,23 @@ public func getGamesHistory(_ queryFieldName: String, _ queryFieldValue: String,
       }
       completion(allGames)
     }
+  }
+}
+
+//Returns proper game result based on index location of team in game object
+public func getGameTeamResult(_ game: GameDM, _ teamID: String) -> String {
+  let gameObj = game.gameObj
+  let teams = gameObj[teamsField]! as! [String]
+  let score = gameObj[scoreField]! as! [String : Any]
+  if (teams[0] == teamID) {
+    if (score[homeWinField]! as! Bool == true) {
+      return "Win"
+    }
+    return "Loss"
+  } else {
+    if (score[guestWinField]! as! Bool == true) {
+      return "Win"
+    }
+    return "Loss"
   }
 }

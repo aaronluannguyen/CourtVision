@@ -24,11 +24,11 @@ class ActiveViewController: UIViewController {
   @IBOutlet weak var btnCreateGame: UIButton!
     
   // test variable for show/hide buttons
-  var hidden = false
+  var hidden = true
   // test variable for home/guest
-  var isHome = true
+  var isHome = false
   // test variable for active game
-  var isActive = true
+  var isActive = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
