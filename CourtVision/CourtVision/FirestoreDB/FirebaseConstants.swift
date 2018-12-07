@@ -10,18 +10,42 @@ import Foundation
 import Firebase
 
 public let playersCollection = "players"
+public let playerIDField = "playerID"
+public let profileField = "profile"
 public let addCodeField = "addCode"
+public let firstNameField = "firsName"
+public let lastNameField = "lastName"
+public let positionField = "position"
+public let heightField = "height"
+public let weightPoundsField = "weightPounds"
+public let totalWinsField = "totalWins"
+public let totalLossesField = "totalLosses"
 
 public let teamsCollection = "teams"
 public let teamIDField = "teamID"
+public let teamManagerIDField = "managerID"
+public let teamNameField = "teamName"
 public let teamMembersField = "teamMembers"
+public let recordField = "record"
+public let winsField = "wins"
+public let lossesField = "losses"
+public let totalGamesField = "totalGames"
 
 public let gamesCollection = "games"
+public let gameType3 = "3v3"
+public let gameType5 = "5v5"
 public let gamesListing = "listings"
 public let gamesActive = "active"
 public let gamesCompleted = "completed"
 public let teamsField = "teams"
 public let playersInvolvedField = "playersInvolved"
+public let scoreField = "score"
+public let homeWinField = "homeWin"
+public let guestWinField = "guestWin"
+public let courtNameField = "courtName"
+public let courtInfoField = "courtInfo"
+public let timeField = "time"
+public let dateField = "date"
 
 
 //Functions

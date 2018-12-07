@@ -41,11 +41,11 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     let cell = tableView.dequeueReusableCell(withIdentifier: "playerCellID", for: indexPath) as! PlayerTableViewCell
   
     let player = teamMembers[indexPath.row]
-    let playerProfile = player.playerObj["profile"]! as! [String: Any]
+    let playerProfile = player.playerObj[profileField]! as! [String: Any]
     
     cell.imgPlayer.image = #imageLiteral(resourceName: "default")
-    cell.txtName.text = "\(playerProfile["firstName"]! as! String) \(playerProfile["lastName"]! as! String)"
-    cell.txtPosition.text = "\(getPositionLongName(playerProfile["position"]! as! String))"
+    cell.txtName.text = "\(playerProfile[firstNameField]! as! String) \(playerProfile[lastNameField]! as! String)"
+    cell.txtPosition.text = "\(getPositionLongName(playerProfile[positionField]! as! String))"
 
     return cell
   }
@@ -80,7 +80,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   func renderTeamView() {
     getTeam() {(team) in
       if team != nil {
-        self.labelTeamName.text = team?.teamObj["teamName"]! as? String
+        self.labelTeamName.text = team?.teamObj[teamNameField]! as? String
         let teamMembers = team?.teamObj[teamMembersField]! as! [String]
         self.labelNumOfPlayers.text = "\(teamMembers.count)"
         if (teamMembers.count <= 1) {
@@ -116,7 +116,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   //Remove player from team
   func removePlayer(_ index: Int, _ indexPath: IndexPath) {
     let playerToDelete = self.teamMembers[index]
-    let playerToDeleteID = playerToDelete.playerObj["playerID"]! as! String
+    let playerToDeleteID = playerToDelete.playerObj[playerIDField]! as! String
     deleteTeamMember(self, playerToDeleteID) {(playersArray) in
       if (playersArray.count < self.teamMembers.count) {
         self.teamMembers = playersArray

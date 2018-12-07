@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let game = gamesArray[indexPath.row]
     let gameObj = game.gameObj
-    let courtInfo = gameObj["courtInfo"]! as! [String : Any]
+    let courtInfo = gameObj[courtInfoField]! as! [String : Any]
     
     let scoreResult = getGameTeamResult(game, userTeamID)
     cell.btnResult.isEnabled = false
@@ -79,8 +79,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     cell.btnResult.layer.cornerRadius = 14
     cell.btnResult.layer.borderWidth = 1
     cell.imgGame.image = #imageLiteral(resourceName: "default")
-    cell.txtLocation.text = "\(courtInfo["courtName"]!)"
-    cell.txtTime.text = "\(gameObj["time"]!)"
+    cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
+    cell.txtTime.text = "\(gameObj[timeField]!)"
     
     return cell
   }
@@ -90,15 +90,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   func renderProfileView() {
     getPlayerProfile(ud.string(forKey: udUserID)!) { (player) in
       if player != nil {
-        let profile = player?.playerObj["profile"]! as! [String : Any]
-        self.labelTotalGamesNum.text = ("\(profile["totalGames"]!)")
-        self.labelTotalWinsNum.text = ("\(profile["totalWins"]!)")
-        self.labelTotalLossesNum.text = ("\(profile["totalLosses"]!)")
+        let profile = player?.playerObj[profileField]! as! [String : Any]
+        self.labelTotalGamesNum.text = ("\(profile[totalGamesField]!)")
+        self.labelTotalWinsNum.text = ("\(profile[totalWinsField]!)")
+        self.labelTotalLossesNum.text = ("\(profile[totalLossesField]!)")
         
-        self.labelName.text = ("\(profile["firstName"]!) \(profile["lastName"]!)")
-        self.labelHeight.text = ("\(profile["height"]!)")
-        self.labelWeight.text = ("\(profile["weightPounds"]!)")
-        self.labelPosition.text = ("\(profile["position"]!)")
+        self.labelName.text = ("\(profile[firstNameField]!) \(profile[lastNameField]!)")
+        self.labelHeight.text = ("\(profile[heightField]!)")
+        self.labelWeight.text = ("\(profile[weightPoundsField]!)")
+        self.labelPosition.text = ("\(profile[positionField]!)")
         
         self.userTeamID = player?.playerObj[teamIDField]! as! String
         self.loadGamesHistory(self.userTeamID)
@@ -115,15 +115,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   func getGameTeamResult(_ game: GameDM, _ teamID: String) -> String {
     let gameObj = game.gameObj
-    let teams = gameObj["teams"]! as! [String]
-    let score = gameObj["score"]! as! [String : Any]
+    let teams = gameObj[teamsField]! as! [String]
+    let score = gameObj[scoreField]! as! [String : Any]
     if (teams[0] == teamID) {
-      if (score["homeWin"]! as! Bool == true) {
+      if (score[homeWinField]! as! Bool == true) {
         return "Win"
       }
       return "Loss"
     } else {
-      if (score["guestWin"]! as! Bool == true) {
+      if (score[guestWinField]! as! Bool == true) {
         return "Win"
       }
       return "Loss"

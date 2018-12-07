@@ -31,7 +31,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     let cell = tableView.dequeueReusableCell(withIdentifier: "teamCellID", for: indexPath) as! TeamTableViewCell
     
     let team = teams[indexPath.row]
-    let teamRecord = team.teamObj["record"]! as! [String: Any]
+    let teamRecord = team.teamObj[recordField]! as! [String: Any]
     
     if indexPath.row == 0 {
       cell.txtRank.text = "Rank"
@@ -44,8 +44,8 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
       cell.selectionStyle = .none
     } else {
       cell.txtRank.text = "\(indexPath.row)"
-      cell.txtName.text = "\(team.teamObj["teamName"]! as! String)"
-      cell.txtRecord.text = "\(teamRecord["wins"]!)-\(teamRecord["losses"]!)"
+      cell.txtName.text = "\(team.teamObj[teamNameField]! as! String)"
+      cell.txtRecord.text = "\(teamRecord[winsField]!)-\(teamRecord[lossesField]!)"
     }
     return cell
   }
@@ -56,9 +56,12 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     getTeamRankings() {(teamsArray) in
       var teamsToSort = teamsArray
       teamsToSort.sort(by: {
-        let item0Record = $0.teamObj["record"]! as! [String: Any]
-        let item1Record = $1.teamObj["record"]! as! [String: Any]
-        return self.winPercentage(item0Record["wins"]! as! Double, item0Record["totalGames"]! as! Double) > self.winPercentage(item1Record["wins"]! as! Double, item1Record["totalGames"]! as! Double)
+        let item0Record = $0.teamObj[recordField]! as! [String: Any]
+        let item1Record = $1.teamObj[recordField]! as! [String: Any]
+        return
+          self.winPercentage(item0Record[winsField]! as! Double, item0Record[totalGamesField]! as! Double)
+          >
+          self.winPercentage(item1Record[winsField]! as! Double, item1Record[totalGamesField]! as! Double)
       })
       self.teams.append(contentsOf: teamsToSort)
       self.teamsTableView.reloadData()

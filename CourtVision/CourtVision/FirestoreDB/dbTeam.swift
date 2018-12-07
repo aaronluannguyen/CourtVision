@@ -154,7 +154,7 @@ func getTeamMembersIDs(completion: @escaping([String]) -> ()) {
         return PlayerDM(data)
       })
     }) {
-      completion(player.playerObj["teamMembers"]! as! [String])
+      completion(player.playerObj[teamMembersField]! as! [String])
     } else {
       print("Document does not exist")
     }
@@ -166,7 +166,7 @@ func addTeamMember(_ vc: UIViewController, _ addCode: String, completion: @escap
   let currUserID = ud.string(forKey: udUserID)!
   getTeam() {(team) in
     //Check if user is manager of team
-    let managerID = team?.teamObj["managerID"]! as! String
+    let managerID = team?.teamObj[teamManagerIDField]! as! String
     if (managerID == currUserID) {
       let db = getFirestoreDB()
       
@@ -182,7 +182,7 @@ func addTeamMember(_ vc: UIViewController, _ addCode: String, completion: @escap
         if (!query!.documents.isEmpty) {
           player = PlayerDM(query!.documents[0].data())
           if (player?.playerObj[teamIDField]! as? String == "") {
-            let playerToAddID = player?.playerObj["playerID"]! as! String
+            let playerToAddID = player?.playerObj[playerIDField]! as! String
             
             let playerToAddRef = db.collection(playersCollection).document(playerToAddID)
             playerToAddRef.updateData([
@@ -214,7 +214,7 @@ func deleteTeamMember(_ vc: UIViewController, _ playerToDeleteID: String, comple
   let currUserID = ud.string(forKey: udUserID)!
   getTeam() {(team) in
     //Check if user is manager of team
-    let managerID = team?.teamObj["managerID"]! as! String
+    let managerID = team?.teamObj[teamManagerIDField]! as! String
     if (managerID == currUserID) {
       //Check if player being attempted to delete is not team manager
       if (managerID != playerToDeleteID) {
