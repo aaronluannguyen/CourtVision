@@ -10,6 +10,7 @@
 		19E35AE1F67E8059CF7AE21A /* Pods_CourtVisionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC5907DFCA2927C8974B592 /* Pods_CourtVisionUITests.framework */; };
 		4354E4BB8E7BB8E4BB5458A2 /* Pods_CourtVisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4148F28B2E34E083B858DD /* Pods_CourtVisionTests.framework */; };
 		888F45085B9C2676CAB3CD2E /* Pods_CourtVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A381B0061EA46F57A2072 /* Pods_CourtVision.framework */; };
+		B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */; };
 		EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */; };
 		EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D1721B3614F00442719 /* SignUpViewController.swift */; };
 		EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */; };
@@ -56,6 +57,7 @@
 		7D3BB6BB5DC666BBDFB34FEC /* Pods-CourtVisionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionTests/Pods-CourtVisionTests.release.xcconfig"; sourceTree = "<group>"; };
 		80A4A8FEB418A2AF5EB368BE /* Pods-CourtVisionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionUITests/Pods-CourtVisionUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7C38CA7187184961BAE8824 /* Pods-CourtVision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVision.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision.debug.xcconfig"; sourceTree = "<group>"; };
+		B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		BEE723B8606368ADDC0D1396 /* Pods-CourtVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVision.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision.release.xcconfig"; sourceTree = "<group>"; };
 		D3BB960D9EC9D008E51962A9 /* Pods-CourtVisionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionUITests/Pods-CourtVisionUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DDC5907DFCA2927C8974B592 /* Pods_CourtVisionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CourtVisionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
 				EE1B7D1721B3614F00442719 /* SignUpViewController.swift */,
 				EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */,
+				B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */,
 				EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
 				EE5460C721B7A0A400553AEE /* TeamViewController.swift in Sources */,
@@ -681,7 +685,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2R6U9X846F;
+				DEVELOPMENT_TEAM = GQFCG2977Z;
 				INFOPLIST_FILE = CourtVision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -700,7 +704,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2R6U9X846F;
+				DEVELOPMENT_TEAM = GQFCG2977Z;
 				INFOPLIST_FILE = CourtVision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
