@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/anirudhsubramanyam/Desktop/UW/Quarter 1/INFO 449/CourtVision/CourtVision/CourtVision/TabBarViews/LocationSearchTable.swift">
-   </FileRef>
-   <FileRef
       location = "group:CourtVision.xcodeproj">
    </FileRef>
    <FileRef

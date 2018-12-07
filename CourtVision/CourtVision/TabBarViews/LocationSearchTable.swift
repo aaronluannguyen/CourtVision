@@ -1,9 +1,11 @@
 //
 //  LocationSearchTable.swift
-//  
+//  CourtVision
 //
 //  Created by Anirudh Subramanyam on 12/6/18.
+//  Copyright © 2018 Aaron Nguyen. All rights reserved.
 //
+
 
 import UIKit
 import MapKit
@@ -56,3 +58,4 @@ extension LocationSearchTable {
         dismiss(animated: true, completion: nil)
     }
 }
+

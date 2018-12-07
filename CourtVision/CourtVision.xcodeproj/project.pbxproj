@@ -11,9 +11,9 @@
 		4354E4BB8E7BB8E4BB5458A2 /* Pods_CourtVisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4148F28B2E34E083B858DD /* Pods_CourtVisionTests.framework */; };
 		888F45085B9C2676CAB3CD2E /* Pods_CourtVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A381B0061EA46F57A2072 /* Pods_CourtVision.framework */; };
 		AD657ED721BA4272006B69F0 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657ED621BA4272006B69F0 /* BrowseViewController.swift */; };
-		AD657ED921BA456F006B69F0 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657ED821BA456F006B69F0 /* LocationSearchTable.swift */; };
 		AD657EDB21BA4770006B69F0 /* TabBarViewsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */; };
 		AD657EDD21BA4816006B69F0 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */; };
+		AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */; };
 		B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */; };
 		EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */; };
 		EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D1721B3614F00442719 /* SignUpViewController.swift */; };
@@ -62,9 +62,9 @@
 		80A4A8FEB418A2AF5EB368BE /* Pods-CourtVisionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionUITests/Pods-CourtVisionUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7C38CA7187184961BAE8824 /* Pods-CourtVision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVision.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision.debug.xcconfig"; sourceTree = "<group>"; };
 		AD657ED621BA4272006B69F0 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
-		AD657ED821BA456F006B69F0 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchTable.swift; path = "/Users/anirudhsubramanyam/Desktop/UW/Quarter 1/INFO 449/CourtVision/CourtVision/CourtVision/TabBarViews/LocationSearchTable.swift"; sourceTree = "<absolute>"; };
 		AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewsConstants.swift; sourceTree = "<group>"; };
 		AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		BEE723B8606368ADDC0D1396 /* Pods-CourtVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVision.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision.release.xcconfig"; sourceTree = "<group>"; };
 		D3BB960D9EC9D008E51962A9 /* Pods-CourtVisionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionUITests/Pods-CourtVisionUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,7 +155,6 @@
 		EE1B7D2A21B4E59D00442719 /* TabBarViews */ = {
 			isa = PBXGroup;
 			children = (
-				AD657ED821BA456F006B69F0 /* LocationSearchTable.swift */,
 				AD657ED621BA4272006B69F0 /* BrowseViewController.swift */,
 				AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */,
 				EE1B7D2821B4E59800442719 /* ProfileViewController.swift */,
@@ -163,6 +162,7 @@
 				EE5460CC21B7C86D00553AEE /* RankingViewController.swift */,
 				EE5460CF21B8B42200553AEE /* ActiveViewController.swift */,
 				AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */,
+				AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -504,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */,
 				B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */,
 				EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
@@ -519,7 +520,6 @@
 				EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F47701DA21B7DD8600D2A4C1 /* UserDefaultsConstants.swift in Sources */,
-				AD657ED921BA456F006B69F0 /* LocationSearchTable.swift in Sources */,
 				F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */,
 				F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */,
 				F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */,
