@@ -27,8 +27,8 @@ class ActiveViewController: UIViewController {
   var hidden = false
   // test variable for home/guest
   var isHome = true
-    // test variable for active game
-    var isActive = true
+  // test variable for active game
+  var isActive = true
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,8 +70,8 @@ class ActiveViewController: UIViewController {
         btnCreateGame.layer.borderColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1).cgColor
     }
     
-    let game = GameDM(ud.string(forKey: udUserID)!, "IMA Court 3", "5v5", "dateString", "timeString", "Address")
-    game.newGame()
+//    let game = GameDM(ud.string(forKey: udUserID)!, "IMA Court 1", "5v5", "dateString", "timeString", "Address")
+//    game.newGame()
   }
   
   @IBAction func onWinClick(_ sender: Any) {
