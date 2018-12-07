@@ -19,12 +19,16 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   @IBOutlet weak var labelPlayers: UILabel!
   @IBOutlet weak var btnAddPlayer: UIButton!
   @IBOutlet weak var playersTableView: UITableView!
+  @IBOutlet weak var segmentControlPlayersGames: UISegmentedControl!
   
   var teamMembers: [PlayerDM] = []
+  var teamGamesHistory: [GameDM] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
+    playersTableView.tableFooterView = UIView()
+    
     btnAddPlayer.layer.cornerRadius = 2
     btnAddPlayer.layer.borderWidth = 1
     btnAddPlayer.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
@@ -35,22 +39,60 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     renderTeamView()
   }
   
+  @IBAction func scActionHandler(_ sender: Any) {
+    if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
+      self.loadTeamMembers()
+    } else {
+      self.loadTeamGamesHistory()
+    }
+  }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
       return teamMembers.count
+    } else {
+      return teamGamesHistory.count
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "playerCellID", for: indexPath) as! PlayerTableViewCell
-    
-    let player = teamMembers[indexPath.row]
-    let playerProfile = player.playerObj[profileField]! as! [String: Any]
-    
-    cell.imgPlayer.image = #imageLiteral(resourceName: "default")
-    cell.txtName.text = "\(playerProfile[firstNameField]! as! String) \(playerProfile[lastNameField]! as! String)"
-    cell.txtPosition.text = "\(getPositionLongName(playerProfile[positionField]! as! String))"
+    if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "playerCellID", for: indexPath) as! PlayerTableViewCell
+      
+      let player = teamMembers[indexPath.row]
+      let playerProfile = player.playerObj[profileField]! as! [String: Any]
 
-    return cell
+      cell.imgPlayer.image = #imageLiteral(resourceName: "default")
+      cell.txtName.text = "\(playerProfile[firstNameField]! as! String) \(playerProfile[lastNameField]! as! String)"
+      cell.txtPosition.text = "\(getPositionLongName(playerProfile[positionField]! as! String))"
+      
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "gameCellID", for: indexPath) as! GameTableViewCell
+      cell.selectionStyle = .none
+      
+      let game = teamGamesHistory[indexPath.row]
+      let gameObj = game.gameObj
+      let courtInfo = gameObj[courtInfoField]! as! [String : Any]
+      
+      let scoreResult = getGameTeamResult(game, ud.string(forKey: udTeamID)!)
+      cell.btnResult.isEnabled = false
+      cell.btnResult.setTitle("\(scoreResult)", for: .normal)
+      if (scoreResult == "Win") {
+        cell.btnResult.backgroundColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0)
+        cell.btnResult.layer.borderColor = UIColor(red: 1, green: 164, blue: 0, alpha: 1.0).cgColor
+      } else {
+        cell.btnResult.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
+        cell.btnResult.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0).cgColor
+      }
+      cell.btnResult.layer.cornerRadius = 14
+      cell.btnResult.layer.borderWidth = 1
+      cell.imgGame.image = #imageLiteral(resourceName: "default")
+      cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
+      cell.txtTime.text = "\(gameObj[timeField]!)"
+      
+      return cell
+    }
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -81,9 +123,15 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   //Renders team view
   func renderTeamView() {
+    scActionHandler(self) //Render selected table type (Players/Game History)
     getTeam() {(team) in
       if team != nil {
         self.labelTeamName.text = team?.teamObj[teamNameField]! as? String
+        let teamRecord = team?.teamObj[recordField]! as! [String : Any]
+        self.labelTotalGamesNum.text = "\(teamRecord[totalGamesField]!)"
+        self.labelTotalWinsNum.text = "\(teamRecord[winsField]!)"
+        self.labelTotalLossesNum.text = "\(teamRecord[lossesField]!)"
+        
         let teamMembers = team?.teamObj[teamMembersField]! as! [String]
         self.labelNumOfPlayers.text = "\(teamMembers.count)"
         if (teamMembers.count <= 1) {
@@ -91,9 +139,16 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
           self.labelPlayers.text = "Players"
         }
-        
-        self.loadTeamMembers()
       }
+    }
+    scActionHandler(self)
+  }
+  
+  //Renders team's games history
+  func loadTeamGamesHistory() {
+    getGamesHistory(teamsField, ud.string(forKey: udTeamID)!) { (allGames) in
+      self.teamGamesHistory = allGames
+      self.playersTableView.reloadData() //playersTableView is just set table. Not limited to just displaying players
     }
   }
   

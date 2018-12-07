@@ -112,21 +112,4 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
       self.gamesTableView.reloadData()
     }
   }
-  
-  func getGameTeamResult(_ game: GameDM, _ teamID: String) -> String {
-    let gameObj = game.gameObj
-    let teams = gameObj[teamsField]! as! [String]
-    let score = gameObj[scoreField]! as! [String : Any]
-    if (teams[0] == teamID) {
-      if (score[homeWinField]! as! Bool == true) {
-        return "Win"
-      }
-      return "Loss"
-    } else {
-      if (score[guestWinField]! as! Bool == true) {
-        return "Win"
-      }
-      return "Loss"
-    }
-  }
 }
