@@ -20,10 +20,11 @@ class ActiveViewController: UIViewController {
   @IBOutlet weak var btnWin: UIButton!
   @IBOutlet weak var btnLoss: UIButton!
   @IBOutlet weak var container: UIView!
-  @IBOutlet weak var txtNoGames: UILabel!
-  
+  @IBOutlet weak var txtStatus: UILabel!
+  @IBOutlet weak var btnCreateGame: UIButton!
+    
   // test variable for show/hide buttons
-  var hidden = false
+  var hidden = true
   // test variable for home/guest
   var isHome = true
   
@@ -48,11 +49,16 @@ class ActiveViewController: UIViewController {
         btnLoss.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
     }
   
-    txtNoGames.isHidden = !hidden
+    txtStatus.isHidden = !hidden
     if (!isHome) {
-        txtNoGames.text = "Your Game is Live"
+        txtStatus.text = "Your Game is Live"
+        btnCreateGame.isEnabled = false
     } else {
-        txtNoGames.text = "No Games Currently Active"
+        txtStatus.text = "No Games Currently Active"
+        btnCreateGame.layer.cornerRadius = 3
+        btnCreateGame.layer.borderWidth = 1
+        btnCreateGame.layer.backgroundColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1).cgColor
+        btnCreateGame.layer.borderColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1).cgColor
     }
     
     let game = GameDM(ud.string(forKey: udUserID)!, "IMA Court 3", "5v5", "dateString", "timeString", "Address")
@@ -67,11 +73,15 @@ class ActiveViewController: UIViewController {
       //increment win count for home team
   }
   
-  @IBAction func onLossClick(_ sender: Any) {
+    @IBAction func onLossClick(_ sender: Any) {
       let alert = UIAlertController(title: "Nice Try", message: "You are about to record a loss for your team, is that correct?", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
       alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
       self.present(alert, animated: true)
       //increment loss count for home team
-  }
+    }
+    
+    @IBAction func onCreateGameClick(_ sender: Any) {
+        self.performSegue(withIdentifier: "FromActiveToCreateGame", sender: sender)
+    }
 }
