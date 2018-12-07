@@ -97,46 +97,53 @@ public func getTeamRankings(completion: @escaping([TeamDM]) -> ()) {
 //Returns player's team
 public func getTeam(completion: @escaping(TeamDM?) -> ()) {
   let teamID = ud.string(forKey: udTeamID)!
-
-  var resultTeam: TeamDM? = nil
-  
-  let db = getFirestoreDB()
-  let teamRef = db.collection(teamsCollection).document(teamID)
-  
-  teamRef.getDocument {(document, error) in
-    if let team = document.flatMap({
-      $0.data().flatMap({ (data) in
-        return TeamDM(data)
-      })
-    }) {
-      resultTeam = team
-    } else {
-      print("Team does not exist")
+  if teamID == "" {
+    completion(nil)
+  } else {
+    var resultTeam: TeamDM? = nil
+    
+    let db = getFirestoreDB()
+    let teamRef = db.collection(teamsCollection).document(teamID)
+    
+    teamRef.getDocument {(document, error) in
+      if let team = document.flatMap({
+        $0.data().flatMap({ (data) in
+          return TeamDM(data)
+        })
+      }) {
+        resultTeam = team
+      } else {
+        print("Team does not exist")
+      }
+      completion(resultTeam)
     }
-    completion(resultTeam)
   }
+  
 }
 
 //Returns an array of all members on a team
 func getTeamMembers(completion: @escaping([PlayerDM]) -> ()) {
   let teamID = ud.string(forKey: udTeamID)!
-  
-  let db = getFirestoreDB()
-  let playersRef = db.collection(playersCollection)
-  
-  var teamPlayers: [PlayerDM] = []
-  
-  let players = playersRef
-    .whereField(teamIDField, isEqualTo: teamID)
-  
-  players.getDocuments() {(query, err) in
-    if let err = err {
-      print("Error: \(err)")
-    } else {
-      for document in query!.documents {
-        teamPlayers.append(PlayerDM(document.data()))
+  if (teamID == "") {
+    completion([])
+  } else {
+    let db = getFirestoreDB()
+    let playersRef = db.collection(playersCollection)
+    
+    var teamPlayers: [PlayerDM] = []
+    
+    let players = playersRef
+      .whereField(teamIDField, isEqualTo: teamID)
+    
+    players.getDocuments() {(query, err) in
+      if let err = err {
+        print("Error: \(err)")
+      } else {
+        for document in query!.documents {
+          teamPlayers.append(PlayerDM(document.data()))
+        }
+        completion(teamPlayers)
       }
-      completion(teamPlayers)
     }
   }
 }

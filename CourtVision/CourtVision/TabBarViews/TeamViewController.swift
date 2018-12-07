@@ -134,7 +134,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   //Renders team view
   func renderTeamView() {
-    scActionHandler(self) //Render selected table type (Players/Game History)
     getTeam() {(team) in
       if team != nil {
         self.labelTeamName.text = team?.teamObj[teamNameField]! as? String
