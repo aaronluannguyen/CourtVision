@@ -40,9 +40,20 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   @IBAction func scActionHandler(_ sender: Any) {
+    let scSubviews: [UIView] = segmentControlPlayersGames.subviews
     if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
+      //@Wynston More custom color control here for segment controller. But play around more to just adjust the inner box fill as well as text color
+//      scSubviews[0].backgroundColor = UIColor.red
+//      scSubviews[0].tintColor = UIColor.white
+//      scSubviews[1].backgroundColor = UIColor.init(red: 248/255, green: 113/255, blue: 113/255, alpha: 1.0)
+//      scSubviews[1].tintColor = UIColor.white
       self.loadTeamMembers()
     } else {
+      //@Wynston More custom color control here for segment controller. But play around more to just adjust the inner box fill as well as text color
+//      scSubviews[1].backgroundColor = UIColor.red
+//      scSubviews[1].tintColor = UIColor.white
+//      scSubviews[0].backgroundColor = UIColor.init(red: 248/255, green: 113/255, blue: 113/255, alpha: 1.0)
+//      scSubviews[0].tintColor = UIColor.white
       self.loadTeamGamesHistory()
     }
   }
@@ -97,7 +108,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
-          deleteConfirmation(indexPath.row, indexPath)
+        deleteConfirmation(indexPath.row, indexPath)
       }
   }
   
