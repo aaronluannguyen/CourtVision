@@ -10,14 +10,17 @@ import UIKit
 
 class TContainerViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.performSegue(withIdentifier: "FromTContainerToNoTeam", sender: self)
-//        self.performSegue(withIdentifier: "FromTContainerToTeam", sender: self)
+    if checkUserHasTeam() {
+      self.performSegue(withIdentifier: "FromTContainerToTeam", sender: self)
+    } else {
+      self.performSegue(withIdentifier: "FromTContainerToNoTeam", sender: self)
     }
+  }
+  
+  func checkUserHasTeam() -> Bool {
+    return (ud.string(forKey: udTeamID) != nil)
+  }
 }
