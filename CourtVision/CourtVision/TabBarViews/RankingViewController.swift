@@ -18,8 +18,8 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    teamsTableView.tableFooterView = UIView()
 
-    // Do any additional setup after loading the view.
     renderRankings()
   }
   

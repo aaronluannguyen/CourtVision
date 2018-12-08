@@ -25,7 +25,12 @@
 		EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */; };
 		EE5460CB21B7C7D700553AEE /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */; };
 		EE5460CD21B7C86D00553AEE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CC21B7C86D00553AEE /* RankingViewController.swift */; };
-		EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460CF21B8B42200553AEE /* ActiveViewController.swift */; };
+		EE5460D321BBE7E000553AEE /* NoGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460D221BBE7E000553AEE /* NoGameViewController.swift */; };
+		EE5460D521BBE95E00553AEE /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460D421BBE95E00553AEE /* ListingViewController.swift */; };
+		EE5460D721BBE9A700553AEE /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460D621BBE9A700553AEE /* PlayViewController.swift */; };
+		EE5460D921BBEDF500553AEE /* LiveGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460D821BBEDF500553AEE /* LiveGameViewController.swift */; };
+		EE5460DC21BBFE6A00553AEE /* NoTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460DB21BBFE6A00553AEE /* NoTeamViewController.swift */; };
+		EE5460DE21BBFE8F00553AEE /* TContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */; };
 		F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */; };
 		F47701DA21B7DD8600D2A4C1 /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D921B7DD8600D2A4C1 /* UserDefaultsConstants.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
@@ -81,7 +86,12 @@
 		EE5460C821B7AA9400553AEE /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		EE5460CC21B7C86D00553AEE /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
-		EE5460CF21B8B42200553AEE /* ActiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveViewController.swift; sourceTree = "<group>"; };
+		EE5460D221BBE7E000553AEE /* NoGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoGameViewController.swift; sourceTree = "<group>"; };
+		EE5460D421BBE95E00553AEE /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
+		EE5460D621BBE9A700553AEE /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		EE5460D821BBEDF500553AEE /* LiveGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameViewController.swift; sourceTree = "<group>"; };
+		EE5460DB21BBFE6A00553AEE /* NoTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTeamViewController.swift; sourceTree = "<group>"; };
+		EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TContainerViewController.swift; sourceTree = "<group>"; };
 		F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F47701D921B7DD8600D2A4C1 /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,14 +167,16 @@
 		EE1B7D2A21B4E59D00442719 /* TabBarViews */ = {
 			isa = PBXGroup;
 			children = (
+				EE5460DA21BBFE3B00553AEE /* TeamViewControllers */,
+				EE5460D121BBE7BE00553AEE /* PlayViewControllers */,
 				AD657ED621BA4272006B69F0 /* BrowseViewController.swift */,
 				AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */,
 				EE1B7D2821B4E59800442719 /* ProfileViewController.swift */,
-				EE5460C621B7A0A400553AEE /* TeamViewController.swift */,
 				EE5460CC21B7C86D00553AEE /* RankingViewController.swift */,
-				EE5460CF21B8B42200553AEE /* ActiveViewController.swift */,
 				AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */,
 				AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */,
+				EE5460D621BBE9A700553AEE /* PlayViewController.swift */,
+				EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -189,6 +201,25 @@
 				EE5460CA21B7C7D700553AEE /* TeamTableViewCell.swift */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		EE5460D121BBE7BE00553AEE /* PlayViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EE5460D221BBE7E000553AEE /* NoGameViewController.swift */,
+				EE5460D421BBE95E00553AEE /* ListingViewController.swift */,
+				EE5460D821BBEDF500553AEE /* LiveGameViewController.swift */,
+			);
+			path = PlayViewControllers;
+			sourceTree = "<group>";
+		};
+		EE5460DA21BBFE3B00553AEE /* TeamViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EE5460C621B7A0A400553AEE /* TeamViewController.swift */,
+				EE5460DB21BBFE6A00553AEE /* NoTeamViewController.swift */,
+			);
+			path = TeamViewControllers;
 			sourceTree = "<group>";
 		};
 		F4B1FB7121A974C600D45295 = {
@@ -509,18 +540,23 @@
 			files = (
 				B80C84CA21BB975900A897C6 /* EditProfileViewController.swift in Sources */,
 				AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */,
+				EE5460D921BBEDF500553AEE /* LiveGameViewController.swift in Sources */,
 				B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */,
-				EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
 				EE5460C721B7A0A400553AEE /* TeamViewController.swift in Sources */,
+				EE5460DC21BBFE6A00553AEE /* NoTeamViewController.swift in Sources */,
 				AD657EDB21BA4770006B69F0 /* TabBarViewsConstants.swift in Sources */,
 				EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */,
 				EE5460CB21B7C7D700553AEE /* TeamTableViewCell.swift in Sources */,
 				AD657EDD21BA4816006B69F0 /* CustomPointAnnotation.swift in Sources */,
 				AD657ED721BA4272006B69F0 /* BrowseViewController.swift in Sources */,
+				EE5460D721BBE9A700553AEE /* PlayViewController.swift in Sources */,
+				EE5460DE21BBFE8F00553AEE /* TContainerViewController.swift in Sources */,
+				EE5460D321BBE7E000553AEE /* NoGameViewController.swift in Sources */,
 				EE5460CD21B7C86D00553AEE /* RankingViewController.swift in Sources */,
 				F4F843F821B541EF00F2A50E /* dbTeam.swift in Sources */,
 				EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */,
+				EE5460D521BBE95E00553AEE /* ListingViewController.swift in Sources */,
 				EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F47701DA21B7DD8600D2A4C1 /* UserDefaultsConstants.swift in Sources */,
