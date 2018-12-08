@@ -1354,13 +1354,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Add Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0X-IN-DO0">
-                                <rect key="frame" x="126.33333333333334" y="338" width="122.33333333333334" height="21"/>
+                                <rect key="frame" x="126.33333333333334" y="294" width="122.33333333333334" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="186-hU-f9B">
-                                <rect key="frame" x="62.666666666666657" y="467" width="249.99999999999997" height="48"/>
+                                <rect key="frame" x="62.666666666666657" y="423" width="249.99999999999997" height="48"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Le2-rc-Lcg"/>
@@ -1370,9 +1370,12 @@
                                 <state key="normal" title="Create Team">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="onCreateTeamClick:" destination="Qd6-ea-96h" eventType="touchUpInside" id="GvZ-eP-ht8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wut-8h-XfV">
-                                <rect key="frame" x="152" y="383" width="71" height="36"/>
+                                <rect key="frame" x="152" y="339" width="71" height="36"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1412,7 +1415,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="Qzm-Iy-dEC">
-                                <rect key="frame" x="20" y="104" width="80" height="80"/>
+                                <rect key="frame" x="20" y="60" width="80" height="80"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1421,7 +1424,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Z5-KK-NvZ">
-                                <rect key="frame" x="0.0" y="310" width="375" height="419"/>
+                                <rect key="frame" x="0.0" y="266" width="375" height="463"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="playerCellID" rowHeight="80" id="fLz-aA-QzC" customClass="PlayerTableViewCell" customModule="CourtVision" customModuleProvider="target">
@@ -1531,7 +1534,7 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OTa-kB-q0J">
-                                <rect key="frame" x="20.000000000000007" y="200" width="92.666666666666686" height="44"/>
+                                <rect key="frame" x="20.000000000000007" y="156" width="92.666666666666686" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFd-Si-G5b">
                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="20.333333333333332"/>
@@ -1559,7 +1562,7 @@
                                 </subviews>
                             </stackView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9lx-y6-V3b">
-                                <rect key="frame" x="-10" y="260" width="395" height="51"/>
+                                <rect key="frame" x="-10" y="216" width="395" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Wdz-9L-ypO"/>
                                 </constraints>
@@ -1578,7 +1581,7 @@
                                 </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tVw-L3-pQY">
-                                <rect key="frame" x="124" y="104" width="231" height="77.666666666666686"/>
+                                <rect key="frame" x="124" y="60.000000000000007" width="231" height="77.666666666666686"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="2pK-Ao-xaJ">
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="42.666666666666664"/>
@@ -1637,7 +1640,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggd-ml-2pX">
-                                        <rect key="frame" x="0.0" y="47.666666666666657" width="231" height="30"/>
+                                        <rect key="frame" x="0.0" y="47.666666666666671" width="231" height="30"/>
                                         <state key="normal" title="Add Player">
                                             <color key="titleColor" red="1" green="0.64313725489999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -1682,6 +1685,7 @@
                         <outlet property="navBackBtn" destination="7oM-SB-HRM" id="Buq-jI-UJ1"/>
                         <outlet property="playersTableView" destination="8Z5-KK-NvZ" id="SSl-4C-GFk"/>
                         <outlet property="segmentControlPlayersGames" destination="9lx-y6-V3b" id="4u3-xt-QN3"/>
+                        <segue destination="Qd6-ea-96h" kind="show" identifier="FromTeamToNoTeam" id="z0X-eA-tQ4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ve-43-3Aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1922,6 +1926,7 @@
         <segue reference="hMp-9p-CQW"/>
         <segue reference="e8c-yc-FUm"/>
         <segue reference="Str-ad-u5e"/>
+        <segue reference="z0X-eA-tQ4"/>
         <segue reference="oCw-LQ-Bdw"/>
         <segue reference="WmM-AW-74E"/>
     </inferredMetricsTieBreakers>

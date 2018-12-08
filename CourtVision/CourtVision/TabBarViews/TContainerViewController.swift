@@ -13,6 +13,15 @@ class TContainerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    renderTeamView()
+    
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    renderTeamView()
+  }
+  
+  func renderTeamView() {
     if checkUserHasTeam() {
       self.performSegue(withIdentifier: "FromTContainerToTeam", sender: self)
     } else {
@@ -21,6 +30,6 @@ class TContainerViewController: UIViewController {
   }
   
   func checkUserHasTeam() -> Bool {
-    return (ud.string(forKey: udTeamID) != nil)
+    return (ud.string(forKey: udTeamID) != "")
   }
 }

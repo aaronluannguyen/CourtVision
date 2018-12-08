@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-    @IBOutlet weak var navBackBtn: UINavigationItem!
+  @IBOutlet weak var navBackBtn: UINavigationItem!
     //ViewController References
   @IBOutlet weak var labelTotalGamesNum: UILabel!
   @IBOutlet weak var labelTotalWinsNum: UILabel!
@@ -24,6 +25,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   var teamMembers: [PlayerDM] = []
   var teamGamesHistory: [GameDM] = []
+  var listener: ListenerRegistration!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,6 +42,11 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     renderTeamView()
+    listenForPlayerTeamUpdates()
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    listener.remove()
   }
   
   @IBAction func scActionHandler(_ sender: Any) {
@@ -133,6 +140,22 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {action in self.removePlayer(index, indexPath)}))
     alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
     self.present(alert, animated: true)
+  }
+  
+  //Listens for updates in case they're removed from the team
+  func listenForPlayerTeamUpdates() {
+    let db = getFirestoreDB()
+    listener = db.collection(playersCollection).document(ud.string(forKey: udUserID)!)
+      .addSnapshotListener(includeMetadataChanges: true) {(docSnapShot, error) in
+        if (error == nil) {
+          let player = PlayerDM(docSnapShot!.data() as! [String: Any])
+          let teamID = player.playerObj[teamIDField]! as? String
+          if (teamID == "") {
+            ud.set("", forKey: udTeamID)
+            self.performSegue(withIdentifier: "FromTeamToNoTeam", sender: self)
+          }
+        }
+    }
   }
   
   //Renders team view

@@ -69,8 +69,12 @@ public class TeamDM {
 public func storeTeamIDUserDefaults() {
   getPlayerProfile(ud.string(forKey: udUserID)!) {(player) in
     if (player != nil) {
-      let teamID = player?.playerObj[teamIDField]!
-      ud.set(teamID, forKey: udTeamID)
+      let teamID = player?.playerObj[teamIDField]
+      if (teamID != nil) {
+        ud.set(teamID, forKey: udTeamID)
+      } else {
+        ud.set("", forKey: udTeamID)
+      }
     }
   }
 }

@@ -28,27 +28,27 @@ class LiveGameViewController: UIViewController {
 //    }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // still renders initially
-        navBackBtn.setHidesBackButton(true, animated: true)
-        
-        btnMatch.isEnabled = false
-        btnMatch.layer.cornerRadius = 14
-        btnMatch.layer.borderWidth = 1
-        btnMatch.layer.backgroundColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
-        btnMatch.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
-        
-        container.isHidden = hidden
-        if (!hidden) {
-            btnWin.layer.cornerRadius = 10
-            btnWin.layer.borderWidth = 1
-            btnWin.layer.backgroundColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
-            btnWin.layer.borderColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
-            btnLoss.layer.cornerRadius = 10
-            btnLoss.layer.borderWidth = 1
-            btnLoss.layer.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
-            btnLoss.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
-        }
+      super.viewDidLoad()
+      // still renders initially
+      navBackBtn.setHidesBackButton(true, animated: true)
+      
+      btnMatch.isEnabled = false
+      btnMatch.layer.cornerRadius = 14
+      btnMatch.layer.borderWidth = 1
+      btnMatch.layer.backgroundColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
+      btnMatch.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
+      
+      container.isHidden = hidden
+      if (!hidden) {
+        btnWin.layer.cornerRadius = 10
+        btnWin.layer.borderWidth = 1
+        btnWin.layer.backgroundColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
+        btnWin.layer.borderColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
+        btnLoss.layer.cornerRadius = 10
+        btnLoss.layer.borderWidth = 1
+        btnLoss.layer.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
+        btnLoss.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
+      }
     }
     
     @IBAction func onWinClick(_ sender: Any) {
