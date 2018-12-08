@@ -25,7 +25,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   var teamMembers: [PlayerDM] = []
   var teamGamesHistory: [GameDM] = []
-  var listener: ListenerRegistration!
+  var teamPlayerSideListener: ListenerRegistration!
+  var teamUpdateListener: ListenerRegistration!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,7 +47,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    listener.remove()
+    teamPlayerSideListener.remove()
+    teamUpdateListener.remove()
   }
   
   @IBAction func scActionHandler(_ sender: Any) {
@@ -145,7 +147,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   //Listens for updates in case they're removed from the team
   func listenForPlayerTeamUpdates() {
     let db = getFirestoreDB()
-    listener = db.collection(playersCollection).document(ud.string(forKey: udUserID)!)
+    //Listens to team updates by monitoring player's teamID field
+    teamPlayerSideListener = db.collection(playersCollection).document(ud.string(forKey: udUserID)!)
       .addSnapshotListener(includeMetadataChanges: true) {(docSnapShot, error) in
         if (error == nil) {
           let player = PlayerDM(docSnapShot!.data() as! [String: Any])
@@ -156,6 +159,11 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
           }
         }
     }
+    //Listens to team updates by monitoring team's document in Firestore
+    teamUpdateListener = db.collection(teamsCollection).document(ud.string(forKey: udTeamID)!)
+      .addSnapshotListener(includeMetadataChanges: true) {(docSnapShot, error) in
+        self.renderTeamView()
+      }
   }
   
   //Renders team view

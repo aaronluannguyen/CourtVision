@@ -21,8 +21,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
   override func viewDidLoad() {
     super.viewDidLoad()
     teamsTableView.tableFooterView = UIView()
-
-//    renderRankings()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +61,6 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   //Helper Functions
   func renderRankings() {
-    
     getTeamRankings() {(teamsArray) in
       var teamsToSort = teamsArray
       teamsToSort.sort(by: {
@@ -79,7 +76,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
   }
   
-  //Returns all teams for in order of rank based on W/L record
+  //Returns all teams for in order of rank based on W/L record LIVE
   public func renderRankingsLive() {
     let db = getFirestoreDB()
     
