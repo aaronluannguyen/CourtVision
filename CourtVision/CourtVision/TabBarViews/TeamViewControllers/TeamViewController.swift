@@ -45,7 +45,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     listenForPlayerTeamUpdates()
   }
   
-  override func viewDidDisappear(_ animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     listener.remove()
   }
   
