@@ -26,7 +26,7 @@ class ActiveViewController: UIViewController {
   // test variable for show/hide buttons
   var hidden = true
   // test variable for home/guest
-  var isHome = false
+  var isHome = true
   // test variable for active game
   var isActive = false
   
@@ -53,6 +53,7 @@ class ActiveViewController: UIViewController {
   
     txtStatus.isHidden = !hidden
     btnCreateGame.isHidden = !hidden
+    
     if (!isHome) {
         txtStatus.text = "Your Game is Live"
         btnCreateGame.isEnabled = false
