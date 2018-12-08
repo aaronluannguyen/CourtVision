@@ -71,6 +71,9 @@ class BrowseViewController: UIViewController {
   func getAllGamesListings() {
     getGamesListings() {(gamesArray) in
       self.gamesListings = gamesArray
+      for game in gamesArray {
+        self.dropGamePin(game: game)
+      }
     }
   }
 }
@@ -123,24 +126,26 @@ extension BrowseViewController : MKMapViewDelegate {
 
 extension BrowseViewController: HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark) {
-        //        mapView.removeAnnotations(mapView.annotations) //remove existing pins        
-        //MARK LOCATION
-        buildAnnotation(placemark: placemark)
-        
-        //ZOOM IN TO PIN
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
+      //        mapView.removeAnnotations(mapView.annotations) //remove existing pins
+      //MARK LOCATION
+      buildAnnotation(placemark: placemark)
+//      print("lat: \(placemark.coordinate.latitude) long: \(placemark.coordinate.longitude)")
+      
+      //ZOOM IN TO PIN
+      let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+      let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+      mapView.setRegion(region, animated: true)
     }
     
     //drop pin for each game
     func dropGamePin(game: GameDM) {
-        let location = game.gameObj[locationField] as! [String : Float]
-        let lat = location[latField]
-        let long = location[longField]
-        let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat!), longitude: CLLocationDegrees(long!))
-        let placemark = MKPlacemark(coordinate: coordinates)
+        let location = game.gameObj[locationField] as! [String : Any]
+        let lat = location[latField] as! Double
+        let long = location[longField] as! Double
+        let name = location[nameField] as! String
+      
+        let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: [nameField : name])
         buildAnnotation(placemark: placemark)
     }
     
@@ -149,11 +154,11 @@ extension BrowseViewController: HandleMapSearch {
         let annotation = CustomPointAnnotation()
         annotation.pinCustomImageName = "pin-white"
         annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name!
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = "\(city) \(state)"
-        }
+      annotation.title = placemark.addressDictionary![nameField]! as! String
+//        if let city = placemark.locality,
+//            let state = placemark.administrativeArea {
+//            annotation.subtitle = "\(city) \(state)"
+//        }
         mapView.addAnnotation(annotation)
         
     }
