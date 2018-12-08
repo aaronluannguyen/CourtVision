@@ -8,18 +8,18 @@
 
 import Foundation
 import Firebase
+import MapKit
 
 
 public class GameDM {
   var gameObj: [String : Any]
   
   //Constructor for new game creation
-  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDate: String, _ gameTime: String, _ gameAddress: String) {
+  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDate: String, _ gameTime: String, _ gameLocationCds: MKPlacemark) {
     self.gameObj = [
       "courtInfo": [
         "image": "imageURLfromGoogleMaps",
         "courtName": courtName,
-        "location": gameAddress
       ],
       "score": [
         "guestWin": false,
@@ -31,7 +31,11 @@ public class GameDM {
       "gameType": gameType,
       "date": gameDate,
       "time": gameTime,
-      "status": gamesListing
+      "status": gamesListing,
+      "location": [
+        "lat": gameLocationCds.coordinate.latitude,
+        "long": gameLocationCds.coordinate.longitude
+      ]
     ]
   }
   
@@ -67,6 +71,28 @@ public class GameDM {
 
 
 //Public functions relating to Game
+
+//Get all current game listings
+public func getGamesListings(completion: @escaping([GameDM]) -> ()) {
+  let db = getFirestoreDB()
+  let gamesRef = db.collection(gamesCollection)
+  
+  let games = gamesRef
+    .whereField("status", isEqualTo: gamesListing)
+  
+  var gamesListings: [GameDM] = []
+  
+  games.getDocuments() {(query, err) in
+    if let err = err {
+      print("Error: \(err)")
+    } else {
+      for document in query!.documents {
+        gamesListings.append(GameDM(document.data()))
+      }
+      completion(gamesListings)
+    }
+  }
+}
 
 //Returns games history
 //Supported Game History Lists for:
