@@ -10,16 +10,19 @@ import UIKit
 
 class PlayViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
 
-        // Do any additional setup after loading the view.
-    }
+  }
+//      self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
+  //    self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
+  //    self.performSegue(withIdentifier: "FromActiveToListing", sender: self)
+  
+  func rerouteActiveView() {
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
-//        self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
-//        self.performSegue(withIdentifier: "FromActiveToListing", sender: self)
-    }
-
+  }
 }
