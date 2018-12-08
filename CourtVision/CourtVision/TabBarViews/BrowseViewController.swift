@@ -19,12 +19,6 @@ class BrowseViewController: UIViewController {
   @IBOutlet weak var scMapList: UISegmentedControl!
   
   var gamesListings: [GameDM] = []
-  
-  var selectedPin: MKPlacemark? = nil
-  
-  var resultSearchController:UISearchController? = nil
-
-  var currentPinView: MKAnnotationView? = nil
 
   @IBOutlet weak var mapView: MKMapView!
 
@@ -46,6 +40,10 @@ class BrowseViewController: UIViewController {
     let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable // table view controller
     resultSearchController = UISearchController(searchResultsController: locationSearchTable)
     resultSearchController?.searchResultsUpdater = locationSearchTable
+
+    var resultSearchController:UISearchController? = nil
+    
+    var currentPinView: MKAnnotationView? = nil
     
     //configures search bar and embeds it within navigation bar
     let searchBar = resultSearchController!.searchBar
@@ -127,9 +125,29 @@ extension BrowseViewController : MKMapViewDelegate {
 
 extension BrowseViewController: HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark) {
-        selectedPin = placemark
         //        mapView.removeAnnotations(mapView.annotations) //remove existing pins        
         //MARK LOCATION
+        buildAnnotation(placemark: placemark)
+        
+        //ZOOM IN TO PIN
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
+    //drop pin for each game
+    func dropGamePin(game: GameDM) {
+        let location = game.gameObj[locationField] as! [String : Float]
+        let lat = location[latField]
+        let long = location[longField]
+        let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat!), longitude: CLLocationDegrees(long!))
+        let placemark = MKPlacemark(coordinate: coordinates)
+        buildAnnotation(placemark: placemark)
+    }
+    
+    //drop a pin on the map.
+    func buildAnnotation(placemark: MKPlacemark) {
         let annotation = CustomPointAnnotation()
         annotation.pinCustomImageName = "pin-white"
         annotation.coordinate = placemark.coordinate
@@ -139,12 +157,6 @@ extension BrowseViewController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
-        
-        
-        //ZOOM IN TO PIN
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
         
     }
 }
