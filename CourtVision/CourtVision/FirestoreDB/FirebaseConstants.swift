@@ -49,7 +49,7 @@ public let dateField = "date"
 public let locationField = "location"
 public let latField = "lat"
 public let longField = "long"
-
+public let nameField = "name"
 
 
 
