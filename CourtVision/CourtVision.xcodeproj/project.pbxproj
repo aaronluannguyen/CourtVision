@@ -15,6 +15,7 @@
 		AD657EDD21BA4816006B69F0 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */; };
 		AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */; };
 		B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */; };
+		B80C84CA21BB975900A897C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C84C921BB975900A897C6 /* EditProfileViewController.swift */; };
 		EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */; };
 		EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D1721B3614F00442719 /* SignUpViewController.swift */; };
 		EE1B7D2121B4DD7100442719 /* BrowseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */; };
@@ -66,6 +67,7 @@
 		AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
+		B80C84C921BB975900A897C6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		BEE723B8606368ADDC0D1396 /* Pods-CourtVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVision.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision.release.xcconfig"; sourceTree = "<group>"; };
 		D3BB960D9EC9D008E51962A9 /* Pods-CourtVisionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVisionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVisionUITests/Pods-CourtVisionUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DDC5907DFCA2927C8974B592 /* Pods_CourtVisionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CourtVisionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				EE1B7D1721B3614F00442719 /* SignUpViewController.swift */,
 				EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */,
 				B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */,
+				B80C84C921BB975900A897C6 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80C84CA21BB975900A897C6 /* EditProfileViewController.swift in Sources */,
 				AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */,
 				B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */,
 				EE5460D021B8B42200553AEE /* ActiveViewController.swift in Sources */,
