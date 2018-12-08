@@ -15,6 +15,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var GameTime: UITextField!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var pickerView: UIView!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     
     var typePickerData: [String] = ["3v3", "5v5"]
     
@@ -33,6 +34,9 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.picker.dataSource = self
         
         
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        GameName.leftView = paddingView
+        GameName.leftViewMode = UITextField.ViewMode.always
         
         // Do any additional setup after loading the view.
     }

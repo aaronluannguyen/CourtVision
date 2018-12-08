@@ -10,7 +10,8 @@ import UIKit
 
 class TeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  //ViewController References
+    @IBOutlet weak var navBackBtn: UINavigationItem!
+    //ViewController References
   @IBOutlet weak var labelTotalGamesNum: UILabel!
   @IBOutlet weak var labelTotalWinsNum: UILabel!
   @IBOutlet weak var labelTotalLossesNum: UILabel!
@@ -26,6 +27,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    // still renders initially
+    navBackBtn.setHidesBackButton(true, animated: true)
     
     playersTableView.tableFooterView = UIView()
     
