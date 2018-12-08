@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RankingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -15,12 +16,19 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   //Variables
   var teams: [TeamDM] = [TeamDM("", "")]
+  var listener: ListenerRegistration!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     teamsTableView.tableFooterView = UIView()
-
-    renderRankings()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    renderRankingsLive()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    listener.remove()
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,6 +71,33 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
           >
           self.winPercentage(item1Record[winsField]! as! Double, item1Record[totalGamesField]! as! Double)
       })
+      self.teams.append(contentsOf: teamsToSort)
+      self.teamsTableView.reloadData()
+    }
+  }
+  
+  //Returns all teams for in order of rank based on W/L record LIVE
+  public func renderRankingsLive() {
+    let db = getFirestoreDB()
+    
+    listener = db.collection(teamsCollection).addSnapshotListener {(querySnapShot, error) in
+      guard let documents = querySnapShot?.documents else {
+        print("Error fetching team documents: \(String(describing: error))")
+        return
+      }
+      var teamsToSort: [TeamDM] = []
+      for document in documents {
+        teamsToSort.append(TeamDM(document.data()))
+      }
+      teamsToSort.sort(by: {
+        let item0Record = $0.teamObj[recordField]! as! [String: Any]
+        let item1Record = $1.teamObj[recordField]! as! [String: Any]
+        return
+          self.winPercentage(item0Record[winsField]! as! Double, item0Record[totalGamesField]! as! Double)
+            >
+            self.winPercentage(item1Record[winsField]! as! Double, item1Record[totalGamesField]! as! Double)
+      })
+      self.teams = [TeamDM("", "")]
       self.teams.append(contentsOf: teamsToSort)
       self.teamsTableView.reloadData()
     }
