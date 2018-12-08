@@ -1260,7 +1260,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VG5-FM-gdb">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="138" width="375" height="591"/>
                                 <connections>
                                     <outlet property="delegate" destination="7cm-1l-s4w" id="Jl6-27-NEt"/>
                                 </connections>
@@ -1272,14 +1272,36 @@
                                     <action selector="goToCurrentLoc:" destination="7cm-1l-s4w" eventType="touchUpInside" id="Pkc-Bk-S17"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="spC-xq-pjl">
+                                <rect key="frame" x="0.0" y="88" width="375" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gxd-v6-t1u"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="List"/>
+                                </segments>
+                                <color key="tintColor" red="0.96470588239999999" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="scActionHandler:" destination="tbo-56-HTD" eventType="valueChanged" id="oB5-5G-V4J"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VG5-FM-gdb" firstAttribute="leading" secondItem="Z1i-no-cYO" secondAttribute="leading" id="AAC-Wf-Sa1"/>
-                            <constraint firstItem="VG5-FM-gdb" firstAttribute="top" secondItem="Z1i-no-cYO" secondAttribute="top" id="KJf-Yr-6Oh"/>
+                            <constraint firstItem="VG5-FM-gdb" firstAttribute="top" secondItem="spC-xq-pjl" secondAttribute="bottom" id="Eae-4H-UWT"/>
                             <constraint firstItem="Z1i-no-cYO" firstAttribute="bottom" secondItem="N3B-vv-cpX" secondAttribute="bottom" constant="20" id="LKo-9g-5a8"/>
                             <constraint firstItem="VG5-FM-gdb" firstAttribute="bottom" secondItem="Z1i-no-cYO" secondAttribute="bottom" id="Ntq-09-8fw"/>
+                            <constraint firstItem="spC-xq-pjl" firstAttribute="leading" secondItem="Z1i-no-cYO" secondAttribute="leading" id="TGb-9Z-Rzf"/>
                             <constraint firstItem="VG5-FM-gdb" firstAttribute="trailing" secondItem="Z1i-no-cYO" secondAttribute="trailing" id="eI2-pk-f7y"/>
+                            <constraint firstItem="spC-xq-pjl" firstAttribute="trailing" secondItem="Z1i-no-cYO" secondAttribute="trailing" id="osz-Z5-XF1"/>
+                            <constraint firstItem="spC-xq-pjl" firstAttribute="top" secondItem="Z1i-no-cYO" secondAttribute="top" id="q7O-qa-Mef"/>
                             <constraint firstItem="Z1i-no-cYO" firstAttribute="trailing" secondItem="N3B-vv-cpX" secondAttribute="trailing" constant="20" id="s29-kz-IW4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z1i-no-cYO"/>
@@ -1289,11 +1311,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="VG5-FM-gdb" id="aiI-gX-nSh"/>
+                        <outlet property="scMapList" destination="spC-xq-pjl" id="nhF-bt-Y5v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBo-ur-H4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="862" y="1606"/>
+            <point key="canvasLocation" x="861.60000000000002" y="1605.6650246305419"/>
         </scene>
         <!--Browse Tab Bar Controller-->
         <scene sceneID="aHd-4V-7B0">

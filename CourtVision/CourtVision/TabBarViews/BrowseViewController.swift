@@ -16,7 +16,9 @@ protocol HandleMapSearch {
 class BrowseViewController: UIViewController {
     
     
-    var selectedPin: MKPlacemark? = nil
+  @IBOutlet weak var scMapList: UISegmentedControl!
+  
+  var selectedPin: MKPlacemark? = nil
     
     var resultSearchController:UISearchController? = nil
     
