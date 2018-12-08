@@ -46,6 +46,11 @@ public let courtNameField = "courtName"
 public let courtInfoField = "courtInfo"
 public let timeField = "time"
 public let dateField = "date"
+public let locationField = "location"
+public let latField = "lat"
+public let longField = "long"
+
+
 
 
 //Functions
