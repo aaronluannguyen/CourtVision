@@ -18,6 +18,8 @@ class BrowseViewController: UIViewController {
     
   @IBOutlet weak var scMapList: UISegmentedControl!
   
+  var gamesListings: [GameDM] = []
+  
   var selectedPin: MKPlacemark? = nil
   
   var resultSearchController:UISearchController? = nil
@@ -60,13 +62,20 @@ class BrowseViewController: UIViewController {
 //    let location = CLLocationCoordinate2D(latitude: 37.784988, longitude: -122.407198)
 //    let newGame: GameDM = GameDM("hometeamID", "Court Aaron", "5v5", "someDate", "someTime", MKPlacemark(coordinate: location))
 //    newGame.newGame()
-    getGamesListings(completion: <#T##([GameDM]) -> ()#>)
+    getAllGamesListings()
   }
 
   @IBAction func goToCurrentLoc(_ sender: Any) {
     let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05) //zooom level
     let region = MKCoordinateRegion(center: currentLocation!.coordinate, span: span)
     mapView.setRegion(region, animated: true)
+  }
+  
+  //Queries and updates gamesListing array
+  func getAllGamesListings() {
+    getGamesListings() {(gamesArray) in
+      self.gamesListings = gamesArray
+    }
   }
 }
 
