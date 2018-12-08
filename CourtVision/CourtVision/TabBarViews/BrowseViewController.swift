@@ -24,8 +24,9 @@ class BrowseViewController: UIViewController {
 
   //access to location manager
   let locationManager = CLLocationManager()
-
   var currentLocation:CLLocation? = nil
+  var resultSearchController:UISearchController? = nil
+  var currentPinView: MKAnnotationView? = nil
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,10 +41,7 @@ class BrowseViewController: UIViewController {
     let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable // table view controller
     resultSearchController = UISearchController(searchResultsController: locationSearchTable)
     resultSearchController?.searchResultsUpdater = locationSearchTable
-
-    var resultSearchController:UISearchController? = nil
-    
-    var currentPinView: MKAnnotationView? = nil
+  
     
     //configures search bar and embeds it within navigation bar
     let searchBar = resultSearchController!.searchBar
