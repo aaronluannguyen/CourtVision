@@ -37,6 +37,7 @@ class LiveGameViewController: UIViewController {
       btnMatch.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
       
       container.isHidden = hidden
+        
       if (!hidden) {
         btnWin.layer.cornerRadius = 10
         btnWin.layer.borderWidth = 1
