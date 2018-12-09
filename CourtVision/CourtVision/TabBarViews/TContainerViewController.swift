@@ -12,9 +12,6 @@ class TContainerViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    renderTeamView()
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
