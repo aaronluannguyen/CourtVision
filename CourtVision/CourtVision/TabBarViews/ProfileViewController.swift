@@ -65,6 +65,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let game = gamesArray[indexPath.row]
     let gameObj = game.gameObj
+    print(gameObj)
     let courtInfo = gameObj[courtInfoField]! as! [String : Any]
     
     let scoreResult = getGameTeamResult(game, userTeamID)
@@ -81,7 +82,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     cell.btnResult.layer.borderWidth = 1
     cell.imgGame.image = #imageLiteral(resourceName: "default")
     cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
-    cell.txtTime.text = "\(gameObj[timeField]!)"
+    cell.txtTime.text = "\(gameObj["datetime"]!)"
     
     return cell
   }

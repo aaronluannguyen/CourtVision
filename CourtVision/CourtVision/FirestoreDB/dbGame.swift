@@ -15,7 +15,7 @@ public class GameDM {
   var gameObj: [String : Any]
   
   //Constructor for new game creation
-  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDate: String, _ gameTime: String, _ gameLocationCds: MKPlacemark, _ locationName: String) {
+  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDatetime: String, _ gameLocationCds: MKPlacemark, _ locationName: String) {
     self.gameObj = [
       "courtInfo": [
         "image": "imageURLfromGoogleMaps",
@@ -29,8 +29,7 @@ public class GameDM {
       "playersInvolved": [],
       "gameID": "", //Will be updated when in newGame function when inserting to Firestore db
       "gameType": gameType,
-      "date": gameDate,
-      "time": gameTime,
+      "datetime": gameDatetime,
       "status": gamesListing,
       "location": [
         "lat": gameLocationCds.coordinate.latitude,

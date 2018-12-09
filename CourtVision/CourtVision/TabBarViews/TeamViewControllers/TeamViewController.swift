@@ -112,7 +112,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
       cell.btnResult.layer.borderWidth = 1
       cell.imgGame.image = #imageLiteral(resourceName: "default")
       cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
-      cell.txtTime.text = "\(gameObj[timeField]!)"
+      cell.txtTime.text = "\(gameObj[datetimeField]!)"
       
       return cell
     }
