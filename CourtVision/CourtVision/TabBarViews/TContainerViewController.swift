@@ -22,14 +22,12 @@ class TContainerViewController: UIViewController {
   }
   
   func renderTeamView() {
-    if checkUserHasTeam() {
-      self.performSegue(withIdentifier: "FromTContainerToTeam", sender: self)
-    } else {
-      self.performSegue(withIdentifier: "FromTContainerToNoTeam", sender: self)
+    getTeam() {(team) in
+      if (team != nil) {
+        self.performSegue(withIdentifier: "FromTContainerToTeam", sender: self)
+      } else {
+        self.performSegue(withIdentifier: "FromTContainerToNoTeam", sender: self)
+      }
     }
-  }
-  
-  func checkUserHasTeam() -> Bool {
-    return (ud.string(forKey: udTeamID) != "")
   }
 }

@@ -32,6 +32,7 @@ public let lossesField = "losses"
 public let totalGamesField = "totalGames"
 
 public let gamesCollection = "games"
+public let gameIDField = "gameID"
 public let gameType3 = "3v3"
 public let gameType5 = "5v5"
 public let gamesListing = "listings"

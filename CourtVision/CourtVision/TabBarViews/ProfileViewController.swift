@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
@@ -22,6 +24,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   @IBOutlet weak var labelHeight: UILabel!
   @IBOutlet weak var labelWeight: UILabel!
   @IBOutlet weak var labelPosition: UILabel!
+  
+  var profileListener: ListenerRegistration!
   
   
   override func viewDidLoad() {
@@ -39,14 +43,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Do any additional setup after loading the view.
     renderProfileView()
-    
-    //    let test = GameDM("teamID2", "IMA Court 1", "5v5", "dateString", "timeString", "gameAddress")
-    //    test.newGame()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     renderProfileView()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    profileListener.remove()
   }
   
   //Variables
@@ -101,7 +106,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.labelPosition.text = ("\(profile[positionField]!)")
         
         self.userTeamID = player?.playerObj[teamIDField]! as! String
-        self.loadGamesHistory(self.userTeamID)
+//        self.loadGamesHistory(self.userTeamID)
+        self.renderGamesHistoryLive()
       }
     }
   }
@@ -111,5 +117,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
       self.gamesArray = allGames
       self.gamesTableView.reloadData()
     }
+  }
+  
+  //Listens for updates for player's game history LIVE
+  public func renderGamesHistoryLive() {
+    let db = getFirestoreDB()
+    
+    profileListener = db.collection(gamesCollection)
+      .whereField(playersInvolvedField, arrayContains: ud.string(forKey: udUserID)!)
+      .whereField("status", isEqualTo: gamesCompleted)
+      .addSnapshotListener {(querySnapShot, error) in
+        guard let documents = querySnapShot?.documents else {
+          print("Error fetching game documents: \(String(describing: error))")
+          return
+        }
+        for document in documents {
+          let game = GameDM(document.data())
+          if (!self.gamesArray.contains {
+            $0.gameObj[gameIDField]! as! String == game.gameObj[gameIDField]! as! String
+          }) {
+            self.gamesArray.insert(game, at: 0)
+            self.gamesTableView.reloadData()
+          }
+        }
+      }
   }
 }
