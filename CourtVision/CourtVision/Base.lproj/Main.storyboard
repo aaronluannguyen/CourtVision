@@ -887,10 +887,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYQ-Ya-8Ny">
-                                <rect key="frame" x="0.0" y="405" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="449" width="375" height="250"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-GZ-DLA">
-                                        <rect key="frame" x="110" y="204.99999999999994" width="155" height="30"/>
+                                        <rect key="frame" x="110" y="205" width="155" height="30"/>
                                         <color key="backgroundColor" red="0.96643155810000003" green="0.37544047829999999" blue="0.37451374529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xuN-0B-Cqn"/>
@@ -924,14 +924,14 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="xa9-1s-Nlz">
-                                <rect key="frame" x="144.66666666666666" y="69" width="86" height="86"/>
+                                <rect key="frame" x="144.66666666666666" y="113" width="86" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="86" id="Don-pd-UGN"/>
                                     <constraint firstAttribute="height" constant="86" id="j94-Tw-obC"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="kkU-B2-3dI">
-                                <rect key="frame" x="0.0" y="180" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="224" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="vpz-oc-B34"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="yTA-b1-eCP"/>
@@ -946,7 +946,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="wSv-0s-dgo">
-                                <rect key="frame" x="0.0" y="298" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="342" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3Do-ZI-nwn"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="52H-tx-4L0"/>
@@ -960,7 +960,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="YuS-NJ-quY">
-                                <rect key="frame" x="0.0" y="347" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="391" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1CP-ke-6hq"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="v6I-Ep-Faf"/>
@@ -974,7 +974,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Height" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dm9-Tu-VHE">
-                                <rect key="frame" x="0.0" y="250" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="294" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Jhc-VR-g4Z"/>
                                     <constraint firstAttribute="height" constant="50" id="ccS-RK-J9U"/>
@@ -1332,7 +1332,9 @@
                         <viewLayoutGuide key="safeArea" id="uNt-VZ-AMe"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile-grey" id="S7D-z0-TCA"/>
-                    <navigationItem key="navigationItem" title="Profile" id="M3n-Mh-TPe"/>
+                    <navigationItem key="navigationItem" title="Profile" id="M3n-Mh-TPe">
+                        <barButtonItem key="leftBarButtonItem" id="08H-Ef-dPb"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnEdit" destination="mcM-gg-y6F" id="aRp-nG-jpT"/>
@@ -2168,8 +2170,8 @@
         <segue reference="hMp-9p-CQW"/>
         <segue reference="e8c-yc-FUm"/>
         <segue reference="2wv-Ar-oxM"/>
-        <segue reference="bDX-VA-p40"/>
-        <segue reference="DmK-du-buK"/>
+        <segue reference="z0X-eA-tQ4"/>
+        <segue reference="2Oj-R9-LNc"/>
         <segue reference="one-0E-UJg"/>
         <segue reference="uu1-bj-Ojk"/>
         <segue reference="VNF-Jd-9yq"/>
