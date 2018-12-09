@@ -23,7 +23,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     var typePickerData: [String] = ["3v3", "5v5"]
     
-    var timePickerData: [[String]] = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], ["10", "20", "30", "40", "50", "00"], ["AM", "PM"]]
+    var timePickerData: [[String]] = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], ["00", "10", "20", "30", "40", "50"], ["AM", "PM"]]
     var currentlyEditing : String = "Time";
     var rowSelected : Int = 0;
     var componentsInPicker : Int = 1;
