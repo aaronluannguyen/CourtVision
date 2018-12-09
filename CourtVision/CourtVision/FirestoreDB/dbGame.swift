@@ -34,7 +34,8 @@ public class GameDM {
       "location": [
         "lat": gameLocationCds.coordinate.latitude,
         "long": gameLocationCds.coordinate.longitude,
-        "name": locationName
+        "name": courtName,
+        "address": locationName
       ]
     ]
   }
@@ -71,6 +72,28 @@ public class GameDM {
 
 
 //Public functions relating to Game
+
+//Get single Game listing
+public func getSingleGameListing(_ gameID: String, completion: @escaping(GameDM?) -> ()) {
+  let db = getFirestoreDB()
+  
+  var resultGame: GameDM? = nil
+  
+  let docRef = db.collection(gamesCollection).document(gameID)
+  
+  docRef.getDocument {(document, error) in
+    if let game = document.flatMap({
+      $0.data().flatMap({ (data) in
+        return GameDM(data)
+      })
+    }) {
+      resultGame = game
+    } else {
+      print("Document does not exist")
+    }
+    completion(resultGame)
+  }
+}
 
 //Get all current game listings
 public func getGamesListings(completion: @escaping([GameDM]) -> ()) {

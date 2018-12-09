@@ -15,9 +15,6 @@ protocol HandleMapSearch {
 }
 
 class BrowseViewController: UIViewController {
-    
-    
-  @IBOutlet weak var scMapList: UISegmentedControl!
   
   var gamesListings: [GameDM] = []
   var gamesListener: ListenerRegistration!
@@ -58,10 +55,9 @@ class BrowseViewController: UIViewController {
     
     locationSearchTable.mapView = mapView
     locationSearchTable.handleMapSearchDelegate = self
-    
-//    let location = CLLocationCoordinate2D(latitude: 37.784988, longitude: -122.407198)
-//    let newGame: GameDM = GameDM("hometeamID", "Court Aaron", "5v5", "someDate", "someTime", MKPlacemark(coordinate: location))
-//    newGame.newGame()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
     getAllGamesListingsLive()
   }
   
@@ -82,17 +78,22 @@ class BrowseViewController: UIViewController {
     gamesListener = db.collection(gamesCollection)
       .whereField("status", isEqualTo: gamesListing)
       .addSnapshotListener {(querySnapShot, error) in
-        guard let documents = querySnapShot?.documents else {
+        guard let snapshot = querySnapShot else {
           print("Error fetching game documents: \(String(describing: error))")
           return
         }
-        for document in documents {
-          let game = GameDM(document.data())
-          if (!self.gamesListings.contains {
-            $0.gameObj[gameIDField]! as! String == game.gameObj[gameIDField]! as! String
-            }) {
-            self.gamesListings.append(game)
-            self.dropGamePin(game: game)
+        snapshot.documentChanges.forEach {diff in
+          if (diff.type == .added) {
+            //Store each game object into dictionary with annotation on map
+            self.dropGamePin(game: GameDM(diff.document.data()))
+          }
+          if (diff.type == .modified) {
+            //Find old pin, delete, and repost new updated pin
+            self.dropGamePin(game: GameDM(diff.document.data()))
+          }
+          if (diff.type == .removed) {
+            //Find old pin and remove from map
+            print("DELETE")
           }
         }
     }
@@ -192,16 +193,15 @@ extension BrowseViewController: HandleMapSearch {
     
     //drop a pin on the map.
     func buildAnnotation(placemark: MKPlacemark) {
-        let annotation = CustomPointAnnotation()
-        annotation.pinCustomImageName = "pin-white"
-        annotation.coordinate = placemark.coordinate
+      let annotation = CustomPointAnnotation()
+      annotation.pinCustomImageName = "pin-white"
+      annotation.coordinate = placemark.coordinate
       annotation.title = placemark.addressDictionary![nameField]! as! String
-       annotation.gameID = placemark.addressDictionary![gameIDField]! as! String
+      annotation.gameID = placemark.addressDictionary![gameIDField]! as! String
 //        if let city = placemark.locality,
 //            let state = placemark.administrativeArea {
 //            annotation.subtitle = "\(city) \(state)"
 //        }
-        mapView.addAnnotation(annotation)
-        
+      mapView.addAnnotation(annotation)
     }
 }
