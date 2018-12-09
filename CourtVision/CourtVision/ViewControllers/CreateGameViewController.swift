@@ -29,23 +29,26 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var componentsInPicker : Int = 1;
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print("create view")
-        
-        pickerView.isHidden = true;
-        self.picker.delegate = self
-        self.picker.dataSource = self
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameName.rightView = paddingView
-        GameName.rightViewMode = UITextField.ViewMode.always
-        GameType.rightView = paddingView
-        GameType.rightViewMode = UITextField.ViewMode.always
-        GameTime.rightView = paddingView
-        GameTime.rightViewMode = UITextField.ViewMode.always
-        GameLocation.rightView = paddingView
-        GameLocation.rightViewMode = UITextField.ViewMode.always
-        
+      super.viewDidLoad()
+      print("create view")
+      
+      pickerView.isHidden = true;
+      self.picker.delegate = self
+      self.picker.dataSource = self
+      
+      let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+      GameName.rightView = paddingViewName
+      GameName.rightViewMode = UITextField.ViewMode.always
+      let paddingViewType = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+      GameType.rightView = paddingViewType
+      GameType.rightViewMode = UITextField.ViewMode.always
+      let paddingViewTime = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+      GameTime.rightView = paddingViewTime
+      GameTime.rightViewMode = UITextField.ViewMode.always
+      let paddingViewLocation = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+      GameLocation.rightView = paddingViewLocation
+      GameLocation.rightViewMode = UITextField.ViewMode.always
+      
         if currentPlacemark != nil {            
             GameName.text = currentPlacemark?.name
             GameLocation.text = parseAddress(selectedItem: currentPlacemark!)
@@ -105,10 +108,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return self.timePickerData[component][row]
       }
     }
-    
-    @IBAction func EditName(_ sender: Any) {
-        print(self.GameName.text)
-    }
+
     
     @IBAction func EditTypeTouched(_ sender: Any) {
         pickerView.isHidden = false

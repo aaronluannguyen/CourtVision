@@ -671,7 +671,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onCreateGameClick:" destination="QJu-h7-nhJ" eventType="touchUpInside" id="AEe-nF-BdX"/>
-                                    <segue destination="goK-z6-inc" kind="show" id="Hwz-9x-ITU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -802,9 +801,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="EditName:" destination="goK-z6-inc" eventType="editingChanged" id="QWg-TW-HCJ"/>
-                                </connections>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="xmM-tA-TY1">
                                 <rect key="frame" x="20" y="259" width="87" height="109"/>
@@ -829,9 +825,8 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Court Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-jz-huy">
-                                <rect key="frame" x="20" y="192" width="93" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Court Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-jz-huy">
+                                <rect key="frame" x="20" y="190" width="93" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -839,6 +834,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90970492362976074" green="0.90986090898513794" blue="0.9096950888633728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="oE2-jz-huy" firstAttribute="top" secondItem="f5g-W0-SHo" secondAttribute="bottom" constant="35" id="5JB-14-3db"/>
                             <constraint firstItem="xmM-tA-TY1" firstAttribute="leading" secondItem="B9D-3O-Qxf" secondAttribute="leading" constant="20" id="7rX-aJ-cET"/>
                             <constraint firstItem="a5Y-Bm-weQ" firstAttribute="leading" secondItem="B9D-3O-Qxf" secondAttribute="leading" id="8Jp-0o-hr2"/>
                             <constraint firstItem="xmM-tA-TY1" firstAttribute="top" secondItem="a5Y-Bm-weQ" secondAttribute="bottom" constant="35" id="9KX-49-cPP"/>
@@ -847,6 +843,7 @@
                             <constraint firstItem="f5g-W0-SHo" firstAttribute="centerX" secondItem="pIM-uH-Z3U" secondAttribute="centerX" id="KMf-f9-UBe"/>
                             <constraint firstItem="f5g-W0-SHo" firstAttribute="top" secondItem="B9D-3O-Qxf" secondAttribute="top" constant="25" id="MFO-8P-UC5"/>
                             <constraint firstItem="B9D-3O-Qxf" firstAttribute="trailing" secondItem="FUU-uG-6D1" secondAttribute="trailing" id="MWc-3h-d3l"/>
+                            <constraint firstItem="oE2-jz-huy" firstAttribute="leading" secondItem="B9D-3O-Qxf" secondAttribute="leading" constant="20" id="Prk-bH-KUN"/>
                             <constraint firstItem="a5Y-Bm-weQ" firstAttribute="trailing" secondItem="B9D-3O-Qxf" secondAttribute="trailing" id="YJB-io-dXG"/>
                             <constraint firstItem="a5Y-Bm-weQ" firstAttribute="top" secondItem="f5g-W0-SHo" secondAttribute="bottom" constant="25" id="eym-aj-uop"/>
                             <constraint firstItem="NeX-6Y-YFx" firstAttribute="trailing" secondItem="B9D-3O-Qxf" secondAttribute="trailing" id="n1Y-lQ-Bem"/>
@@ -2072,7 +2069,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hoJ-m9-iGD"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wYb-Pm-6Uw"/>
+                    <navigationItem key="navigationItem" id="wYb-Pm-6Uw">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="0V0-CP-odC"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="80o-gC-HHq" id="jjy-SQ-W87"/>
                     </connections>
@@ -2171,7 +2170,7 @@
         <segue reference="2wv-Ar-oxM"/>
         <segue reference="bDX-VA-p40"/>
         <segue reference="DmK-du-buK"/>
-        <segue reference="Lqp-me-fbo"/>
+        <segue reference="one-0E-UJg"/>
         <segue reference="uu1-bj-Ojk"/>
         <segue reference="VNF-Jd-9yq"/>
     </inferredMetricsTieBreakers>
