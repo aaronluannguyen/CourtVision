@@ -24,7 +24,7 @@ class NoGameViewController: UIViewController {
     }
     
     @IBAction func onCreateGameClick(_ sender: Any) {
-        self.performSegue(withIdentifier: "FromNoGameToCreate", sender: sender)
+//        self.performSegue(withIdentifier: "FromNoGameToCreate", sender: sender)
     }
 
 }

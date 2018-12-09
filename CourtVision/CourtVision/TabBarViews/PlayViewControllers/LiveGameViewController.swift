@@ -31,11 +31,9 @@ class LiveGameViewController: UIViewController {
       super.viewDidLoad()
       // still renders initially
       navBackBtn.setHidesBackButton(true, animated: true)
-      
       btnMatch.isEnabled = false
       btnMatch.layer.cornerRadius = 14
       btnMatch.layer.borderWidth = 1
-      btnMatch.layer.backgroundColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
       btnMatch.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
       
       container.isHidden = hidden

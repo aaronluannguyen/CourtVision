@@ -31,6 +31,7 @@
 		EE5460D921BBEDF500553AEE /* LiveGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460D821BBEDF500553AEE /* LiveGameViewController.swift */; };
 		EE5460DC21BBFE6A00553AEE /* NoTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460DB21BBFE6A00553AEE /* NoTeamViewController.swift */; };
 		EE5460DE21BBFE8F00553AEE /* TContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */; };
+		EE5460E021BCB1B500553AEE /* SingleGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5460DF21BCB1B500553AEE /* SingleGameViewController.swift */; };
 		F47701D821B7966D00D2A4C1 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */; };
 		F47701DA21B7DD8600D2A4C1 /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47701D921B7DD8600D2A4C1 /* UserDefaultsConstants.swift */; };
 		F4B1FB7E21A974C600D45295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1FB7D21A974C600D45295 /* AppDelegate.swift */; };
@@ -92,6 +93,7 @@
 		EE5460D821BBEDF500553AEE /* LiveGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameViewController.swift; sourceTree = "<group>"; };
 		EE5460DB21BBFE6A00553AEE /* NoTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTeamViewController.swift; sourceTree = "<group>"; };
 		EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TContainerViewController.swift; sourceTree = "<group>"; };
+		EE5460DF21BCB1B500553AEE /* SingleGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameViewController.swift; sourceTree = "<group>"; };
 		F47701D721B7966D00D2A4C1 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		F47701D921B7DD8600D2A4C1 /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
 		F4B1FB7A21A974C600D45295 /* CourtVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourtVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +179,7 @@
 				AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */,
 				EE5460D621BBE9A700553AEE /* PlayViewController.swift */,
 				EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */,
+				EE5460DF21BCB1B500553AEE /* SingleGameViewController.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE5460E021BCB1B500553AEE /* SingleGameViewController.swift in Sources */,
 				B80C84CA21BB975900A897C6 /* EditProfileViewController.swift in Sources */,
 				AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */,
 				EE5460D921BBEDF500553AEE /* LiveGameViewController.swift in Sources */,
