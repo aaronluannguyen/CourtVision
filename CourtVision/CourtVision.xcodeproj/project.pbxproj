@@ -14,6 +14,8 @@
 		AD657EDB21BA4770006B69F0 /* TabBarViewsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */; };
 		AD657EDD21BA4816006B69F0 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */; };
 		AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */; };
+		ADC5AFF921BCE834001D2AEF /* CreateGameMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5AFF821BCE834001D2AEF /* CreateGameMapViewController.swift */; };
+		ADC5AFFB21BCECF8001D2AEF /* CreateGameSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC5AFFA21BCECF8001D2AEF /* CreateGameSearchTable.swift */; };
 		B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */; };
 		B80C84CA21BB975900A897C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C84C921BB975900A897C6 /* EditProfileViewController.swift */; };
 		EE1B7D1621B34FB700442719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE1B7D1521B34FB700442719 /* GoogleService-Info.plist */; };
@@ -72,6 +74,8 @@
 		AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewsConstants.swift; sourceTree = "<group>"; };
 		AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		ADC5AFF821BCE834001D2AEF /* CreateGameMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameMapViewController.swift; sourceTree = "<group>"; };
+		ADC5AFFA21BCECF8001D2AEF /* CreateGameSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameSearchTable.swift; sourceTree = "<group>"; };
 		B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		B80C84C921BB975900A897C6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		BEE723B8606368ADDC0D1396 /* Pods-CourtVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CourtVision.release.xcconfig"; path = "Pods/Target Support Files/Pods-CourtVision/Pods-CourtVision.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				EE5460D621BBE9A700553AEE /* PlayViewController.swift */,
 				EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */,
 				EE5460DF21BCB1B500553AEE /* SingleGameViewController.swift */,
+				ADC5AFF821BCE834001D2AEF /* CreateGameMapViewController.swift */,
+				ADC5AFFA21BCECF8001D2AEF /* CreateGameSearchTable.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				EE5460E021BCB1B500553AEE /* SingleGameViewController.swift in Sources */,
 				B80C84CA21BB975900A897C6 /* EditProfileViewController.swift in Sources */,
 				AD657EE321BA525A006B69F0 /* LocationSearchTable.swift in Sources */,
+				ADC5AFF921BCE834001D2AEF /* CreateGameMapViewController.swift in Sources */,
 				EE5460D921BBEDF500553AEE /* LiveGameViewController.swift in Sources */,
 				B80437DB21BA0C4000077C24 /* CreateGameViewController.swift in Sources */,
 				EE1B7D1821B3614F00442719 /* SignUpViewController.swift in Sources */,
@@ -562,6 +569,7 @@
 				EE1B7D2921B4E59800442719 /* ProfileViewController.swift in Sources */,
 				EE5460D521BBE95E00553AEE /* ListingViewController.swift in Sources */,
 				EE5460C921B7AA9400553AEE /* PlayerTableViewCell.swift in Sources */,
+				ADC5AFFB21BCECF8001D2AEF /* CreateGameSearchTable.swift in Sources */,
 				F4B1FB8021A974C600D45295 /* LoginViewController.swift in Sources */,
 				F47701DA21B7DD8600D2A4C1 /* UserDefaultsConstants.swift in Sources */,
 				F4F843FA21B5422C00F2A50E /* dbGame.swift in Sources */,
