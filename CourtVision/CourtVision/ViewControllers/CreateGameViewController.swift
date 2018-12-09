@@ -132,11 +132,11 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   }
   
   @IBAction func saveCreateGameClick(_ sender: Any) {
-    if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && currentPlacemark != nil) {
+    if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && self.time != "Time" && currentPlacemark != nil) {
       let newGame = GameDM(ud.string(forKey: udTeamID)!, GameName.text!, GameType.text!, GameTime.text!, currentPlacemark!, GameLocation.text!)
       newGame.newGame()
+      performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: nil)
     }
-    performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: nil)
   }
   
   //Helper Functions

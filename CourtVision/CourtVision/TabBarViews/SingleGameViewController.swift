@@ -20,6 +20,7 @@ class SingleGameViewController: UIViewController {
   
   @IBOutlet weak var mapView: MKMapView!
   var gameID : String?
+  var game: GameDM?
   //for testing. comment out later
   var sentAnnotation: MKAnnotation?
   
@@ -34,6 +35,25 @@ class SingleGameViewController: UIViewController {
     btnJoinGame.layer.borderColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1).cgColor
     mapView.delegate = self
     queryGame()
+  }
+  
+  
+  @IBAction func onJoinGameClick(_ sender: Any) {
+    if (ud.string(forKey: udTeamID)! == "") {
+      let alert = UIAlertController(title: "No Team", message: "You must create a team or be invited to one before you can play.", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromBrowseSingleGameToPlayContainer", sender: self)}))
+      self.present(alert, animated: true)
+    }
+    
+    let teams = game?.gameObj[teamsField]! as! [String]
+    if (teams.contains(ud.string(forKey: udTeamID)!)) {
+      let alert = UIAlertController(title: "Oops!", message: "You are currently hosting this game and cannot play against yourself!", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+      self.present(alert, animated: true)
+    }
+    
+    joinGame(game?.gameObj[gameIDField]! as! String, ud.string(forKey: udTeamID)!)
+    //Perform segue to active game vc
   }
 }
 
@@ -73,6 +93,7 @@ extension SingleGameViewController: MKMapViewDelegate {
   func queryGame() {
     getSingleGameListing(gameID!) {(game) in
       if (game != nil) {
+        self.game = game!
         let gameObj = game!.gameObj
         self.txtTime.text = gameObj[datetimeField]! as? String
         let location = game!.gameObj[locationField]! as! [String: Any]
@@ -102,4 +123,6 @@ extension SingleGameViewController: MKMapViewDelegate {
     mapView.setRegion(region, animated: true)
     mapView.addAnnotation(annotation)
   }
+  
+  
 }

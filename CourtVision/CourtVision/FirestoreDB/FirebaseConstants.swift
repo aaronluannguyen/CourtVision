@@ -52,7 +52,7 @@ public let latField = "lat"
 public let longField = "long"
 public let nameField = "name"
 public let addressField = "address"
-
+public let statusField = "status"
 
 
 //Functions

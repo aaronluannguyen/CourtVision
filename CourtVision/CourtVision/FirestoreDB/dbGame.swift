@@ -117,6 +117,36 @@ public func getGamesListings(completion: @escaping([GameDM]) -> ()) {
   }
 }
 
+//Join a game
+public func joinGame(_ gameID: String, _ guestTeamID: String) {
+  let db = getFirestoreDB()
+  let gameRef = db.collection(gamesCollection).document(gameID)
+
+  var teamsInvolved = [String]()
+  var playersInvolvedUpdate = [String]()
+  let game = getSingleGameListing(gameID) {(game) in
+    if (game != nil) {
+      let teams = game?.gameObj[teamsField]! as! [String]
+      teamsInvolved.append(teams[0] as! String)
+      teamsInvolved.append(guestTeamID)
+      gameRef.updateData([
+        teamsField: teamsInvolved
+      ])
+      playersInvolvedUpdate = game?.gameObj[playersInvolvedField]! as! [String]
+      getTeamFromID(guestTeamID) {(team) in
+        if (team != nil) {
+          let guestPlayers = team?.teamObj[teamMembersField]! as! [String]
+          playersInvolvedUpdate.append(contentsOf: guestPlayers)
+          gameRef.updateData([
+            playersInvolvedField: playersInvolvedUpdate,
+            statusField: gamesActive
+          ])
+        }
+      }
+    }
+  }
+}
+
 //Returns games history
 //Supported Game History Lists for:
 //  - By team   ("teamID")

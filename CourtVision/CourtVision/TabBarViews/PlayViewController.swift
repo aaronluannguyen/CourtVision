@@ -33,7 +33,7 @@ class PlayViewController: UIViewController {
   func rerouteActiveView() {
     if (ud.string(forKey: udTeamID)! == "") {
       let alert = UIAlertController(title: "No Team", message: "You must create a team or be invited to one before you can play.", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromActiveToNoTeam", sender: self)}))
+      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromActiveToTeamContainer", sender: self)}))
       self.present(alert, animated: true)
     }
     
