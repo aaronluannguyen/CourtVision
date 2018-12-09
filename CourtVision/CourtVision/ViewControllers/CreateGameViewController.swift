@@ -14,39 +14,42 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var GameName: UITextField!
     @IBOutlet weak var GameType: UITextField!
     @IBOutlet weak var GameTime: UITextField!
+    @IBOutlet weak var GameLocation: UITextField!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var pickerView: UIView!
     @IBOutlet weak var btnSave: UIBarButtonItem!
-    @IBOutlet weak var GameLocation: UITextField!
     
     var currentPlacemark: MKPlacemark?
     
     var typePickerData: [String] = ["3v3", "5v5"]
     
-    var timePickerData: [[String]] = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                                      ["10", "20", "30", "40", "50", "00"],
-                                      ["AM", "PM"]]
+    var timePickerData: [[String]] = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], ["10", "20", "30", "40", "50", "00"], ["AM", "PM"]]
     var currentlyEditing : String = "Time";
     var rowSelected : Int = 0;
     var componentsInPicker : Int = 1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerView.isHidden = true;
+        print("create view")
         
+        pickerView.isHidden = true;
         self.picker.delegate = self
         self.picker.dataSource = self
         
-        
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameName.leftView = paddingView
-        GameName.leftViewMode = UITextField.ViewMode.always
+        GameName.rightView = paddingView
+        GameName.rightViewMode = UITextField.ViewMode.always
+        GameType.rightView = paddingView
+        GameType.rightViewMode = UITextField.ViewMode.always
+        GameTime.rightView = paddingView
+        GameTime.rightViewMode = UITextField.ViewMode.always
+        GameLocation.rightView = paddingView
+        GameLocation.rightViewMode = UITextField.ViewMode.always
         
         if currentPlacemark != nil {            
             GameName.text = currentPlacemark?.name
             GameLocation.text = parseAddress(selectedItem: currentPlacemark!)
         }
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func SaveSelection(_ sender: Any) {
@@ -55,7 +58,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return self.componentsInPicker
-        //return 3;
     }
     
     // The number of rows of data

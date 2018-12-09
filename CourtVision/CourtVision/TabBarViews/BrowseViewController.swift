@@ -138,9 +138,9 @@ extension BrowseViewController : MKMapViewDelegate {
         currentPinView = pinView
         
         let buttonToBrowse = UIButton(type: UIButton.ButtonType.custom) as UIButton
-        buttonToBrowse.frame.size.width = 50
-        buttonToBrowse.frame.size.height = 50
-        buttonToBrowse.setImage(UIImage(named: "locate"), for: [])
+        buttonToBrowse.frame.size.width = 30
+        buttonToBrowse.frame.size.height = 30
+        buttonToBrowse.setImage(UIImage(named: "go"), for: [])
         pinView!.leftCalloutAccessoryView = buttonToBrowse
         return pinView
     }

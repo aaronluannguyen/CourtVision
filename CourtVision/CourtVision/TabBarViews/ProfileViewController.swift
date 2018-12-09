@@ -33,15 +33,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     gamesTableView.delegate = self
     gamesTableView.dataSource = self
     gamesTableView.tableFooterView = UIView()
-    //    gamesTableView.translatesAutoresizingMaskIntoConstraints = false
-    //    gamesTableView.leftAnchor.constraint(equalTo: view.leftAnchor)
-    //    gamesTableView.rightAnchor.constraint(equalTo: view.rightAnchor)
     
     btnEdit.layer.cornerRadius = 2
     btnEdit.layer.borderWidth = 1
     btnEdit.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
     
-    // Do any additional setup after loading the view.
     renderProfileView()
   }
   
@@ -141,5 +137,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
           }
         }
       }
-  }
+    }
+    
+    @IBAction func onEditProfileClick(_ sender: Any) {
+        self.performSegue(withIdentifier: "FromProfileToEdit", sender: sender)
+    }
+    
 }

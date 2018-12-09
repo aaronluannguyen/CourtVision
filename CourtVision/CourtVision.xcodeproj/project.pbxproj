@@ -173,19 +173,15 @@
 		EE1B7D2A21B4E59D00442719 /* TabBarViews */ = {
 			isa = PBXGroup;
 			children = (
+				EE5460E121BD084800553AEE /* BrowseViewControllers */,
 				EE5460DA21BBFE3B00553AEE /* TeamViewControllers */,
 				EE5460D121BBE7BE00553AEE /* PlayViewControllers */,
 				AD657ED621BA4272006B69F0 /* BrowseViewController.swift */,
-				AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */,
 				EE1B7D2821B4E59800442719 /* ProfileViewController.swift */,
 				EE5460CC21B7C86D00553AEE /* RankingViewController.swift */,
-				AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */,
-				AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */,
 				EE5460D621BBE9A700553AEE /* PlayViewController.swift */,
 				EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */,
 				EE5460DF21BCB1B500553AEE /* SingleGameViewController.swift */,
-				ADC5AFF821BCE834001D2AEF /* CreateGameMapViewController.swift */,
-				ADC5AFFA21BCECF8001D2AEF /* CreateGameSearchTable.swift */,
 			);
 			path = TabBarViews;
 			sourceTree = "<group>";
@@ -229,6 +225,18 @@
 				EE5460DB21BBFE6A00553AEE /* NoTeamViewController.swift */,
 			);
 			path = TeamViewControllers;
+			sourceTree = "<group>";
+		};
+		EE5460E121BD084800553AEE /* BrowseViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD657EE221BA525A006B69F0 /* LocationSearchTable.swift */,
+				ADC5AFF821BCE834001D2AEF /* CreateGameMapViewController.swift */,
+				ADC5AFFA21BCECF8001D2AEF /* CreateGameSearchTable.swift */,
+				AD657EDC21BA4816006B69F0 /* CustomPointAnnotation.swift */,
+				AD657EDA21BA4770006B69F0 /* TabBarViewsConstants.swift */,
+			);
+			path = BrowseViewControllers;
 			sourceTree = "<group>";
 		};
 		F4B1FB7121A974C600D45295 = {
