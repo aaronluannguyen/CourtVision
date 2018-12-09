@@ -29,9 +29,6 @@ class PlayViewController: UIViewController {
       gameActiveListener.remove()
     }
   }
-//      self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
-  //    self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
-  //    self.performSegue(withIdentifier: "FromActiveToListing", sender: self)
   
   func rerouteActiveView() {
     if (ud.string(forKey: udTeamID)! == "") {
@@ -60,7 +57,6 @@ class PlayViewController: UIViewController {
                 return
               }
               if (documentsActive.count == 0) {
-                print("FUCK")
                 self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
               } else {
                 self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
