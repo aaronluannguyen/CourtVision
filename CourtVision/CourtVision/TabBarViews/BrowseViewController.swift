@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark)
@@ -19,6 +20,7 @@ class BrowseViewController: UIViewController {
   @IBOutlet weak var scMapList: UISegmentedControl!
   
   var gamesListings: [GameDM] = []
+  var gamesListener: ListenerRegistration!
 
   @IBOutlet weak var mapView: MKMapView!
 
@@ -58,7 +60,11 @@ class BrowseViewController: UIViewController {
 //    let location = CLLocationCoordinate2D(latitude: 37.784988, longitude: -122.407198)
 //    let newGame: GameDM = GameDM("hometeamID", "Court Aaron", "5v5", "someDate", "someTime", MKPlacemark(coordinate: location))
 //    newGame.newGame()
-    getAllGamesListings()
+    getAllGamesListingsLive()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    gamesListener.remove()
   }
 
   @IBAction func goToCurrentLoc(_ sender: Any) {
@@ -67,13 +73,26 @@ class BrowseViewController: UIViewController {
     mapView.setRegion(region, animated: true)
   }
   
-  //Queries and updates gamesListing array
-  func getAllGamesListings() {
-    getGamesListings() {(gamesArray) in
-      self.gamesListings = gamesArray
-      for game in gamesArray {
-        self.dropGamePin(game: game)
-      }
+  //Queries and updates gamesListing array LIVE
+  func getAllGamesListingsLive() {
+    let db = getFirestoreDB()
+    
+    gamesListener = db.collection(gamesCollection)
+      .whereField("status", isEqualTo: gamesListing)
+      .addSnapshotListener {(querySnapShot, error) in
+        guard let documents = querySnapShot?.documents else {
+          print("Error fetching game documents: \(String(describing: error))")
+          return
+        }
+        for document in documents {
+          let game = GameDM(document.data())
+          if (!self.gamesListings.contains {
+            $0.gameObj[gameIDField]! as! String == game.gameObj[gameIDField]! as! String
+            }) {
+            self.gamesListings.append(game)
+            self.dropGamePin(game: game)
+          }
+        }
     }
   }
 }
