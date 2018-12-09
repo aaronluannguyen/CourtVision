@@ -37,8 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     btnEdit.layer.cornerRadius = 2
     btnEdit.layer.borderWidth = 1
     btnEdit.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
-    
-    renderProfileView()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +63,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let game = gamesArray[indexPath.row]
     let gameObj = game.gameObj
+
     let courtInfo = gameObj[courtInfoField]! as! [String : Any]
     
     let scoreResult = getGameTeamResult(game, userTeamID)
@@ -81,7 +80,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     cell.btnResult.layer.borderWidth = 1
     cell.imgGame.image = #imageLiteral(resourceName: "default")
     cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
-    cell.txtTime.text = "\(gameObj[timeField]!)"
+    cell.txtTime.text = "\(gameObj["datetime"]!)"
     
     return cell
   }
@@ -102,7 +101,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.labelPosition.text = ("\(profile[positionField]!)")
         
         self.userTeamID = player?.playerObj[teamIDField]! as! String
-//        self.loadGamesHistory(self.userTeamID)
         self.renderGamesHistoryLive()
       }
     }

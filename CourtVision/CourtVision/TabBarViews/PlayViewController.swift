@@ -29,14 +29,11 @@ class PlayViewController: UIViewController {
       gameActiveListener.remove()
     }
   }
-//      self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
-  //    self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
-  //    self.performSegue(withIdentifier: "FromActiveToListing", sender: self)
   
   func rerouteActiveView() {
     if (ud.string(forKey: udTeamID)! == "") {
       let alert = UIAlertController(title: "No Team", message: "You must create a team or be invited to one before you can play.", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromActiveToNoTeam", sender: self)}))
+      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromActiveToTeamContainer", sender: self)}))
       self.present(alert, animated: true)
     }
     
@@ -60,7 +57,6 @@ class PlayViewController: UIViewController {
                 return
               }
               if (documentsActive.count == 0) {
-                print("FUCK")
                 self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
               } else {
                 self.performSegue(withIdentifier: "FromActiveToLive", sender: self)

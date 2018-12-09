@@ -33,6 +33,7 @@ public let totalGamesField = "totalGames"
 
 public let gamesCollection = "games"
 public let gameIDField = "gameID"
+public let gameTypeField = "gameType"
 public let gameType3 = "3v3"
 public let gameType5 = "5v5"
 public let gamesListing = "listings"
@@ -45,13 +46,13 @@ public let homeWinField = "homeWin"
 public let guestWinField = "guestWin"
 public let courtNameField = "courtName"
 public let courtInfoField = "courtInfo"
-public let timeField = "time"
-public let dateField = "date"
+public let datetimeField = "datetime"
 public let locationField = "location"
 public let latField = "lat"
 public let longField = "long"
 public let nameField = "name"
-
+public let addressField = "address"
+public let statusField = "status"
 
 
 //Functions

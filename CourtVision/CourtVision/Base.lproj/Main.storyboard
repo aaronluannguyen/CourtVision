@@ -589,7 +589,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onCreateGameClick:" destination="QJu-h7-nhJ" eventType="touchUpInside" id="dPt-HN-1ky"/>
+                                    <action selector="onJoinGameClick:" destination="yhh-Ry-fvo" eventType="touchUpInside" id="beV-II-NY4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNC-ar-v7O">
@@ -638,6 +638,7 @@
                         <outlet property="txtName" destination="iVd-S9-mm2" id="fcP-Ib-wHs"/>
                         <outlet property="txtTeam" destination="GOi-Xm-Npl" id="dKq-aa-cf0"/>
                         <outlet property="txtTime" destination="HTN-zP-LES" id="PmV-68-x5S"/>
+                        <segue destination="6zn-3E-xVM" kind="show" identifier="FromBrowseSingleGameToPlayContainer" id="Gy9-5S-V9s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5n-aI-jnE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -705,14 +706,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="f5g-W0-SHo">
-                                <rect key="frame" x="144.66666666666666" y="113" width="86" height="86"/>
+                                <rect key="frame" x="144.66666666666666" y="69" width="86" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="86" id="V6V-Cc-cEl"/>
                                     <constraint firstAttribute="height" constant="86" id="gbK-yT-mel"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FUU-uG-6D1">
-                                <rect key="frame" x="0.0" y="293" width="375" height="134"/>
+                                <rect key="frame" x="0.0" y="249" width="375" height="134"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Z6m-wb-kOn">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -793,7 +794,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="a5Y-Bm-weQ">
-                                <rect key="frame" x="0.0" y="224" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="180" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="kA9-a0-6vv"/>
@@ -803,7 +804,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="xmM-tA-TY1">
-                                <rect key="frame" x="20" y="303" width="87" height="109"/>
+                                <rect key="frame" x="20" y="259" width="87" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlC-NO-mnL">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="20.333333333333332"/>
@@ -826,7 +827,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Court Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-jz-huy">
-                                <rect key="frame" x="20" y="234" width="93" height="20.333333333333343"/>
+                                <rect key="frame" x="20" y="190" width="93" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -861,6 +862,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="4U8-vm-b8v">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveCreateGameClick:" destination="goK-z6-inc" id="Xp7-wE-4yJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -872,6 +876,7 @@
                         <outlet property="picker" destination="db3-ni-cKg" id="hBa-wd-mSn"/>
                         <outlet property="pickerView" destination="NeX-6Y-YFx" id="N7M-3R-hqN"/>
                         <segue destination="6Oe-za-XMN" kind="show" identifier="FromCreateGameToListing" id="VNF-Jd-9yq"/>
+                        <segue destination="6zn-3E-xVM" kind="show" identifier="FromCreateGameToPlayVC" id="liu-XB-Fuv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHR-zy-66x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -887,7 +892,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYQ-Ya-8Ny">
-                                <rect key="frame" x="0.0" y="449" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="449" width="375" height="280"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-GZ-DLA">
                                         <rect key="frame" x="110" y="205" width="155" height="30"/>
@@ -1449,7 +1454,7 @@
                         <segue destination="WaG-rq-aU0" kind="show" identifier="FromActiveToLive" id="CXH-oh-Smf"/>
                         <segue destination="QJu-h7-nhJ" kind="show" identifier="FromActiveToCreate" id="WmM-AW-74E"/>
                         <segue destination="6Oe-za-XMN" kind="show" identifier="FromActiveToListing" id="0Nu-4Q-CNB"/>
-                        <segue destination="Qd6-ea-96h" kind="show" identifier="FromActiveToNoTeam" id="bDX-VA-p40"/>
+                        <segue destination="jsH-KU-TUl" kind="show" identifier="FromActiveToTeamContainer" id="7At-gE-52S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbO-le-vjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2045,7 +2050,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80o-gC-HHq">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <connections>
                                     <outlet property="delegate" destination="wVH-8Y-jqS" id="YD3-IU-ZEA"/>
                                 </connections>
@@ -2170,14 +2175,16 @@
         <image name="team-grey" width="17" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ccl-kn-SmQ"/>
+        <segue reference="Reg-Iq-Pvb"/>
         <segue reference="hMp-9p-CQW"/>
         <segue reference="e8c-yc-FUm"/>
-        <segue reference="2wv-Ar-oxM"/>
-        <segue reference="z0X-eA-tQ4"/>
+        <segue reference="Str-ad-u5e"/>
+        <segue reference="zly-EW-vL5"/>
+        <segue reference="Gy9-5S-V9s"/>
         <segue reference="2Oj-R9-LNc"/>
+        <segue reference="7At-gE-52S"/>
         <segue reference="one-0E-UJg"/>
-        <segue reference="uu1-bj-Ojk"/>
-        <segue reference="VNF-Jd-9yq"/>
+        <segue reference="WmM-AW-74E"/>
+        <segue reference="0Nu-4Q-CNB"/>
     </inferredMetricsTieBreakers>
 </document>

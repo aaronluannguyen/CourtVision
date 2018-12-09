@@ -122,7 +122,27 @@ public func getTeam(completion: @escaping(TeamDM?) -> ()) {
       completion(resultTeam)
     }
   }
+}
+
+//Get team based on teamID
+public func getTeamFromID(_ teamID: String,completion: @escaping(TeamDM?) -> ()) {
+  var resultTeam: TeamDM? = nil
   
+  let db = getFirestoreDB()
+  let teamRef = db.collection(teamsCollection).document(teamID)
+  
+  teamRef.getDocument {(document, error) in
+    if let team = document.flatMap({
+      $0.data().flatMap({ (data) in
+        return TeamDM(data)
+      })
+    }) {
+      resultTeam = team
+    } else {
+      print("Team does not exist")
+    }
+    completion(resultTeam)
+  }
 }
 
 //Returns an array of all members on a team

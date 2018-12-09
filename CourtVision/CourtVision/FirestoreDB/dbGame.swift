@@ -15,7 +15,7 @@ public class GameDM {
   var gameObj: [String : Any]
   
   //Constructor for new game creation
-  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDate: String, _ gameTime: String, _ gameLocationCds: MKPlacemark, _ locationName: String) {
+  init( _ homeTeamID: String, _ courtName: String, _ gameType: String, _ gameDatetime: String, _ gameLocationCds: MKPlacemark, _ locationName: String) {
     self.gameObj = [
       "courtInfo": [
         "image": "imageURLfromGoogleMaps",
@@ -29,13 +29,13 @@ public class GameDM {
       "playersInvolved": [],
       "gameID": "", //Will be updated when in newGame function when inserting to Firestore db
       "gameType": gameType,
-      "date": gameDate,
-      "time": gameTime,
+      "datetime": gameDatetime,
       "status": gamesListing,
       "location": [
         "lat": gameLocationCds.coordinate.latitude,
         "long": gameLocationCds.coordinate.longitude,
-        "name": locationName
+        "name": courtName,
+        "address": locationName
       ]
     ]
   }
@@ -73,6 +73,28 @@ public class GameDM {
 
 //Public functions relating to Game
 
+//Get single Game listing
+public func getSingleGameListing(_ gameID: String, completion: @escaping(GameDM?) -> ()) {
+  let db = getFirestoreDB()
+  
+  var resultGame: GameDM? = nil
+  
+  let docRef = db.collection(gamesCollection).document(gameID)
+  
+  docRef.getDocument {(document, error) in
+    if let game = document.flatMap({
+      $0.data().flatMap({ (data) in
+        return GameDM(data)
+      })
+    }) {
+      resultGame = game
+    } else {
+      print("Document does not exist")
+    }
+    completion(resultGame)
+  }
+}
+
 //Get all current game listings
 public func getGamesListings(completion: @escaping([GameDM]) -> ()) {
   let db = getFirestoreDB()
@@ -91,6 +113,36 @@ public func getGamesListings(completion: @escaping([GameDM]) -> ()) {
         gamesListings.append(GameDM(document.data()))
       }
       completion(gamesListings)
+    }
+  }
+}
+
+//Join a game
+public func joinGame(_ gameID: String, _ guestTeamID: String) {
+  let db = getFirestoreDB()
+  let gameRef = db.collection(gamesCollection).document(gameID)
+
+  var teamsInvolved = [String]()
+  var playersInvolvedUpdate = [String]()
+  let game = getSingleGameListing(gameID) {(game) in
+    if (game != nil) {
+      let teams = game?.gameObj[teamsField]! as! [String]
+      teamsInvolved.append(teams[0] as! String)
+      teamsInvolved.append(guestTeamID)
+      gameRef.updateData([
+        teamsField: teamsInvolved
+      ])
+      playersInvolvedUpdate = game?.gameObj[playersInvolvedField]! as! [String]
+      getTeamFromID(guestTeamID) {(team) in
+        if (team != nil) {
+          let guestPlayers = team?.teamObj[teamMembersField]! as! [String]
+          playersInvolvedUpdate.append(contentsOf: guestPlayers)
+          gameRef.updateData([
+            playersInvolvedField: playersInvolvedUpdate,
+            statusField: gamesActive
+          ])
+        }
+      }
     }
   }
 }
