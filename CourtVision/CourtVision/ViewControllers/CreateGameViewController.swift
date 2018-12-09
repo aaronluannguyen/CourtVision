@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -16,6 +17,9 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var pickerView: UIView!
     @IBOutlet weak var btnSave: UIBarButtonItem!
+    @IBOutlet weak var GameLocation: UITextField!
+    
+    var currentPlacemark: MKPlacemark?
     
     var typePickerData: [String] = ["3v3", "5v5"]
     
@@ -38,6 +42,10 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         GameName.leftView = paddingView
         GameName.leftViewMode = UITextField.ViewMode.always
         
+        if currentPlacemark != nil {            
+            GameName.text = currentPlacemark?.name
+            GameLocation.text = parseAddress(selectedItem: currentPlacemark!)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -56,7 +64,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         case "Type":
             return typePickerData.count
         case "Time":
-            return timePickerData[component].count
+            return timePickerData[component].count        
         default:
             return 1
         }
@@ -113,5 +121,8 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.currentlyEditing = "Time"
         self.componentsInPicker = 3;
         self.picker.reloadAllComponents();
+    }
+    @IBAction func LocationAction(_ sender: Any) {
+        performSegue(withIdentifier: "FromCreateToMap", sender: nil)
     }
 }

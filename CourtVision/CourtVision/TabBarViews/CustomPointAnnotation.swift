@@ -11,4 +11,5 @@ import MapKit
 
 class CustomPointAnnotation: MKPointAnnotation {
     var pinCustomImageName: String!
+    var gameID: String!
 }

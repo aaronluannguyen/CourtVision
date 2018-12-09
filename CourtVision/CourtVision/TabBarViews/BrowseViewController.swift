@@ -29,7 +29,9 @@ class BrowseViewController: UIViewController {
   var currentLocation:CLLocation? = nil
   var resultSearchController:UISearchController? = nil
   var currentPinView: MKAnnotationView? = nil
-
+  var currGameID = ""
+    var sendingAnnotation: MKAnnotation? = nil
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     //to handle responses asynchronously
@@ -134,9 +136,34 @@ extension BrowseViewController : MKMapViewDelegate {
         let customPointAnnotation = annotation as! CustomPointAnnotation
         pinView?.image = UIImage(named: customPointAnnotation.pinCustomImageName)
         currentPinView = pinView
+        
+        let buttonToBrowse = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        buttonToBrowse.frame.size.width = 50
+        buttonToBrowse.frame.size.height = 50
+        buttonToBrowse.setImage(UIImage(named: "locate"), for: [])
+        pinView!.leftCalloutAccessoryView = buttonToBrowse
         return pinView
     }
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let customAnnotation = view.annotation as! CustomPointAnnotation
+        sendingAnnotation = view.annotation
+        currGameID = customAnnotation.gameID
+        performSegue(withIdentifier: "FromBrowseToSingleGame", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! SingleGameViewController
+        destinationVC.gameID = currGameID
+        //comment this later 
+        destinationVC.sentAnnotation = sendingAnnotation
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view.annotation is MKUserLocation {
+            return
+        }
         currentPinView?.image = UIImage(named: "pin-white")
         view.image = UIImage(named: "pin-red")
         currentPinView = view
@@ -144,12 +171,7 @@ extension BrowseViewController : MKMapViewDelegate {
 }
 
 extension BrowseViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark: MKPlacemark) {
-      //        mapView.removeAnnotations(mapView.annotations) //remove existing pins
-      //MARK LOCATION
-      buildAnnotation(placemark: placemark)
-//      print("lat: \(placemark.coordinate.latitude) long: \(placemark.coordinate.longitude)")
-      
+    func dropPinZoomIn(placemark: MKPlacemark) {      
       //ZOOM IN TO PIN
       let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
       let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
@@ -164,7 +186,7 @@ extension BrowseViewController: HandleMapSearch {
         let name = location[nameField] as! String
       
         let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: [nameField : name])
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: [nameField : name, gameIDField : game.gameObj[gameIDField]])
         buildAnnotation(placemark: placemark)
     }
     
@@ -174,6 +196,7 @@ extension BrowseViewController: HandleMapSearch {
         annotation.pinCustomImageName = "pin-white"
         annotation.coordinate = placemark.coordinate
       annotation.title = placemark.addressDictionary![nameField]! as! String
+       annotation.gameID = placemark.addressDictionary![gameIDField]! as! String
 //        if let city = placemark.locality,
 //            let state = placemark.administrativeArea {
 //            annotation.subtitle = "\(city) \(state)"
