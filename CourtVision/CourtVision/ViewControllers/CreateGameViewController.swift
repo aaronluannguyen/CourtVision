@@ -53,8 +53,8 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func addTextfieldPadding() {
         let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameName.leftView = paddingViewName
-        GameName.leftViewMode = UITextField.ViewMode.always
+        GameName.rightView = paddingViewName
+        GameName.rightViewMode = UITextField.ViewMode.always
         let paddingViewType = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
         GameType.rightView = paddingViewType
         GameType.rightViewMode = UITextField.ViewMode.always
@@ -88,9 +88,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   
   // The data to return fopr the row and component (column) that's being passed in
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-      
-    print("Component: \(component) | Row: \(row) | Number: \(timePickerData[component][row])")
-    print(" pickerView.selectedRow(inComponent: component): \(pickerView.selectedRow(inComponent: component))")
     
     if(component == 0){
         date = timePickerData[0][pickerView.selectedRow(inComponent: component)]
@@ -101,9 +98,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     let constructedTime = "\(date), \(time) \(ampm)"
-    print(constructedTime)
-      
-      
     self.rowSelected = row
       
     if (self.currentlyEditing == "Type") {
@@ -119,7 +113,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   @IBAction func EditTypeTouched(_ sender: Any) {
     pickerView.isHidden = false
     self.currentlyEditing = "Type"
-
     self.componentsInPicker = 1;
     self.picker.reloadAllComponents();
   }
@@ -130,6 +123,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     self.componentsInPicker = 3;
     self.picker.reloadAllComponents();
   }
+    
   @IBAction func LocationAction(_ sender: Any) {
     performSegue(withIdentifier: "FromCreateToMap", sender: nil)
   }

@@ -792,7 +792,7 @@
                                     <constraint firstItem="db3-ni-cKg" firstAttribute="top" secondItem="NeX-6Y-YFx" secondAttribute="top" id="gp8-ha-YB5"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="a5Y-Bm-weQ">
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="a5Y-Bm-weQ">
                                 <rect key="frame" x="0.0" y="180" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -934,7 +934,7 @@
                                     <constraint firstAttribute="height" constant="86" id="j94-Tw-obC"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="kkU-B2-3dI">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="kkU-B2-3dI">
                                 <rect key="frame" x="0.0" y="180" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1016,6 +1016,12 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykX-44-Ndv">
+                                <rect key="frame" x="20" y="190" width="45" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.91092729568481445" green="0.908161461353302" blue="0.91103154420852661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1030,8 +1036,10 @@
                             <constraint firstItem="vlU-1F-S2n" firstAttribute="bottom" secondItem="vYQ-Ya-8Ny" secondAttribute="bottom" id="Xny-P4-HVg"/>
                             <constraint firstItem="kkU-B2-3dI" firstAttribute="top" secondItem="xa9-1s-Nlz" secondAttribute="bottom" constant="25" id="ZyU-PV-6Ac"/>
                             <constraint firstItem="xa9-1s-Nlz" firstAttribute="centerX" secondItem="5Pn-Wc-ljy" secondAttribute="centerX" id="cYj-Z1-Yhh"/>
+                            <constraint firstItem="ykX-44-Ndv" firstAttribute="top" secondItem="xa9-1s-Nlz" secondAttribute="bottom" constant="35" id="dXM-AS-wff"/>
                             <constraint firstItem="kkU-B2-3dI" firstAttribute="trailing" secondItem="vlU-1F-S2n" secondAttribute="trailing" id="mao-BH-koj"/>
                             <constraint firstItem="vlU-1F-S2n" firstAttribute="trailing" secondItem="ajS-AY-4Q5" secondAttribute="trailing" id="vYM-Q0-KHP"/>
+                            <constraint firstItem="ykX-44-Ndv" firstAttribute="leading" secondItem="vlU-1F-S2n" secondAttribute="leading" constant="20" id="w8R-00-4KA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vlU-1F-S2n"/>
                     </view>
@@ -1405,7 +1413,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOi-lw-jfZ">
-                                                    <rect key="frame" x="337" y="14.333333333333336" width="42" height="21"/>
+                                                    <rect key="frame" x="298" y="14.333333333333336" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2202,6 +2210,6 @@
         <segue reference="one-0E-UJg"/>
         <segue reference="uu1-bj-Ojk"/>
         <segue reference="VNF-Jd-9yq"/>
-        <segue reference="H4M-uu-bG4"/>
+        <segue reference="4px-Ry-x9K"/>
     </inferredMetricsTieBreakers>
 </document>

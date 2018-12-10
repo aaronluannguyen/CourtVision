@@ -17,13 +17,16 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var pickerView: UIView!
     
-    var currentlyEditing : String = "Time"
+    var currentlyEditing : String = "Height"
     var rowSelected : Int = 0
     var componentsInPicker : Int = 1
+    var heightPickerData: [[String]]!
     var pickerData: [String] = []
-    var heights: [String] = [String]()
+//    var heights: [[String]] = [[String]]()
     var weights: [String] = [String]()
     var positions: [String] = [String]()
+    var ft = "ft"
+    var inch = "in"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,27 +35,15 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pickerView.isHidden = true
         self.picker.delegate = self
         self.picker.dataSource = self
-        pickerData = heights
-        
-        heights = ["4'0\"", "4'1\"", "4'2\"", "4'3\"",
-        "4'4\"", "4'5\"", "4'6\"", "4'7\"",
-        "4'8\"", "4'9\"", "4'10\"", "4'11\"",
-        "5'0\"", "5'1\"", "5'2\"",
-        "5'3\"", "5'4\"", "5'5\"", "5'6\"",
-        "5'7\"", "5'8\"", "5'9\"", "5'10\"",
-        "6'0\"", "6'1\"", "6'2\"", "6'3\"",
-        "6'4\"", "6'5\"", "6'6\"", "6'7\"",
-        "6'8\"", "6'9\"", "6'10\"", "6'11\"",
-        "7'0\"", "7'1\"", "7'2\"", "7'3\"",
-        "7'4\"", "7'5\"", "7'6\"", "7'7\"",
-        "7'8\"", "7'9\"", "7'10\"", "7'11\""]
+        heightPickerData = [["4'", "5'", "6'", "7'"], ["0\"", "1\"", "2\"", "3\"", "4\"", "5\"", "6\"", "7\"", "8\"", "9\"", "10\"", "11\""]]
         
         for i in 50 ... 500 {
             weights.append(String(i) + " lb.")
         }
         
+        // check if positions match in db
         positions = ["G", "PG", "SG", "F", "SF",
-                     "PF", "C", "G/F", "PG/SG", "SG/SF",
+                     "PF", "C", "PG/SG", "SG/SF",
                      "SF/PF", "PF/C"]
         
         getPlayerProfile(ud.string(forKey: udUserID)!) { (player) in
@@ -94,19 +85,19 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func EditHeightToucher(_ sender: Any) {
         pickerView.isHidden = false
-        pickerData.removeAll(keepingCapacity: false)
-        pickerData = heights
+//        heightPickerData.removeAll(keepingCapacity: false)
+//        heightPickerData = heights
         currentlyEditing = "Height"
+        componentsInPicker = 2
         self.picker.reloadAllComponents();
     }
     
     @IBAction func EditWeightTouched(_ sender: Any) {
         pickerView.isHidden = false
         pickerData.removeAll(keepingCapacity: false)
-        print(pickerData)
         pickerData = weights
-        print(pickerData)
         currentlyEditing = "Weight"
+        componentsInPicker = 1
         self.picker.reloadAllComponents();
     }
     
@@ -115,6 +106,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pickerData.removeAll(keepingCapacity: false)
         pickerData = positions
         currentlyEditing = "Position"
+        componentsInPicker = 1
         self.picker.reloadAllComponents();
     }
     
@@ -127,26 +119,45 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return self.componentsInPicker
     }
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+        switch(self.currentlyEditing){
+        case "Height":
+            return heightPickerData[component].count
+        case "Weight":
+            return pickerData.count
+        case "Position":
+            return pickerData.count
+        default:
+            return 1
+        }
+//        return pickerData.count
     }
     
-    // The data to return fopr the row and component (column) that's being passed in
+    // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch(currentlyEditing){
-        case "Height":
-            self.PlayerHeight.text = pickerData[pickerView.selectedRow(inComponent: component)]
-        case "Weight":
-            self.PlayerWeight.text = pickerData[pickerView.selectedRow(inComponent: component)]
-        case "Position":
-            self.PlayerPosition.text = pickerData[pickerView.selectedRow(inComponent: component)]
-        default:
-            print("Error")
+        if (component == 0) {
+            ft = heightPickerData[0][pickerView.selectedRow(inComponent: component)]
+        } else {
+            inch = heightPickerData[1][pickerView.selectedRow(inComponent: component)]
         }
-        return pickerData[row]
+        
+        if (currentlyEditing == "Height") {
+            self.PlayerHeight.text = "\(ft) \(inch)"
+            return self.heightPickerData[component][row]
+        } else {
+            switch(currentlyEditing){
+            case "Weight":
+                self.PlayerWeight.text = pickerData[row]
+            case "Position":
+                self.PlayerPosition.text = pickerData[row]
+            default:
+                print("Error")
+            }
+            return pickerData[row]
+        }
     }
 }

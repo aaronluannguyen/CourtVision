@@ -239,6 +239,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
         return "Shooting Guard"
       case "PG/SG":
         return "Point Guard / Shooting Guard"
+      case "SG/SF":
+        return "Shooting Guard / Small Forward"
       case "F":
         return "Forward"
       case "SF":
@@ -246,7 +248,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
       case "PF":
         return "Power Forward"
       case "SF/PF":
-        return "Shooting Forward / Power Forward"
+        return "Small Forward / Power Forward"
       case "C":
         return "Center"
       case "PF/C":
