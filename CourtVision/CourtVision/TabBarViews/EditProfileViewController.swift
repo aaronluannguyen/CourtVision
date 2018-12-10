@@ -63,11 +63,24 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     PlayerFName.delegate = self
     PlayerLName.delegate = self
+    PlayerHeight.delegate = self
+    PlayerWeight.delegate = self
+    PlayerPosition.delegate = self
+  }
+  
+  func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    if (textField == PlayerFName || textField == PlayerLName) {
+      return true
+    }
+    return false
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    self.view.endEditing(true)
-    return false
+    if (textField != PlayerFName || textField != PlayerLName) {
+      self.view.endEditing(true)
+      return false
+    }
+    return true
   }
     
   func addTextfieldPadding() {
