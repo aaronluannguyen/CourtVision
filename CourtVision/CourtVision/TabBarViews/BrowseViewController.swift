@@ -75,6 +75,7 @@ class BrowseViewController: UIViewController {
   
   //Queries and updates gamesListing array LIVE
   func getAllGamesListingsLive() {
+    mapView.removeAnnotations(mapView.annotations)
     let db = getFirestoreDB()
     
     gamesListener = db.collection(gamesCollection)
