@@ -103,7 +103,6 @@ class LiveGameViewController: UIViewController {
               self.txtTeam.text = team?.teamObj[teamNameField]! as? String
             }
             self.btnMatch.setTitle(game.gameObj[gameTypeField]! as? String, for: .normal)
-            
             let location = game.gameObj[locationField]! as! [String: Any]
             self.txtLocation.text = location[addressField]! as? String
           }
