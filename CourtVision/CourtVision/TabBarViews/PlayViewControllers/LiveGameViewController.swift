@@ -25,6 +25,8 @@ class LiveGameViewController: UIViewController {
     
   var hidden = false
   var activeListener: ListenerRegistration?
+  var currGame: GameDM?
+  var opponentTeam: TeamDM?
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        navBackBtn.setHidesBackButton(true, animated: true)
@@ -93,13 +95,19 @@ class LiveGameViewController: UIViewController {
               return
             }
             let game = GameDM(data)
+            self.currGame = game
             if (game.gameObj[statusField]! as! String != gamesActive) {
+              self.performSegue(withIdentifier: "FromPlayToPlayContainer", sender: self)
+            }
+            if (game.gameObj[statusField]! as! String != gamesActive) {
+              //Alert on game winner/loser
               self.performSegue(withIdentifier: "FromPlayToPlayContainer", sender: self)
             }
             let courtInfo = game.gameObj[courtInfoField]! as! [String: Any]
             self.txtName.text = courtInfo[courtNameField]! as? String
             self.txtTime.text = game.gameObj[datetimeField]! as? String
             getTeamFromID(getGameOpponentTeamID(game, ud.string(forKey: udTeamID)!)) {(team) in
+              self.opponentTeam = team
               self.txtTeam.text = team?.teamObj[teamNameField]! as? String
             }
             self.btnMatch.setTitle(game.gameObj[gameTypeField]! as? String, for: .normal)

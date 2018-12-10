@@ -170,6 +170,20 @@ public func joinGame(_ gameID: String, _ guestTeamID: String, _ vc: UIViewContro
   }
 }
 
+//Complete game
+public func completeGame(_ game: GameDM, _ homeTeamWin: Bool, _ guestTeamWin: Bool) {
+  let db = getFirestoreDB()
+  let batch = db.batch()
+  
+//  let teams = game.gameObj[teamsField]! as! [String]
+//  let homeTeamRef = db.collection(teamsCollection).document(teams[0])
+//  let guestTeamID = db.collection(teamsCollection).document(teams[1])
+//  batch.updateData([
+//    totalsGames
+//    ], forDocument: homeTeamRef)
+}
+
+
 //Returns games history
 //Supported Game History Lists for:
 //  - By team   ("teamID")
