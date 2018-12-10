@@ -39,6 +39,8 @@ class SingleGameViewController: UIViewController {
   
   
   @IBAction func onJoinGameClick(_ sender: Any) {
+    let group = DispatchGroup()
+    
     if (ud.string(forKey: udTeamID)! == "") {
       let alert = UIAlertController(title: "No Team", message: "You must create a team or be invited to one before you can play.", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromBrowseSingleGameToPlayContainer", sender: self)}))
@@ -54,7 +56,49 @@ class SingleGameViewController: UIViewController {
       return
     }
     
+    checkIfUserTeamAlreadyHostingGame() {(isHosting) in
+      group.enter()
+      if (isHosting) {
+        let alert = UIAlertController(title: "Oops!", message: "You are are already hosting a game!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true)
+        return
+      }
+      group.leave()
+    }
+    group.enter()
     joinGame(game?.gameObj[gameIDField]! as! String, ud.string(forKey: udTeamID)!, self)
+    group.leave()
+    
+    group.notify(queue: .main) {
+      print("Successfully joined game.")
+    }
+  }
+}
+
+func checkIfUserTeamAlreadyHostingGame(completion: @escaping(Bool) -> ()) {
+  let db = getFirestoreDB()
+  let gamesRef = db.collection(gamesCollection)
+  
+  let games = gamesRef
+    .whereField(teamsField, arrayContains: ud.string(forKey: udTeamID)!)
+    .whereField("status", isEqualTo: gamesListing)
+  
+  var gamesListings: [GameDM] = []
+  
+  games.getDocuments() {(query, err) in
+    if let err = err {
+      print("Error: \(err)")
+    } else {
+      for document in query!.documents {
+        gamesListings.append(GameDM(document.data()))
+      }
+      if (gamesListings.count > 0) {
+        completion(true)
+      } else {
+        completion(false)
+      }
+    }
   }
 }
 
