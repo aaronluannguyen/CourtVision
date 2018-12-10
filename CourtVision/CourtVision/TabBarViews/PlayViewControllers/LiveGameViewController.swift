@@ -65,18 +65,24 @@ class LiveGameViewController: UIViewController {
     
   @IBAction func onWinClick(_ sender: Any) {
     let alert = UIAlertController(title: "Congratulations!", message: "You are about to record a win for your team, is that correct?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+      if (self.currGame != nil) {
+        completeGame(self.currGame!, true, false)
+      }
+    }))
     alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
     self.present(alert, animated: true)
-    //increment win count for home team
   }
   
   @IBAction func onLossClick(_ sender: Any) {
     let alert = UIAlertController(title: "Nice Try", message: "You are about to record a loss for your team, is that correct?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+      if (self.currGame != nil) {
+        completeGame(self.currGame!, false, true)
+      }
+    }))
     alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
     self.present(alert, animated: true)
-    //increment loss count for home team
   }
 
   //Get single active game

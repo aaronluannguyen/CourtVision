@@ -20,6 +20,9 @@ public let heightField = "height"
 public let weightPoundsField = "weightPounds"
 public let totalWinsField = "totalWins"
 public let totalLossesField = "totalLosses"
+public let profileTotalGames = "profile.totalGames"
+public let profileTotalWins = "profile.totalWins"
+public let profileTotalLosses = "profile.totalLosses"
 
 public let teamsCollection = "teams"
 public let teamIDField = "teamID"
@@ -30,6 +33,9 @@ public let recordField = "record"
 public let winsField = "wins"
 public let lossesField = "losses"
 public let totalGamesField = "totalGames"
+public let recordTotalGamesUpdate = "record.totalGames"
+public let recordLossesUpdate = "record.losses"
+public let recordWinsUpdate = "record.wins"
 
 public let gamesCollection = "games"
 public let gameIDField = "gameID"
@@ -54,6 +60,8 @@ public let longField = "long"
 public let nameField = "name"
 public let addressField = "address"
 public let statusField = "status"
+public let scoreGuestWin = "score.guestWin"
+public let scoreHomeWin = "score.homeWin"
 
 
 //Functions

@@ -172,15 +172,102 @@ public func joinGame(_ gameID: String, _ guestTeamID: String, _ vc: UIViewContro
 
 //Complete game
 public func completeGame(_ game: GameDM, _ homeTeamWin: Bool, _ guestTeamWin: Bool) {
+  let group = DispatchGroup()
+  
   let db = getFirestoreDB()
   let batch = db.batch()
   
-//  let teams = game.gameObj[teamsField]! as! [String]
-//  let homeTeamRef = db.collection(teamsCollection).document(teams[0])
-//  let guestTeamID = db.collection(teamsCollection).document(teams[1])
-//  batch.updateData([
-//    totalsGames
-//    ], forDocument: homeTeamRef)
+  //Update game status
+  let gameRef = db.collection(gamesCollection).document(game.gameObj[gameIDField]! as! String)
+  batch.updateData([
+    statusField: gamesCompleted,
+    scoreHomeWin: homeTeamWin,
+    scoreGuestWin: guestTeamWin
+    ], forDocument: gameRef)
+  
+  //Update records for both teams
+  let teams = game.gameObj[teamsField]! as! [String]
+  let homeTeamRef = db.collection(teamsCollection).document(teams[0])
+  getTeamFromID(teams[0]) {(team) in
+    group.enter()
+    let record = team?.teamObj[recordField]! as! [String: Any]
+    let totalGamesUpdate = record[totalGamesField]! as! Int + 1
+    var winsUpdate = record[winsField]! as! Int
+    var lossesUpdate = record[lossesField]! as! Int
+    if (homeTeamWin) {
+      winsUpdate += 1
+    } else {
+      lossesUpdate += 1
+    }
+    batch.updateData([
+      recordTotalGamesUpdate: totalGamesUpdate,
+      recordWinsUpdate: winsUpdate,
+      recordLossesUpdate: lossesUpdate
+      ], forDocument: homeTeamRef)
+    group.leave()
+  }
+  
+  let guestTeamRef = db.collection(teamsCollection).document(teams[1])
+  getTeamFromID(teams[1]) {(team) in
+    group.enter()
+    let record = team?.teamObj[recordField]! as! [String: Any]
+    let totalGamesUpdate = record[totalGamesField]! as! Int + 1
+    var winsUpdate = record[winsField]! as! Int
+    var lossesUpdate = record[lossesField]! as! Int
+    if (guestTeamWin) {
+      winsUpdate += 1
+    } else {
+      lossesUpdate += 1
+    }
+    batch.updateData([
+      recordTotalGamesUpdate: totalGamesUpdate,
+      recordWinsUpdate: winsUpdate,
+      recordLossesUpdate: lossesUpdate
+      ], forDocument: guestTeamRef)
+    group.leave()
+  }
+  
+  //Updates all playersInvolved's records
+  let players = game.gameObj[playersInvolvedField]! as! [String]
+  for playerID in players {
+    group.enter()
+    let playerRef = db.collection(playersCollection).document(playerID)
+    let playerQuery = getPlayerProfile(playerID) {(p) in
+      let profile = p?.playerObj[profileField]! as! [String: Any]
+      let totalGamesUpdate = profile[totalGamesField]! as! Int + 1
+      var winsUpdate = profile[totalWinsField]! as! Int
+      var lossesUpdate = profile[totalLossesField]! as! Int
+      if (p?.playerObj[teamIDField]! as! String == teams[0]) {
+        if (homeTeamWin) {
+          winsUpdate += 1
+        } else {
+          lossesUpdate += 1
+        }
+      } else {
+        if (guestTeamWin) {
+          winsUpdate += 1
+        } else {
+          lossesUpdate += 1
+        }
+      }
+      batch.updateData([
+        profileTotalGames: totalGamesUpdate,
+        profileTotalWins: winsUpdate,
+        profileTotalLosses: lossesUpdate
+        ], forDocument: playerRef)
+      group.leave()
+    }
+  }
+  
+  group.notify(queue: .main) {
+    batch.commit() {(err) in
+      if let err = err {
+        print("Error writing batched commits: \(err)")
+      } else {
+        print("Batch write succeeded.")
+      }
+    }
+  }
 }
 
 
