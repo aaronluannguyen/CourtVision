@@ -24,8 +24,8 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   var typePickerData: [String] = ["3v3", "5v5"]
   var timePickerData: [[String]]!
   var date = "Date"
-  var time = "Time"
-  var ampm = "AM/PM"
+  var time = "12:00"
+  var ampm = "PM"
   var currentlyEditing : String = "Time";
   var rowSelected : Int = 0;
   var componentsInPicker : Int = 1;
@@ -67,10 +67,14 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   }
 
   @IBAction func onSaveCreateGameClick(_ sender: Any) {
-    if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && self.time != "Time" && currentPlacemark != nil) {
+    if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && self.time != "" && currentPlacemark != nil) {
       let newGame = GameDM(ud.string(forKey: udTeamID)!, GameName.text!, GameType.text!, GameTime.text!, currentPlacemark!, GameLocation.text!)
       newGame.newGame()
       performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: nil)
+    } else {
+      let alert = UIAlertController(title: "Oops!", message: "You have not filled all the necessary information for creating a game.", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+      self.present(alert, animated: true)
     }
   }
 
@@ -94,7 +98,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
   }
   
-  // The data to return fopr the row and component (column) that's being passed in
+  // The data to return for the row and component (column) that's being passed in
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     
     if(component == 0){
@@ -111,10 +115,11 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     if (self.currentlyEditing == "Type") {
       self.GameType.text = self.typePickerData[rowSelected]
       return self.typePickerData[row]
-    } else {
+    } else if (self.currentlyEditing == "Time") {
       self.GameTime.text = constructedTime
       return self.timePickerData[component][row]
     }
+    return ""
   }
 
     
