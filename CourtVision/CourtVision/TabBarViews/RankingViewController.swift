@@ -51,6 +51,9 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
       cell.txtRecord.textColor = UIColor.white
       cell.selectionStyle = .none
     } else {
+      if (team.teamObj[teamIDField]! as! String == ud.string(forKey: udTeamID)!) {
+        cell.txtName.textColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0)
+      }
       cell.txtRank.text = "\(indexPath.row)"
       cell.txtName.text = "\(team.teamObj[teamNameField]! as! String)"
       cell.txtRecord.text = "\(teamRecord[winsField]!)-\(teamRecord[lossesField]!)"
