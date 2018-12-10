@@ -178,6 +178,7 @@
 				EE5460D121BBE7BE00553AEE /* PlayViewControllers */,
 				AD657ED621BA4272006B69F0 /* BrowseViewController.swift */,
 				EE1B7D2821B4E59800442719 /* ProfileViewController.swift */,
+				B80C84C921BB975900A897C6 /* EditProfileViewController.swift */,
 				EE5460CC21B7C86D00553AEE /* RankingViewController.swift */,
 				EE5460D621BBE9A700553AEE /* PlayViewController.swift */,
 				EE5460DD21BBFE8F00553AEE /* TContainerViewController.swift */,
@@ -192,8 +193,6 @@
 				F4B1FB7F21A974C600D45295 /* LoginViewController.swift */,
 				EE1B7D1721B3614F00442719 /* SignUpViewController.swift */,
 				EE1B7D2021B4DD7100442719 /* BrowseTabBarController.swift */,
-				B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */,
-				B80C84C921BB975900A897C6 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -211,6 +210,7 @@
 		EE5460D121BBE7BE00553AEE /* PlayViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B80437DA21BA0C4000077C24 /* CreateGameViewController.swift */,
 				EE5460D221BBE7E000553AEE /* NoGameViewController.swift */,
 				EE5460D421BBE95E00553AEE /* ListingViewController.swift */,
 				EE5460D821BBEDF500553AEE /* LiveGameViewController.swift */,

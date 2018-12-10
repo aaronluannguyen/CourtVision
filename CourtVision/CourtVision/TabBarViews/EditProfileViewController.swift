@@ -9,22 +9,6 @@
 import UIKit
 import Firebase
 
-//extension String {
-//    var containsWhitespace : Bool {
-//        return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
-//    }
-//
-//    func chopPrefix(_ count: Int = 1) -> String {
-//        return substring(from: index(startIndex, offsetBy: count))
-//    }
-//}
-//
-//extension StringProtocol where Index == String.Index {
-//    func index(of string: Self, options: String.CompareOptions = []) -> Index? {
-//        return range(of: string, options: options)?.lowerBound
-//    }
-//}
-
 class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var PlayerFName: UITextField!
@@ -40,12 +24,10 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var componentsInPicker : Int = 1
     var heightPickerData: [[String]]!
     var pickerData: [String] = []
-//    var heights: [[String]] = [[String]]()
     var weights: [String] = [String]()
     var positions: [String] = [String]()
     var ft = "ft"
     var inch = "in"
-//    var fullName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,8 +92,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func EditHeightToucher(_ sender: Any) {
         pickerView.isHidden = false
-//        heightPickerData.removeAll(keepingCapacity: false)
-//        heightPickerData = heights
         currentlyEditing = "Height"
         componentsInPicker = 2
         self.picker.reloadAllComponents();
@@ -136,14 +116,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func SaveProfile(_ sender: Any) {
-//        if (checkNameFormat()) {
-//            let index = fullName.index(of: " ")
-//            let firstName = fullName.prefix(upTo: index!)
-//            let lastName = fullName.chopPrefix(index)
-//            print(firstName)
-//            print(lastName)
-//
-//        }
         getFirestoreDB().collection(playersCollection).document(ud.string(forKey: udUserID)!).updateData([
             "profile.firstName": self.PlayerFName.text!,
             "profile.lastName": self.PlayerLName.text!,
@@ -153,21 +125,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ])
         self.performSegue(withIdentifier: "FromEditToProfile", sender: sender)
     }
-    
-//    func checkNameFormat() -> Bool {
-//        self.fullName = self.PlayerName.text!
-//        let whitespace = NSCharacterSet.whitespaces
-//        if !fullName.containsWhitespace {
-//            print("doesn't contains space!")
-//            let alert = UIAlertController(title: "Uh oh!", message: "Looks like the name you entered isn't in proper format. Please try again!", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//            self.present(alert, animated: true)
-//            return false
-//        } else {
-//            print("contains space!")
-//            return true
-//        }
-//    }
     
     @IBAction func onBackClick(_ sender: Any) {
         self.performSegue(withIdentifier: "FromEditToProfile", sender: sender)
