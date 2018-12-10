@@ -23,7 +23,7 @@ class LiveGameViewController: UIViewController {
   @IBOutlet weak var btnLoss: UIButton!
   @IBOutlet weak var container: UIView!
     
-  var hidden = false
+  
   var activeListener: ListenerRegistration?
   var currGame: GameDM?
   var opponentTeam: TeamDM?
@@ -36,19 +36,6 @@ class LiveGameViewController: UIViewController {
     btnMatch.layer.cornerRadius = 14
     btnMatch.layer.borderWidth = 1
     btnMatch.layer.borderColor = UIColor(red: 1, green: 164/255, blue: 0, alpha: 1.0).cgColor
-    
-    container.isHidden = hidden
-      
-    if (!hidden) {
-      btnWin.layer.cornerRadius = 10
-      btnWin.layer.borderWidth = 1
-      btnWin.layer.backgroundColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
-      btnWin.layer.borderColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
-      btnLoss.layer.cornerRadius = 10
-      btnLoss.layer.borderWidth = 1
-      btnLoss.layer.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
-      btnLoss.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
-    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +84,7 @@ class LiveGameViewController: UIViewController {
               return
             }
             let game = GameDM(data)
+            self.getTeamHomeOrGuest(game)
             self.currGame = game
             if (game.gameObj[statusField]! as! String != gamesActive) {
               //Alert on game winner/loser
@@ -114,6 +102,27 @@ class LiveGameViewController: UIViewController {
             self.txtLocation.text = location[addressField]! as? String
           }
       }
+    }
+  }
+  
+  //Update hidden variable depending if user is on home or guest team
+  func getTeamHomeOrGuest(_ game: GameDM) {
+    let teams = game.gameObj[teamsField]! as! [String]
+    if (ud.string(forKey: udTeamID)! == teams[0]) {
+      container.isHidden = false
+      btnWin.layer.cornerRadius = 10
+      btnWin.layer.borderWidth = 1
+      btnWin.layer.backgroundColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
+      btnWin.layer.borderColor = UIColor(red: 248/255, green: 113/255, blue: 113/255, alpha: 1).cgColor
+      btnLoss.layer.cornerRadius = 10
+      btnLoss.layer.borderWidth = 1
+      btnLoss.layer.backgroundColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
+      btnLoss.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1).cgColor
+    } else {
+      container.isHidden = true
+      btnWin.isEnabled = false
+      btnLoss.isEnabled = false
+      //Add message about being guest team
     }
   }
 }
