@@ -29,6 +29,8 @@ class BrowseViewController: UIViewController {
   var currGameID = ""
     var sendingAnnotation: MKAnnotation? = nil
     
+    var annotationDict: [String: CustomPointAnnotation] = [:]
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     //to handle responses asynchronously
@@ -89,9 +91,18 @@ class BrowseViewController: UIViewController {
           }
           if (diff.type == .modified) {
             //Find old pin, delete, and repost new updated pin
-            self.dropGamePin(game: GameDM(diff.document.data()))
+            let game = GameDM(diff.document.data())
+            if(game.gameObj[statusField] as! String == gamesDeleted ||
+                game.gameObj[statusField] as! String == gamesActive) {
+                NSLog("ENTERED HERE")
+                //remove pin and from dict.
+                self.removePin(gameID: game.gameObj[gameIDField] as! String)
+            }
           }
           if (diff.type == .removed) {
+            let game = GameDM(diff.document.data())
+            //remove pin and from dict
+            self.removePin(gameID: game.gameObj[gameIDField] as! String)
             //Find old pin and remove from map
             print("DELETE")
           }
@@ -198,10 +209,16 @@ extension BrowseViewController: HandleMapSearch {
       annotation.coordinate = placemark.coordinate
       annotation.title = placemark.addressDictionary![nameField]! as! String
       annotation.gameID = placemark.addressDictionary![gameIDField]! as! String
+      annotationDict[annotation.gameID] = annotation
 //        if let city = placemark.locality,
 //            let state = placemark.administrativeArea {
 //            annotation.subtitle = "\(city) \(state)"
 //        }
       mapView.addAnnotation(annotation)
+    }
+    
+    func removePin(gameID: String) {
+        mapView.removeAnnotation(annotationDict[gameID] as! MKAnnotation)
+        annotationDict.removeValue(forKey: gameID)
     }
 }
