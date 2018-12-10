@@ -28,10 +28,6 @@ class LiveGameViewController: UIViewController {
   var currGame: GameDM?
   var opponentTeam: TeamDM?
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        navBackBtn.setHidesBackButton(true, animated: true)
-//    }
-    
   override func viewDidLoad() {
     super.viewDidLoad()
     // still renders initially
