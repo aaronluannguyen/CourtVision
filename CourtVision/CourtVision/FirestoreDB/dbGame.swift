@@ -73,6 +73,28 @@ public class GameDM {
 
 //Public functions relating to Game
 
+//Get single Game active
+public func getSingleActiveGame(completion: @escaping(GameDM?) -> ()) {
+  let db = getFirestoreDB()
+  
+  var resultGame: GameDM? = nil
+  
+  let gamesRef = db.collection(gamesCollection)
+  let game = gamesRef
+    .whereField(teamsField, arrayContains: ud.string(forKey: udTeamID)!)
+    .whereField(statusField, isEqualTo: gamesActive)
+
+  game.getDocuments() {(query, err) in
+    if let err = err {
+      print("Error: \(err)")
+    } else {
+      let activeGame = GameDM(query!.documents[0].data())
+      resultGame = activeGame
+      completion(resultGame)
+    }
+  }
+}
+
 //Get single Game listing
 public func getSingleGameListing(_ gameID: String, completion: @escaping(GameDM?) -> ()) {
   let db = getFirestoreDB()
@@ -118,7 +140,7 @@ public func getGamesListings(completion: @escaping([GameDM]) -> ()) {
 }
 
 //Join a game
-public func joinGame(_ gameID: String, _ guestTeamID: String) {
+public func joinGame(_ gameID: String, _ guestTeamID: String, _ vc: UIViewController) {
   let db = getFirestoreDB()
   let gameRef = db.collection(gamesCollection).document(gameID)
 
@@ -141,11 +163,26 @@ public func joinGame(_ gameID: String, _ guestTeamID: String) {
             playersInvolvedField: playersInvolvedUpdate,
             statusField: gamesActive
           ])
+          vc.performSegue(withIdentifier: "FromBrowseSingleGameToPlayContainer", sender: vc)
         }
       }
     }
   }
 }
+
+//Complete game
+public func completeGame(_ game: GameDM, _ homeTeamWin: Bool, _ guestTeamWin: Bool) {
+  let db = getFirestoreDB()
+  let batch = db.batch()
+  
+//  let teams = game.gameObj[teamsField]! as! [String]
+//  let homeTeamRef = db.collection(teamsCollection).document(teams[0])
+//  let guestTeamID = db.collection(teamsCollection).document(teams[1])
+//  batch.updateData([
+//    totalsGames
+//    ], forDocument: homeTeamRef)
+}
+
 
 //Returns games history
 //Supported Game History Lists for:
@@ -188,5 +225,17 @@ public func getGameTeamResult(_ game: GameDM, _ teamID: String) -> String {
       return "Win"
     }
     return "Loss"
+  }
+}
+
+//Returns opponent team name during live game
+public func getGameOpponentTeamID(_ game: GameDM, _ teamID: String) -> String {
+  let gameObj = game.gameObj
+  let teams = gameObj[teamsField]! as! [String]
+  let score = gameObj[scoreField]! as! [String : Any]
+  if (teams[0] == teamID) {
+    return teams[1]
+  } else {
+    return teams[0]
   }
 }
