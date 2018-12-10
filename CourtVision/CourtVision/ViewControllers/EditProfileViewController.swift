@@ -27,7 +27,8 @@ import Firebase
 
 class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var PlayerName: UITextField!
+    @IBOutlet weak var PlayerFName: UITextField!
+    @IBOutlet weak var PlayerLName: UITextField!
     @IBOutlet weak var PlayerHeight: UITextField!
     @IBOutlet weak var PlayerWeight: UITextField!
     @IBOutlet weak var PlayerPosition: UITextField!
@@ -68,7 +69,8 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
             if player != nil {
                 let profile = player?.playerObj[profileField]! as! [String : Any]
                 
-                self.PlayerName.text = ("\(profile[firstNameField]!) \(profile[lastNameField]!)")
+                self.PlayerFName.text = ("\(profile[firstNameField]!)")
+                self.PlayerLName.text = ("\(profile[lastNameField]!)")
                 self.PlayerHeight.text = ("\(profile[heightField]!)")
                 self.PlayerWeight.text = ("\(profile[weightPoundsField]!)")
                 self.PlayerPosition.text = ("\(profile[positionField]!)")
@@ -80,8 +82,11 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     func addTextfieldPadding() {
         let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        PlayerName.rightView = paddingViewName
-        PlayerName.rightViewMode = UITextField.ViewMode.always
+        PlayerFName.rightView = paddingViewName
+        PlayerFName.rightViewMode = UITextField.ViewMode.always
+        let paddingViewLName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        PlayerLName.rightView = paddingViewLName
+        PlayerLName.rightViewMode = UITextField.ViewMode.always
         let paddingViewHeight = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
         PlayerHeight.rightView = paddingViewHeight
         PlayerHeight.rightViewMode = UITextField.ViewMode.always
@@ -98,7 +103,9 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func EditName(_ sender: Any) {
-        print(PlayerName.text!)
+        pickerView.isHidden = true;
+        print(PlayerFName.text!)
+        print(PlayerLName.text!)
     }
     
     @IBAction func EditHeightToucher(_ sender: Any) {
@@ -138,12 +145,13 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
 //
 //        }
         getFirestoreDB().collection(playersCollection).document(ud.string(forKey: udUserID)!).updateData([
-            //            "profile.firstName": self.firstName.text!
-            //            "profile.lastName": self.lastName.text!
+            "profile.firstName": self.PlayerFName.text!,
+            "profile.lastName": self.PlayerLName.text!,
             "profile.height": self.PlayerHeight.text!,
             "profile.weight": self.PlayerWeight.text!,
             "profile.position": self.PlayerPosition.text!
             ])
+        self.performSegue(withIdentifier: "FromEditToProfile", sender: sender)
     }
     
 //    func checkNameFormat() -> Bool {
