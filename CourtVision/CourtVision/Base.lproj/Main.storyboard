@@ -1220,7 +1220,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="x6a-c9-FDL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_ii" translatesAutoresizingMaskIntoConstraints="NO" id="x6a-c9-FDL">
                                                     <rect key="frame" x="26" y="15" width="57" height="57"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1697,7 +1697,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-op-gUt">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_ii" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-op-gUt">
                                                     <rect key="frame" x="15" y="12" width="57" height="57"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -2237,6 +2237,7 @@
         <image name="bball" width="45" height="45"/>
         <image name="browse_grey" width="24" height="24"/>
         <image name="default" width="80" height="80"/>
+        <image name="default_ii" width="56" height="56"/>
         <image name="locate" width="40" height="40"/>
         <image name="place" width="14" height="20"/>
         <image name="profile-grey" width="24" height="24"/>
@@ -2245,6 +2246,7 @@
         <image name="team-grey" width="17" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="jXz-Px-D2y"/>
         <segue reference="Reg-Iq-Pvb"/>
         <segue reference="ioO-vf-bN5"/>
         <segue reference="e8c-yc-FUm"/>
