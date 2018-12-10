@@ -27,9 +27,8 @@ class BrowseViewController: UIViewController {
   var resultSearchController:UISearchController? = nil
   var currentPinView: MKAnnotationView? = nil
   var currGameID = ""
-    var sendingAnnotation: MKAnnotation? = nil
-    
-    var annotationDict: [String: CustomPointAnnotation] = [:]
+  var sendingAnnotation: MKAnnotation? = nil
+  var annotationDict: [String: CustomPointAnnotation] = [:]
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -89,24 +88,30 @@ class BrowseViewController: UIViewController {
           if (diff.type == .added) {
             //Store each game object into dictionary with annotation on map
             let game = GameDM(diff.document.data())
-            if (game.gameObj[statusField] as! String == gamesListing) {
+            if (game.gameObj[gameIDField]! as! String != "" && game.gameObj[statusField] as! String == gamesListing) {
               self.dropGamePin(game: GameDM(diff.document.data()))
             }
           }
           if (diff.type == .modified) {
             //Find old pin, delete, and repost new updated pin
             let game = GameDM(diff.document.data())
-            if(game.gameObj[statusField] as! String == gamesDeleted ||
-                game.gameObj[statusField] as! String == gamesActive) {
-                //remove pin and from dict.
-                self.removePin(gameID: game.gameObj[gameIDField] as! String)
+            if (game.gameObj[statusField] as! String == gamesListing) {
+              self.dropGamePin(game: game)
+            } else if (game.gameObj[statusField] as! String == gamesDeleted || game.gameObj[statusField] as! String == gamesActive) {
+              //remove pin and from dict.
+              let gameID = game.gameObj[gameIDField]! as! String
+              if (self.annotationDict[gameID] != nil) {
+                self.removePin(gameID: gameID)
+              }
             }
           }
           if (diff.type == .removed) {
             let game = GameDM(diff.document.data())
             //remove pin and from dict
-            self.removePin(gameID: game.gameObj[gameIDField] as! String)
-            //Find old pin and remove from map
+            let gameID = game.gameObj[gameIDField]! as! String
+            if (self.annotationDict[gameID] != nil) {
+              self.removePin(gameID: gameID)
+            }
           }
         }
     }
