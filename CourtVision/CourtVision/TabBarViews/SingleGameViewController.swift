@@ -39,7 +39,6 @@ class SingleGameViewController: UIViewController {
   
   
   @IBAction func onJoinGameClick(_ sender: Any) {
-    let group = DispatchGroup()
     
     if (ud.string(forKey: udTeamID)! == "") {
       let alert = UIAlertController(title: "No Team", message: "You must create a team or be invited to one before you can play.", preferredStyle: .alert)
@@ -47,7 +46,7 @@ class SingleGameViewController: UIViewController {
       self.present(alert, animated: true)
       return
     }
-    
+
     let teams = game?.gameObj[teamsField]! as! [String]
     if (teams.contains(ud.string(forKey: udTeamID)!)) {
       let alert = UIAlertController(title: "Oops!", message: "You are currently hosting this game and cannot play against yourself!", preferredStyle: .alert)
@@ -57,21 +56,14 @@ class SingleGameViewController: UIViewController {
     }
     
     checkIfUserTeamAlreadyHostingGame() {(isHosting) in
-      group.enter()
       if (isHosting) {
         let alert = UIAlertController(title: "Oops!", message: "You are are already hosting a game!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         self.present(alert, animated: true)
         return
+      } else {
+        joinGame(self.game?.gameObj[gameIDField]! as! String, ud.string(forKey: udTeamID)!, self)
       }
-      group.leave()
-    }
-    group.enter()
-    joinGame(game?.gameObj[gameIDField]! as! String, ud.string(forKey: udTeamID)!, self)
-    group.leave()
-    
-    group.notify(queue: .main) {
-      print("Successfully joined game.")
     }
   }
 }
