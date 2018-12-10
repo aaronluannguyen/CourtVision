@@ -43,6 +43,7 @@ class SingleGameViewController: UIViewController {
       let alert = UIAlertController(title: "No Team", message: "You must create a team or be invited to one before you can play.", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromBrowseSingleGameToPlayContainer", sender: self)}))
       self.present(alert, animated: true)
+      return
     }
     
     let teams = game?.gameObj[teamsField]! as! [String]
@@ -50,10 +51,10 @@ class SingleGameViewController: UIViewController {
       let alert = UIAlertController(title: "Oops!", message: "You are currently hosting this game and cannot play against yourself!", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
       self.present(alert, animated: true)
+      return
     }
     
-    joinGame(game?.gameObj[gameIDField]! as! String, ud.string(forKey: udTeamID)!)
-    //Perform segue to active game vc
+    joinGame(game?.gameObj[gameIDField]! as! String, ud.string(forKey: udTeamID)!, self)
   }
 }
 

@@ -130,7 +130,6 @@ public func getTeamFromID(_ teamID: String,completion: @escaping(TeamDM?) -> ())
   
   let db = getFirestoreDB()
   let teamRef = db.collection(teamsCollection).document(teamID)
-  
   teamRef.getDocument {(document, error) in
     if let team = document.flatMap({
       $0.data().flatMap({ (data) in
