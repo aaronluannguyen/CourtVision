@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
   @IBOutlet weak var GameName: UITextField!
   @IBOutlet weak var GameType: UITextField!
@@ -33,7 +33,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    var daysData: [String] = generateSevenDaysData()
+    let daysData: [String] = generateSevenDaysData()
     timePickerData = [daysData,
                       ["12:00", "12:15", "12:30", "12:45", "1:00", "1:15", "1:30", "1:45", "2:00", "2:15", "3:00", "3:15", "3:30", "3:45",
                        "4:00", "4:15", "4:30", "4:45", "5:00", "5:15", "5:30", "5:45", "6:00", "6:15", "6:30", "6:45",
@@ -49,6 +49,14 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
       GameLocation.text = parseAddress(selectedItem: currentPlacemark!)
     }
     addTextfieldPadding()
+    
+    GameTime.delegate = self
+    GameType.delegate = self
+    GameLocation.delegate = self
+  }
+  
+  func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    return false
   }
     
   func addTextfieldPadding() {

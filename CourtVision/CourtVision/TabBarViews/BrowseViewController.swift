@@ -67,9 +67,11 @@ class BrowseViewController: UIViewController {
   }
 
   @IBAction func goToCurrentLoc(_ sender: Any) {
-    let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05) //zooom level
-    let region = MKCoordinateRegion(center: currentLocation!.coordinate, span: span)
-    mapView.setRegion(region, animated: true)
+    if (currentLocation != nil) {
+      let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05) //zooom level
+      let region = MKCoordinateRegion(center: currentLocation!.coordinate, span: span)
+      mapView.setRegion(region, animated: true)
+    }
   }
   
   //Queries and updates gamesListing array LIVE

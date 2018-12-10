@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
   
   //ViewController References
   @IBOutlet weak var imgBG: UIImageView!
@@ -50,6 +50,15 @@ class SignUpViewController: UIViewController {
     
     tfPassword.isSecureTextEntry = true
     tfPasswordConf.isSecureTextEntry = true
+    
+    tfEmail.delegate = self
+    tfPassword.delegate = self
+    tfPasswordConf.delegate = self
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    self.view.endEditing(true)
+    return false
   }
   
   

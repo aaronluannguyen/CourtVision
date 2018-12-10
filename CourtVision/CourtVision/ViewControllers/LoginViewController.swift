@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
   
   //ViewController References
   @IBOutlet weak var imgBG: UIImageView!
@@ -46,6 +46,14 @@ class LoginViewController: UIViewController {
     btnSignUp.setTitleColor(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1.0), for: .normal)
     
     tfPassword.isSecureTextEntry = true
+    
+    self.tfEmail.delegate = self
+    self.tfPassword.delegate = self
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    self.view.endEditing(true)
+    return false
   }
   
   override func viewDidAppear(_ animated: Bool) {
