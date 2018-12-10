@@ -103,9 +103,6 @@ class LiveGameViewController: UIViewController {
             let game = GameDM(data)
             self.currGame = game
             if (game.gameObj[statusField]! as! String != gamesActive) {
-              self.performSegue(withIdentifier: "FromPlayToPlayContainer", sender: self)
-            }
-            if (game.gameObj[statusField]! as! String != gamesActive) {
               //Alert on game winner/loser
               self.performSegue(withIdentifier: "FromPlayToPlayContainer", sender: self)
             }
