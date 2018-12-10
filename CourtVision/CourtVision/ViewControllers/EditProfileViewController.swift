@@ -7,6 +7,23 @@
 //
 
 import UIKit
+import Firebase
+
+//extension String {
+//    var containsWhitespace : Bool {
+//        return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
+//    }
+//
+//    func chopPrefix(_ count: Int = 1) -> String {
+//        return substring(from: index(startIndex, offsetBy: count))
+//    }
+//}
+//
+//extension StringProtocol where Index == String.Index {
+//    func index(of string: Self, options: String.CompareOptions = []) -> Index? {
+//        return range(of: string, options: options)?.lowerBound
+//    }
+//}
 
 class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -27,6 +44,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var positions: [String] = [String]()
     var ft = "ft"
     var inch = "in"
+//    var fullName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +98,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func EditName(_ sender: Any) {
-        print(PlayerName.text)
+        print(PlayerName.text!)
     }
     
     @IBAction func EditHeightToucher(_ sender: Any) {
@@ -111,8 +129,37 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func SaveProfile(_ sender: Any) {
-        
+//        if (checkNameFormat()) {
+//            let index = fullName.index(of: " ")
+//            let firstName = fullName.prefix(upTo: index!)
+//            let lastName = fullName.chopPrefix(index)
+//            print(firstName)
+//            print(lastName)
+//
+//        }
+        getFirestoreDB().collection(playersCollection).document(ud.string(forKey: udUserID)!).updateData([
+            //            "profile.firstName": self.firstName.text!
+            //            "profile.lastName": self.lastName.text!
+            "profile.height": self.PlayerHeight.text!,
+            "profile.weight": self.PlayerWeight.text!,
+            "profile.position": self.PlayerPosition.text!
+            ])
     }
+    
+//    func checkNameFormat() -> Bool {
+//        self.fullName = self.PlayerName.text!
+//        let whitespace = NSCharacterSet.whitespaces
+//        if !fullName.containsWhitespace {
+//            print("doesn't contains space!")
+//            let alert = UIAlertController(title: "Uh oh!", message: "Looks like the name you entered isn't in proper format. Please try again!", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//            self.present(alert, animated: true)
+//            return false
+//        } else {
+//            print("contains space!")
+//            return true
+//        }
+//    }
     
     @IBAction func onBackClick(_ sender: Any) {
         self.performSegue(withIdentifier: "FromEditToProfile", sender: sender)
@@ -134,18 +181,16 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         default:
             return 1
         }
-//        return pickerData.count
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (component == 0) {
-            ft = heightPickerData[0][pickerView.selectedRow(inComponent: component)]
-        } else {
-            inch = heightPickerData[1][pickerView.selectedRow(inComponent: component)]
-        }
-        
         if (currentlyEditing == "Height") {
+            if (component == 0) {
+                ft = heightPickerData[0][pickerView.selectedRow(inComponent: component)]
+            } else {
+                inch = heightPickerData[1][pickerView.selectedRow(inComponent: component)]
+            }
             self.PlayerHeight.text = "\(ft) \(inch)"
             return self.heightPickerData[component][row]
         } else {
