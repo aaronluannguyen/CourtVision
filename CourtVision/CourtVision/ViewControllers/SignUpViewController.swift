@@ -40,11 +40,9 @@ class SignUpViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+
     imgBG.image = #imageLiteral(resourceName: "background")
     imgLogo.image = #imageLiteral(resourceName: "logo")
-    btnSignUp.setTitle("Sign Up", for: .normal)
-    btnSignUp.backgroundColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1.0)
     btnSignUp.layer.cornerRadius = 3
     btnSignUp.layer.borderWidth = 1
     btnSignUp.layer.borderColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1.0).cgColor

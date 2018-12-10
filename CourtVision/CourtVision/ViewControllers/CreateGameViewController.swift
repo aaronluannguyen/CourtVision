@@ -43,25 +43,28 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     pickerView.isHidden = true;
     self.picker.delegate = self
     self.picker.dataSource = self
-    
-    let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-    GameName.rightView = paddingViewName
-    GameName.rightViewMode = UITextField.ViewMode.always
-    let paddingViewType = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-    GameType.rightView = paddingViewType
-    GameType.rightViewMode = UITextField.ViewMode.always
-    let paddingViewTime = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-    GameTime.rightView = paddingViewTime
-    GameTime.rightViewMode = UITextField.ViewMode.always
-    let paddingViewLocation = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-    GameLocation.rightView = paddingViewLocation
-    GameLocation.rightViewMode = UITextField.ViewMode.always
-    
+
     if currentPlacemark != nil {
       GameName.text = currentPlacemark?.name
       GameLocation.text = parseAddress(selectedItem: currentPlacemark!)
     }
+    addTextfieldPadding()
   }
+    
+    func addTextfieldPadding() {
+        let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        GameName.leftView = paddingViewName
+        GameName.leftViewMode = UITextField.ViewMode.always
+        let paddingViewType = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        GameType.rightView = paddingViewType
+        GameType.rightViewMode = UITextField.ViewMode.always
+        let paddingViewTime = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        GameTime.rightView = paddingViewTime
+        GameTime.rightViewMode = UITextField.ViewMode.always
+        let paddingViewLocation = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        GameLocation.rightView = paddingViewLocation
+        GameLocation.rightViewMode = UITextField.ViewMode.always
+    }
 
   @IBAction func SaveSelection(_ sender: Any) {
     pickerView.isHidden = true;

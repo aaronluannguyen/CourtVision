@@ -47,13 +47,41 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         "7'4\"", "7'5\"", "7'6\"", "7'7\"",
         "7'8\"", "7'9\"", "7'10\"", "7'11\""]
         
-        for i in 50 ... 700 {
+        for i in 50 ... 500 {
             weights.append(String(i) + " lb.")
         }
         
         positions = ["G", "PG", "SG", "F", "SF",
                      "PF", "C", "G/F", "PG/SG", "SG/SF",
                      "SF/PF", "PF/C"]
+        
+        getPlayerProfile(ud.string(forKey: udUserID)!) { (player) in
+            if player != nil {
+                let profile = player?.playerObj[profileField]! as! [String : Any]
+                
+                self.PlayerName.text = ("\(profile[firstNameField]!) \(profile[lastNameField]!)")
+                self.PlayerHeight.text = ("\(profile[heightField]!)")
+                self.PlayerWeight.text = ("\(profile[weightPoundsField]!)")
+                self.PlayerPosition.text = ("\(profile[positionField]!)")
+            }
+        }
+        
+        addTextfieldPadding()
+    }
+    
+    func addTextfieldPadding() {
+        let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        PlayerName.rightView = paddingViewName
+        PlayerName.rightViewMode = UITextField.ViewMode.always
+        let paddingViewHeight = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        PlayerHeight.rightView = paddingViewHeight
+        PlayerHeight.rightViewMode = UITextField.ViewMode.always
+        let paddingViewWeight = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        PlayerWeight.rightView = paddingViewWeight
+        PlayerWeight.rightViewMode = UITextField.ViewMode.always
+        let paddingViewPosition = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+        PlayerPosition.rightView = paddingViewPosition
+        PlayerPosition.rightViewMode = UITextField.ViewMode.always
     }
     
     @IBAction func SaveSelection(_ sender: Any) {

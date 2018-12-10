@@ -80,7 +80,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     cell.btnResult.layer.borderWidth = 1
     cell.imgGame.image = #imageLiteral(resourceName: "default")
     cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
-    cell.txtTime.text = "\(gameObj[datetimeField]!)"
+    print(gameObj)
+//    cell.txtTime.text = "\(gameObj[datetimeField]!)"
     
     return cell
   }
@@ -141,4 +142,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.performSegue(withIdentifier: "FromProfileToEdit", sender: sender)
     }
     
+    @IBAction func onSignoutClick(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            ud.set("", forKey: udUserID)
+            ud.set("", forKey: udTeamID)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        self.performSegue(withIdentifier: "FromProfileToLogin", sender: nil)
+    }
 }

@@ -35,11 +35,9 @@ class LoginViewController: UIViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+
     imgBG.image = #imageLiteral(resourceName: "background")
     imgLogo.image = #imageLiteral(resourceName: "logo")
-    btnLogin.setTitle("Login", for: .normal)
-    btnLogin.backgroundColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1.0)
     btnLogin.layer.cornerRadius = 3
     btnLogin.layer.borderWidth = 1
     btnLogin.layer.borderColor = UIColor(red: 246/255, green: 70/255, blue: 70/255, alpha: 1.0).cgColor
