@@ -39,7 +39,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         heightPickerData = [["4'", "5'", "6'", "7'"], ["0\"", "1\"", "2\"", "3\"", "4\"", "5\"", "6\"", "7\"", "8\"", "9\"", "10\"", "11\""]]
         
         for i in 50 ... 500 {
-            weights.append(String(i) + " lb.")
+            weights.append(String(i) + " lbs")
         }
         
         // check if positions match in db
@@ -54,7 +54,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 self.PlayerFName.text = ("\(profile[firstNameField]!)")
                 self.PlayerLName.text = ("\(profile[lastNameField]!)")
                 self.PlayerHeight.text = ("\(profile[heightField]!)")
-                self.PlayerWeight.text = ("\(profile[weightPoundsField]!)")
+                self.PlayerWeight.text = ("\(profile[weightField]!)")
                 self.PlayerPosition.text = ("\(profile[positionField]!)")
             }
         }

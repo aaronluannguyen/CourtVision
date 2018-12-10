@@ -22,7 +22,7 @@ public class PlayerDM {
         "firstName": "",
         "lastName": "",
         "height": "",
-        "weightPounds": 0,
+        "weight": "0 lbs",
         "position": "N/A",
         "totalGames": 0,
         "totalWins": 0,

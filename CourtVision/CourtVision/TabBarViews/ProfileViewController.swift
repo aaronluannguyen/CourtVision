@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   @IBOutlet weak var labelPosition: UILabel!
   
   var profileListener: ListenerRegistration!
+  var historyListener: ListenerRegistration!
   
   
   override func viewDidLoad() {
@@ -46,6 +47,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   override func viewWillDisappear(_ animated: Bool) {
     profileListener.remove()
+    historyListener.remove()
   }
   
   //Variables
@@ -80,7 +82,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     cell.btnResult.layer.borderWidth = 1
     cell.imgGame.image = #imageLiteral(resourceName: "default")
     cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
-    print(gameObj)
     cell.txtTime.text = "\(gameObj[datetimeField]!)"
     
     return cell
@@ -89,22 +90,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
   //Helper Functions
   func renderProfileView() {
-    getPlayerProfile(ud.string(forKey: udUserID)!) { (player) in
-      if player != nil {
-        let profile = player?.playerObj[profileField]! as! [String : Any]
-        self.labelTotalGamesNum.text = ("\(profile[totalGamesField]!)")
-        self.labelTotalWinsNum.text = ("\(profile[totalWinsField]!)")
-        self.labelTotalLossesNum.text = ("\(profile[totalLossesField]!)")
-        
-        self.labelName.text = ("\(profile[firstNameField]!) \(profile[lastNameField]!)")
-        self.labelHeight.text = ("\(profile[heightField]!)")
-        self.labelWeight.text = ("\(profile[weightPoundsField]!)")
-        self.labelPosition.text = ("\(profile[positionField]!)")
-        
-        self.userTeamID = player?.playerObj[teamIDField]! as! String
-        self.renderGamesHistoryLive()
-      }
-    }
+    self.renderProfileLive()
+    self.renderGamesHistoryLive()
   }
   
   func loadGamesHistory(_ teamID: String) {
@@ -115,10 +102,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   //Listens for updates for player's game history LIVE
-  public func renderGamesHistoryLive() {
+   func renderGamesHistoryLive() {
     let db = getFirestoreDB()
     
-    profileListener = db.collection(gamesCollection)
+    historyListener = db.collection(gamesCollection)
       .whereField(playersInvolvedField, arrayContains: ud.string(forKey: udUserID)!)
       .whereField("status", isEqualTo: gamesCompleted)
       .addSnapshotListener {(querySnapShot, error) in
@@ -136,21 +123,49 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
           }
         }
       }
-    }
+  }
+  
+  func renderProfileLive() {
+    let db = getFirestoreDB()
     
-    @IBAction func onEditProfileClick(_ sender: Any) {
-        self.performSegue(withIdentifier: "FromProfileToEdit", sender: sender)
-    }
-    
-    @IBAction func onSignoutClick(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            ud.set("", forKey: udUserID)
-            ud.set("", forKey: udTeamID)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+    profileListener = db.collection(playersCollection).document(ud.string(forKey: udUserID)!)
+      .addSnapshotListener {(documentSnapshot, error) in
+        guard let document = documentSnapshot else {
+          print("Error fetching document: \(String(describing: error))")
+          return
         }
-        self.performSegue(withIdentifier: "FromProfileToLogin", sender: nil)
+        guard let data = document.data() else {
+          print("Document data was empty.")
+          return
+        }
+        let player = PlayerDM(data)
+        let profile = player.playerObj[profileField]! as! [String : Any]
+        self.labelTotalGamesNum.text = ("\(profile[totalGamesField]!)")
+        self.labelTotalWinsNum.text = ("\(profile[totalWinsField]!)")
+        self.labelTotalLossesNum.text = ("\(profile[totalLossesField]!)")
+        
+        self.labelName.text = ("\(profile[firstNameField]!) \(profile[lastNameField]!)")
+        self.labelHeight.text = ("\(profile[heightField]!)")
+        self.labelWeight.text = ("\(profile[weightField]!)")
+        self.labelPosition.text = ("\(profile[positionField]!)")
+        
+        self.userTeamID = player.playerObj[teamIDField]! as! String
+      }
+  }
+    
+  @IBAction func onEditProfileClick(_ sender: Any) {
+      self.performSegue(withIdentifier: "FromProfileToEdit", sender: sender)
+  }
+  
+  @IBAction func onSignoutClick(_ sender: Any) {
+    let firebaseAuth = Auth.auth()
+    do {
+        try firebaseAuth.signOut()
+        ud.set("", forKey: udUserID)
+        ud.set("", forKey: udTeamID)
+    } catch let signOutError as NSError {
+        print ("Error signing out: %@", signOutError)
     }
+    self.performSegue(withIdentifier: "FromProfileToLogin", sender: nil)
+  }
 }
