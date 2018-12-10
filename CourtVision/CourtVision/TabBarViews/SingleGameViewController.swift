@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class SingleGameViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class SingleGameViewController: UIViewController {
   @IBOutlet weak var txtLocation: UILabel!
   
   @IBOutlet weak var mapView: MKMapView!
+  var gameListener: ListenerRegistration?
   var gameID : String?
   var game: GameDM?
   //for testing. comment out later
@@ -128,12 +130,29 @@ extension SingleGameViewController: MKMapViewDelegate {
 //    }
   
   func queryGame() {
-    getSingleGameListing(gameID!) {(game) in
-      if (game != nil) {
-        self.game = game!
-        let gameObj = game!.gameObj
+    let db = getFirestoreDB()
+    
+    gameListener = db.collection(gamesCollection).document(gameID!)
+      .addSnapshotListener {(documentSnapshot, error) in
+        guard let document = documentSnapshot else {
+          print("Error fetching document: \(String(describing: error))")
+          return
+        }
+        guard let data = document.data() else {
+          print("Document data was empty.")
+          return
+        }
+        let game = GameDM(data)
+        if (game.gameObj[statusField]! as! String == gamesDeleted) {
+          let alert = UIAlertController(title: "Uh Oh!", message: "This game listing has been removed. Please ball up elsewhere!", preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.navigationController?.popViewController(animated: true)}))
+          self.present(alert, animated: true)
+          return
+        }
+        self.game = game
+        let gameObj = game.gameObj
         self.txtTime.text = gameObj[datetimeField]! as? String
-        let location = game!.gameObj[locationField]! as! [String: Any]
+        let location = game.gameObj[locationField]! as! [String: Any]
         self.txtName.text = location[nameField]! as? String
         self.txtLocation.text = location[addressField] as? String
         self.btnMatch.setTitle(gameObj[gameTypeField]! as? String, for: .normal)
@@ -143,9 +162,27 @@ extension SingleGameViewController: MKMapViewDelegate {
           self.txtTeam.text = team?.teamObj[teamNameField]! as? String
         }
         
-        self.buildAnnotation(game!)
+        self.buildAnnotation(game)
       }
-    }
+    
+//    getSingleGameListing(gameID!) {(game) in
+//      if (game != nil) {
+//        self.game = game!
+//        let gameObj = game!.gameObj
+//        self.txtTime.text = gameObj[datetimeField]! as? String
+//        let location = game!.gameObj[locationField]! as! [String: Any]
+//        self.txtName.text = location[nameField]! as? String
+//        self.txtLocation.text = location[addressField] as? String
+//        self.btnMatch.setTitle(gameObj[gameTypeField]! as? String, for: .normal)
+//
+//        let teams = gameObj[teamsField]! as! [String]
+//        getTeamFromID(teams[0]) {(team) in
+//          self.txtTeam.text = team?.teamObj[teamNameField]! as? String
+//        }
+//
+//        self.buildAnnotation(game!)
+//      }
+//    }
   }
     
   //drop a pin on the map.

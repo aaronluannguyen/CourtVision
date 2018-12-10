@@ -535,13 +535,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stock" translatesAutoresizingMaskIntoConstraints="NO" id="mO4-5M-NxF">
-                                <rect key="frame" x="0.0" y="88" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="wIc-dp-56f"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="66Y-pk-QHh">
-                                <rect key="frame" x="25" y="389.66666666666669" width="326" height="20.333333333333314"/>
+                                <rect key="frame" x="25" y="345.66666666666669" width="326" height="20.333333333333314"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-Ew-7Fk">
                                         <rect key="frame" x="0.0" y="0.0" width="14" height="20.333333333333332"/>
@@ -558,7 +558,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lVZ-lt-xK7">
-                                <rect key="frame" x="25" y="366" width="94" height="15.666666666666686"/>
+                                <rect key="frame" x="25" y="322" width="94" height="15.666666666666686"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vs." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlF-eO-8w4">
                                         <rect key="frame" x="0.0" y="0.0" width="17.333333333333332" height="15.666666666666666"/>
@@ -575,25 +575,25 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTN-zP-LES">
-                                <rect key="frame" x="25" y="342.33333333333331" width="30" height="15.666666666666686"/>
+                                <rect key="frame" x="25" y="298.33333333333331" width="30" height="15.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVd-S9-mm2">
-                                <rect key="frame" x="20" y="308" width="147.33333333333334" height="26.333333333333314"/>
+                                <rect key="frame" x="20" y="264" width="147.33333333333334" height="26.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y70-or-A03">
-                                <rect key="frame" x="0.0" y="430" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="386" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="qG4-j1-bIk"/>
                                 </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPn-l2-85l">
-                                <rect key="frame" x="62.666666666666657" y="654" width="249.99999999999997" height="48"/>
+                                <rect key="frame" x="62.666666666666657" y="610" width="249.99999999999997" height="48"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="gks-DS-iaB"/>
@@ -608,7 +608,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNC-ar-v7O">
-                                <rect key="frame" x="268" y="308" width="87" height="30"/>
+                                <rect key="frame" x="268" y="264" width="87" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.64313725489999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="HW7-2I-IEG"/>
@@ -654,6 +654,7 @@
                         <outlet property="txtTeam" destination="GOi-Xm-Npl" id="dKq-aa-cf0"/>
                         <outlet property="txtTime" destination="HTN-zP-LES" id="PmV-68-x5S"/>
                         <segue destination="6zn-3E-xVM" kind="show" identifier="FromBrowseSingleGameToPlayContainer" id="Gy9-5S-V9s"/>
+                        <segue destination="7cm-1l-s4w" kind="show" identifier="FromSingleGameToMap" id="f42-Yy-bHf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5n-aI-jnE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1934,7 +1935,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VG5-FM-gdb">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
                                 <connections>
                                     <outlet property="delegate" destination="7cm-1l-s4w" id="Jl6-27-NEt"/>
                                 </connections>
@@ -2246,13 +2247,12 @@
         <image name="team-grey" width="17" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jXz-Px-D2y"/>
         <segue reference="Reg-Iq-Pvb"/>
         <segue reference="ioO-vf-bN5"/>
-        <segue reference="e8c-yc-FUm"/>
+        <segue reference="f42-Yy-bHf"/>
         <segue reference="Str-ad-u5e"/>
         <segue reference="z0X-eA-tQ4"/>
-        <segue reference="VLx-sY-pae"/>
+        <segue reference="Gy9-5S-V9s"/>
         <segue reference="DmK-du-buK"/>
         <segue reference="7At-gE-52S"/>
         <segue reference="one-0E-UJg"/>
