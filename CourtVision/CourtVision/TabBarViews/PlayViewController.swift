@@ -57,14 +57,19 @@ class PlayViewController: UIViewController {
                 return
               }
               if (documentsActive.count == 0) {
+                self.gameListingListener.remove()
                 self.performSegue(withIdentifier: "FromActiveToCreate", sender: self)
               } else {
+                self.gameListingListener.remove()
                 self.performSegue(withIdentifier: "FromActiveToLive", sender: self)
               }
             }
         } else {
           //Assuming only home team has listings with teams array containing their team
+            
+            self.gameListingListener.remove()
           self.performSegue(withIdentifier: "FromActiveToListing", sender: self)
+            
         }
     }
   }

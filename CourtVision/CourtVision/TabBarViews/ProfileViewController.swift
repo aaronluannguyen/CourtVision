@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     cell.imgGame.image = #imageLiteral(resourceName: "default")
     cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
     print(gameObj)
-//    cell.txtTime.text = "\(gameObj[datetimeField]!)"
+    cell.txtTime.text = "\(gameObj[datetimeField]!)"
     
     return cell
   }
