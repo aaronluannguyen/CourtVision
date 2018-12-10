@@ -47,25 +47,37 @@ public class GameDM {
   
   //Initializes a new game in Firestore
   func newGame() {
+    let group = DispatchGroup()
+    
     let db = getFirestoreDB()
     
     var ref: DocumentReference? = nil
     ref = db.collection(gamesCollection).addDocument(data: self.gameObj) {err in
+      group.enter()
       if let err = err {
         print(err.localizedDescription)
       }
       db.collection(gamesCollection).document(ref!.documentID).updateData([
         "gameID": ref!.documentID
       ]) {err in
+        group.enter()
         if let err = err {
           print(err.localizedDescription)
         }
+        group.leave()
       }
       getTeamMembersIDs() {(teamMembersIDs) in
+        group.enter()
         db.collection(gamesCollection).document(ref!.documentID).updateData([
           "playersInvolved": FieldValue.arrayUnion(teamMembersIDs)
         ])
+        group.leave()
       }
+      group.leave()
+    }
+    
+    group.notify(queue: .main) {
+      print("done creating game")
     }
   }
 }

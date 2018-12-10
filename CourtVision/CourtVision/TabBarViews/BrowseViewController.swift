@@ -78,7 +78,7 @@ class BrowseViewController: UIViewController {
     let db = getFirestoreDB()
     
     gamesListener = db.collection(gamesCollection)
-      .whereField("status", isEqualTo: gamesListing)
+//      .whereField("status", isEqualTo: gamesListing)
       .addSnapshotListener {(querySnapShot, error) in
         guard let snapshot = querySnapShot else {
           print("Error fetching game documents: \(String(describing: error))")
@@ -87,14 +87,16 @@ class BrowseViewController: UIViewController {
         snapshot.documentChanges.forEach {diff in
           if (diff.type == .added) {
             //Store each game object into dictionary with annotation on map
-            self.dropGamePin(game: GameDM(diff.document.data()))
+            let game = GameDM(diff.document.data())
+            if (game.gameObj[statusField] as! String == gamesListing) {
+              self.dropGamePin(game: GameDM(diff.document.data()))
+            }
           }
           if (diff.type == .modified) {
             //Find old pin, delete, and repost new updated pin
             let game = GameDM(diff.document.data())
             if(game.gameObj[statusField] as! String == gamesDeleted ||
                 game.gameObj[statusField] as! String == gamesActive) {
-                NSLog("ENTERED HERE")
                 //remove pin and from dict.
                 self.removePin(gameID: game.gameObj[gameIDField] as! String)
             }
@@ -104,7 +106,6 @@ class BrowseViewController: UIViewController {
             //remove pin and from dict
             self.removePin(gameID: game.gameObj[gameIDField] as! String)
             //Find old pin and remove from map
-            print("DELETE")
           }
         }
     }
@@ -192,14 +193,14 @@ extension BrowseViewController: HandleMapSearch {
     
     //drop pin for each game
     func dropGamePin(game: GameDM) {
-        let location = game.gameObj[locationField] as! [String : Any]
-        let lat = location[latField] as! Double
-        let long = location[longField] as! Double
-        let name = location[nameField] as! String
-      
-        let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: [nameField : name, gameIDField : game.gameObj[gameIDField]])
-        buildAnnotation(placemark: placemark)
+      let location = game.gameObj[locationField] as! [String : Any]
+      let lat = location[latField] as! Double
+      let long = location[longField] as! Double
+      let name = location[nameField] as! String
+    
+      let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
+      let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: [nameField : name, gameIDField : game.gameObj[gameIDField]])
+      buildAnnotation(placemark: placemark)
     }
     
     //drop a pin on the map.
@@ -210,10 +211,6 @@ extension BrowseViewController: HandleMapSearch {
       annotation.title = placemark.addressDictionary![nameField]! as! String
       annotation.gameID = placemark.addressDictionary![gameIDField]! as! String
       annotationDict[annotation.gameID] = annotation
-//        if let city = placemark.locality,
-//            let state = placemark.administrativeArea {
-//            annotation.subtitle = "\(city) \(state)"
-//        }
       mapView.addAnnotation(annotation)
     }
     

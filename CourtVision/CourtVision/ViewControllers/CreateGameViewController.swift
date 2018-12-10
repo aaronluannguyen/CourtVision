@@ -51,20 +51,28 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     addTextfieldPadding()
   }
     
-    func addTextfieldPadding() {
-        let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameName.rightView = paddingViewName
-        GameName.rightViewMode = UITextField.ViewMode.always
-        let paddingViewType = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameType.rightView = paddingViewType
-        GameType.rightViewMode = UITextField.ViewMode.always
-        let paddingViewTime = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameTime.rightView = paddingViewTime
-        GameTime.rightViewMode = UITextField.ViewMode.always
-        let paddingViewLocation = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
-        GameLocation.rightView = paddingViewLocation
-        GameLocation.rightViewMode = UITextField.ViewMode.always
+  func addTextfieldPadding() {
+    let paddingViewName = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+    GameName.rightView = paddingViewName
+    GameName.rightViewMode = UITextField.ViewMode.always
+    let paddingViewType = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+    GameType.rightView = paddingViewType
+    GameType.rightViewMode = UITextField.ViewMode.always
+    let paddingViewTime = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+    GameTime.rightView = paddingViewTime
+    GameTime.rightViewMode = UITextField.ViewMode.always
+    let paddingViewLocation = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 44))
+    GameLocation.rightView = paddingViewLocation
+    GameLocation.rightViewMode = UITextField.ViewMode.always
+  }
+
+  @IBAction func onSaveCreateGameClick(_ sender: Any) {
+    if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && self.time != "Time" && currentPlacemark != nil) {
+      let newGame = GameDM(ud.string(forKey: udTeamID)!, GameName.text!, GameType.text!, GameTime.text!, currentPlacemark!, GameLocation.text!)
+      newGame.newGame()
+      performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: nil)
     }
+  }
 
   @IBAction func SaveSelection(_ sender: Any) {
     pickerView.isHidden = true;
@@ -126,14 +134,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
   @IBAction func LocationAction(_ sender: Any) {
     performSegue(withIdentifier: "FromCreateToMap", sender: nil)
-  }
-  
-  @IBAction func saveCreateGameClick(_ sender: Any) {
-    if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && self.time != "Time" && currentPlacemark != nil) {
-      let newGame = GameDM(ud.string(forKey: udTeamID)!, GameName.text!, GameType.text!, GameTime.text!, currentPlacemark!, GameLocation.text!)
-      newGame.newGame()
-      performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: nil)
-    }
   }
   
   //Helper Functions
