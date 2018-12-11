@@ -83,7 +83,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
       let cell = tableView.dequeueReusableCell(withIdentifier: "playerCellID", for: indexPath) as! PlayerTableViewCell
-
+      
       let player = teamMembers[indexPath.row]
       let playerProfile = player.playerObj[profileField]! as! [String: Any]
 
@@ -95,7 +95,6 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "gameCellID", for: indexPath) as! GameTableViewCell
       cell.selectionStyle = .none
-      cell.setEditing(false, animated: false)
 
       let game = teamGamesHistory[indexPath.row]
       let gameObj = game.gameObj
@@ -119,6 +118,13 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
       
       return cell
     }
+  }
+  
+  func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
+      return .delete
+    }
+    return .none
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
