@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Firebase
+
 
 class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
@@ -29,6 +31,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   var currentlyEditing : String = "Time";
   var rowSelected : Int = 0;
   var componentsInPicker : Int = 1;
+  var createListener: ListenerRegistration?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,6 +56,14 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     GameTime.delegate = self
     GameType.delegate = self
     GameLocation.delegate = self
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    listenToTeamCreateGame()
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    createListener?.remove()
   }
   
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -150,6 +161,34 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   }
   
   //Helper Functions
+  
+  func listenToTeamCreateGame() {
+    let db = getFirestoreDB()
+    
+    createListener = db.collection(gamesCollection)
+      .whereField(statusField, isEqualTo: gamesListing)
+      .whereField(teamsField, arrayContains: ud.string(forKey: udTeamID)!)
+      .addSnapshotListener {(querySnapShot, error) in
+        guard let snapshot = querySnapShot else {
+          print("Error fetching game documents: \(String(describing: error))")
+          return
+        }
+        snapshot.documentChanges.forEach {diff in
+          if (diff.type == .added) {
+            let alert = UIAlertController(title: "Uh Oh!", message: "A teammate has just listed a game for your team.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.navigationController?.popViewController(animated: true)}))
+            self.present(alert, animated: true)
+            return
+          }
+          if (diff.type == .modified) {
+            //Do nothing
+          }
+          if (diff.type == .removed) {
+            //Do nothing
+          }
+        }
+      }
+  }
   
   func generateSevenDaysData() -> [String] {
     let cal = Calendar.current

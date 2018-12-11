@@ -707,6 +707,7 @@
                         <outlet property="btnCreateGame" destination="cl4-G4-epu" id="mgN-WC-Zaj"/>
                         <outlet property="navBackBtn" destination="nOM-ct-buf" id="2ej-Jt-kdF"/>
                         <segue destination="goK-z6-inc" kind="show" identifier="FromNoGameToCreate" id="Lqp-me-fbo"/>
+                        <segue destination="6zn-3E-xVM" kind="show" identifier="FromCreateToPlayContainer" id="sjn-sJ-3nG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4U-Lv-afq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2252,11 +2253,11 @@
         <segue reference="f42-Yy-bHf"/>
         <segue reference="Str-ad-u5e"/>
         <segue reference="z0X-eA-tQ4"/>
-        <segue reference="Gy9-5S-V9s"/>
+        <segue reference="sjn-sJ-3nG"/>
         <segue reference="DmK-du-buK"/>
         <segue reference="7At-gE-52S"/>
-        <segue reference="one-0E-UJg"/>
-        <segue reference="uu1-bj-Ojk"/>
+        <segue reference="Lqp-me-fbo"/>
+        <segue reference="WmM-AW-74E"/>
         <segue reference="VNF-Jd-9yq"/>
         <segue reference="H4M-uu-bG4"/>
     </inferredMetricsTieBreakers>
