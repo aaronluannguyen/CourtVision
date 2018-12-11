@@ -88,6 +88,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
   @IBAction func onSaveCreateGameClick(_ sender: Any) {
     if (GameName.text! != "" && GameType.text! != "" && GameTime.text! != "" && GameLocation.text! != "" && self.time != "" && currentPlacemark != nil) {
       let newGame = GameDM(ud.string(forKey: udTeamID)!, GameName.text!, GameType.text!, GameTime.text!, currentPlacemark!, GameLocation.text!)
+      createListener?.remove()
       newGame.newGame()
       performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: nil)
     } else {
@@ -176,7 +177,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
         snapshot.documentChanges.forEach {diff in
           if (diff.type == .added) {
             let alert = UIAlertController(title: "Uh Oh!", message: "A teammate has just listed a game for your team.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.navigationController?.popViewController(animated: true)}))
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in self.performSegue(withIdentifier: "FromCreateGameToPlayVC", sender: self)}))
             self.present(alert, animated: true)
             return
           }
