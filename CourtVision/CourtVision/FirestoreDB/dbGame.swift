@@ -100,9 +100,13 @@ public func getSingleActiveGame(completion: @escaping(GameDM?) -> ()) {
     if let err = err {
       print("Error: \(err)")
     } else {
-      let activeGame = GameDM(query!.documents[0].data())
-      resultGame = activeGame
-      completion(resultGame)
+      if (query!.documents.count > 0) {
+        let activeGame = GameDM(query!.documents[0].data())
+        resultGame = activeGame
+        completion(resultGame)
+      } else {
+        completion(resultGame)
+      }
     }
   }
 }
