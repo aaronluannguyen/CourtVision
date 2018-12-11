@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     cell.btnResult.layer.cornerRadius = 14
     cell.btnResult.layer.borderWidth = 1
-    cell.imgGame.image = #imageLiteral(resourceName: "default")
+    cell.imgGame.image = #imageLiteral(resourceName: "default_ii")
     cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
     cell.txtTime.text = "\(gameObj[datetimeField]!)"
     

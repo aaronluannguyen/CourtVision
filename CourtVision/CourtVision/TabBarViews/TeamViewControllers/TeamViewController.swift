@@ -83,7 +83,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if (segmentControlPlayersGames.selectedSegmentIndex == 0) {
       let cell = tableView.dequeueReusableCell(withIdentifier: "playerCellID", for: indexPath) as! PlayerTableViewCell
-      
+
       let player = teamMembers[indexPath.row]
       let playerProfile = player.playerObj[profileField]! as! [String: Any]
 
@@ -95,7 +95,8 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: "gameCellID", for: indexPath) as! GameTableViewCell
       cell.selectionStyle = .none
-      
+      cell.setEditing(false, animated: false)
+
       let game = teamGamesHistory[indexPath.row]
       let gameObj = game.gameObj
       let courtInfo = gameObj[courtInfoField]! as! [String : Any]
@@ -112,7 +113,7 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
       }
       cell.btnResult.layer.cornerRadius = 14
       cell.btnResult.layer.borderWidth = 1
-      cell.imgGame.image = #imageLiteral(resourceName: "default")
+      cell.imgGame.image = #imageLiteral(resourceName: "default_ii")
       cell.txtLocation.text = "\(courtInfo[courtNameField]!)"
       cell.txtTime.text = "\(gameObj[datetimeField]!)"
       
@@ -121,9 +122,9 @@ class TeamViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-      if editingStyle == .delete {
-        deleteConfirmation(indexPath.row, indexPath)
-      }
+    if editingStyle == .delete {
+      deleteConfirmation(indexPath.row, indexPath)
+    }
   }
   
   @IBAction func btnAddPlayerClick(_ sender: Any) {

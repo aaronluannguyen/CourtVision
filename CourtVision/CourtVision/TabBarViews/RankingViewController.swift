@@ -37,7 +37,7 @@ class RankingViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "teamCellID", for: indexPath) as! TeamTableViewCell
-    
+    cell.isUserInteractionEnabled = false
     let team = teams[indexPath.row]
     let teamRecord = team.teamObj[recordField]! as! [String: Any]
     
