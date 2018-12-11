@@ -101,6 +101,8 @@ class LiveGameViewController: UIViewController {
             let location = game.gameObj[locationField]! as! [String: Any]
             self.txtLocation.text = location[addressField]! as? String
           }
+      } else {
+        
       }
     }
   }

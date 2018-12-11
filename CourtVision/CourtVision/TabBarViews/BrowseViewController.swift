@@ -80,7 +80,6 @@ class BrowseViewController: UIViewController {
     let db = getFirestoreDB()
     
     gamesListener = db.collection(gamesCollection)
-//      .whereField("status", isEqualTo: gamesListing)
       .addSnapshotListener {(querySnapShot, error) in
         guard let snapshot = querySnapShot else {
           print("Error fetching game documents: \(String(describing: error))")
